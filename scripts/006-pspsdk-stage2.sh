@@ -5,11 +5,10 @@
  set -e
 
  ## Download the source code.
- if test ! -d "pspsdk"; then
-  svn checkout svn://svn.ps2dev.org/psp/trunk/pspsdk
- else
-  svn update pspsdk
- fi
+ wget --continue --no-check-certificate https://github.com/ooPo/pspsdk/tarball/master -O pspsdk.tar.gz
+
+ ## Unpack the source code.
+ rm -Rf pspsdk && mkdir pspsdk && tar --strip-components=1 --directory=pspsdk -xvzf pspsdk.tar.gz
 
  ## Enter the source directory.
  cd pspsdk
