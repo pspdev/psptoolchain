@@ -5,7 +5,7 @@
  set -e
 
  ## Download the source code.
- wget --continue --no-check-certificate https://github.com/ooPo/psplinkusb/tarball/master -O psplinkusb.tar.gz
+ wget --continue --no-check-certificate https://github.com/pspdev/psplinkusb/tarball/master -O psplinkusb.tar.gz
 
  ## Unpack the source code.
  rm -Rf psplinkusb && mkdir psplinkusb && tar --strip-components=1 --directory=psplinkusb -xvzf psplinkusb.tar.gz
