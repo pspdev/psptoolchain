@@ -5,7 +5,7 @@
   libmpfr-dev subversion
 
  ## Set up the environment.
- gedit ~/.bashrc
+ sudo gedit /etc/profile.d/psptoolchain.sh
 
   ## Add these lines to the end of the file.
   export PSPDEV="/usr/local/pspdev"
@@ -13,7 +13,7 @@
   export PATH="$PATH:$PSPDEV/bin:$PSPSDK/bin"
 
  ## Load the environment changes.
- source ~/.bashrc
+ source /etc/profile.d/psptoolchain.sh
 
  ## Build and install the toolchain + sdk.
  sudo ./toolchain-sudo.sh
