@@ -2,7 +2,7 @@
  ## Install the required packages.
  sudo apt-get install build-essential autoconf automake bison flex \
   libncurses5-dev libreadline-dev libusb-dev texinfo libgmp3-dev   \
-  libmpfr-dev subversion
+  libmpfr-dev libelf-dev libmpc-dev subversion
 
  ## Set up the environment.
  sudo gedit /etc/profile.d/psptoolchain.sh
