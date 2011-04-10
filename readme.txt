@@ -14,7 +14,7 @@
  1) Set up your environment by installing the following software:
 
   autoconf, automake, bison, flex, gcc, libusb-dev, make, ncurses,
-  patch, readline, subversion, texinfo, wget, mpc, gmp, libelf
+  patch, readline, subversion, texinfo, wget, mpc, gmp, libelf, mpfr
 
  2) Add the following to your login script:
 
