@@ -16,10 +16,15 @@
   autoconf, automake, bison, flex, gcc, libusb-dev, make, ncurses,
   patch, readline, subversion, texinfo, wget, mpc, gmp, libelf, mpfr
 
- 2) Add the following to your login script:
+ 2) Set the PSPDEV and PATH environmental variables:
 
   export PSPDEV=/usr/local/pspdev
   export PATH=$PATH:$PSPDEV/bin
+  
+  The PSPDEV variable is the directory the toolchain will be installed to, change 
+  this if you wish. If possible the toolchain script will automatically add these 
+  variables to your systems login scripts, otherwise you will need to manually add
+  these variables.
 
  3) Run the toolchain script:
 
