@@ -1,19 +1,12 @@
 
  ## Install the required packages.
- sudo apt-get install build-essential autoconf automake bison flex \
+ sudo apt-get install g++ build-essential autoconf automake bison flex \
   libncurses5-dev libreadline-dev libusb-dev texinfo libgmp3-dev   \
   libmpfr-dev libelf-dev libmpc-dev subversion
 
- ## Set up the environment.
- sudo gedit /etc/profile.d/psptoolchain.sh
-
-  ## Add these lines to the end of the file.
-  export PSPDEV="/usr/local/pspdev"
-  export PSPSDK="$PSPDEV/psp/sdk"
-  export PATH="$PATH:$PSPDEV/bin:$PSPSDK/bin"
-
- ## Load the environment changes.
- source /etc/profile.d/psptoolchain.sh
-
- ## Build and install the toolchain + sdk.
+ ## Build and install the toolchain + sdk. A login script will automatically 
+ ## be created in /etc/profile.d/ if possible.
  sudo ./toolchain-sudo.sh
+ 
+ NOTE: If you do not wish for the toolchain to be installed in /usr/local/pspdev
+       then edit toolchain-sudo.sh and change the INSTALLDIR variable.
