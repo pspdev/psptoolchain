@@ -13,7 +13,7 @@
 
  1) Set up your environment by installing the following software:
 
-  autoconf, automake, bison, flex, gcc, libusb-dev, make, ncurses,
+  autoconf, automake, bison, flex, gcc, g++/gcc-c++, libusb-dev, make, ncurses,
   patch, readline, subversion, texinfo, wget, mpc, gmp, libelf, mpfr
 
  2) Set the PSPDEV and PATH environmental variables:
