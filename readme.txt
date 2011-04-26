@@ -24,7 +24,7 @@
   The PSPDEV variable is the directory the toolchain will be installed to, change 
   this if you wish. If possible the toolchain script will automatically add these 
   variables to your systems login scripts, otherwise you will need to manually add
-  these variables.
+  these variables yourself.
 
  3) Run the toolchain script:
 
