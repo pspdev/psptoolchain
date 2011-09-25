@@ -5,11 +5,11 @@
  set -e
 
  ## Download the source code.
- wget --continue ftp://ftp.gnu.org/pub/gnu/binutils/binutils-2.16.1.tar.bz2
+ wget --continue ftp://ftp.gnu.org/pub/gnu/binutils/binutils-2.16.1a.tar.bz2
 
  ## Unpack the source code.
  rm -Rf binutils-2.16.1
- tar xfvj binutils-2.16.1.tar.bz2
+ tar xfvj binutils-2.16.1a.tar.bz2
 
  ## Enter the source directory and patch the source code.
  cd binutils-2.16.1
