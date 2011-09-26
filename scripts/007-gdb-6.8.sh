@@ -5,11 +5,11 @@
  set -e
 
  ## Download the source code.
- wget --continue ftp://ftp.gnu.org/pub/gnu/gdb/gdb-6.8.tar.bz2
+ wget --continue ftp://ftp.gnu.org/pub/gnu/gdb/gdb-6.8a.tar.bz2
 
  ## Unpack the source code.
  rm -Rf gdb-6.8
- tar xfvj gdb-6.8.tar.bz2
+ tar xfvj gdb-6.8a.tar.bz2
 
  ## Enter the source directory and patch the source code.
  cd gdb-6.8
