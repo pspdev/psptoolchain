@@ -1,6 +1,6 @@
-diff -u -r -N org.gcc-4.5.2//config.sub gcc-4.5.2/config.sub
---- org.gcc-4.5.2//config.sub	2011-03-04 13:10:07.549181078 +0900
-+++ gcc-4.5.2/config.sub	2011-03-04 13:06:12.409686775 +0900
+diff -u -r -N org.gcc-4.5.3//config.sub gcc-4.5.3/config.sub
+--- org.gcc-4.5.3//config.sub	2011-03-04 13:10:07.549181078 +0900
++++ gcc-4.5.3/config.sub	2011-03-04 13:06:12.409686775 +0900
 @@ -278,6 +278,7 @@
  	| mipsisa64sb1 | mipsisa64sb1el \
  	| mipsisa64sr71k | mipsisa64sr71kel \
@@ -28,9 +28,9 @@ diff -u -r -N org.gcc-4.5.2//config.sub gcc-4.5.2/config.sub
  	mips3*-*)
  		basic_machine=`echo $basic_machine | sed -e 's/mips3/mips64/'`
  		;;
-diff -u -r -N org.gcc-4.5.2//gcc/config/config.gcc gcc-4.5.2/gcc/config/config.gcc
---- org.gcc-4.5.2//gcc/config/config.gcc	1970-01-01 09:00:00.000000000 +0900
-+++ gcc-4.5.2/gcc/config/config.gcc	2011-03-04 13:06:12.413686700 +0900
+diff -u -r -N org.gcc-4.5.3//gcc/config/config.gcc gcc-4.5.3/gcc/config/config.gcc
+--- org.gcc-4.5.3//gcc/config/config.gcc	1970-01-01 09:00:00.000000000 +0900
++++ gcc-4.5.3/gcc/config/config.gcc	2011-03-04 13:06:12.413686700 +0900
 @@ -0,0 +1,3567 @@
 +# GCC target-specific configuration file.
 +# Copyright 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007,
@@ -3599,9 +3599,9 @@ diff -u -r -N org.gcc-4.5.2//gcc/config/config.gcc gcc-4.5.2/gcc/config/config.g
 +		target_cpu_default=$target_cpu_default2
 +	fi
 +fi
-diff -u -r -N org.gcc-4.5.2//gcc/config/mips/allegrex.md gcc-4.5.2/gcc/config/mips/allegrex.md
---- org.gcc-4.5.2//gcc/config/mips/allegrex.md	1970-01-01 09:00:00.000000000 +0900
-+++ gcc-4.5.2/gcc/config/mips/allegrex.md	2011-03-04 13:06:12.413686700 +0900
+diff -u -r -N org.gcc-4.5.3//gcc/config/mips/allegrex.md gcc-4.5.3/gcc/config/mips/allegrex.md
+--- org.gcc-4.5.3//gcc/config/mips/allegrex.md	1970-01-01 09:00:00.000000000 +0900
++++ gcc-4.5.3/gcc/config/mips/allegrex.md	2011-03-04 13:06:12.413686700 +0900
 @@ -0,0 +1,182 @@
 +;; Sony ALLEGREX instructions.
 +;; Copyright (C) 2005 Free Software Foundation, Inc.
@@ -3785,9 +3785,9 @@ diff -u -r -N org.gcc-4.5.2//gcc/config/mips/allegrex.md gcc-4.5.2/gcc/config/mi
 +  "round.w.s\t%0,%1"
 +  [(set_attr "type"	"fcvt")
 +   (set_attr "mode"	"SF")])
-diff -u -r -N org.gcc-4.5.2//gcc/config/mips/mips-ftypes.def gcc-4.5.2/gcc/config/mips/mips-ftypes.def
---- org.gcc-4.5.2//gcc/config/mips/mips-ftypes.def	2011-03-04 13:10:00.717311926 +0900
-+++ gcc-4.5.2/gcc/config/mips/mips-ftypes.def	2011-03-04 13:06:12.413686700 +0900
+diff -u -r -N org.gcc-4.5.3//gcc/config/mips/mips-ftypes.def gcc-4.5.3/gcc/config/mips/mips-ftypes.def
+--- org.gcc-4.5.3//gcc/config/mips/mips-ftypes.def	2011-03-04 13:10:00.717311926 +0900
++++ gcc-4.5.3/gcc/config/mips/mips-ftypes.def	2011-03-04 13:06:12.413686700 +0900
 @@ -53,9 +53,12 @@
  
  DEF_MIPS_FTYPE (2, (SI, DI, SI))
@@ -3806,9 +3806,9 @@ diff -u -r -N org.gcc-4.5.2//gcc/config/mips/mips-ftypes.def gcc-4.5.2/gcc/confi
  DEF_MIPS_FTYPE (2, (VOID, V2HI, V2HI))
  DEF_MIPS_FTYPE (2, (VOID, V4QI, V4QI))
 +DEF_MIPS_FTYPE (1, (VOID, VOID))
-diff -u -r -N org.gcc-4.5.2//gcc/config/mips/mips.c gcc-4.5.2/gcc/config/mips/mips.c
---- org.gcc-4.5.2//gcc/config/mips/mips.c	2011-03-04 13:10:00.721311850 +0900
-+++ gcc-4.5.2/gcc/config/mips/mips.c	2011-03-04 13:08:51.986628514 +0900
+diff -u -r -N org.gcc-4.5.3//gcc/config/mips/mips.c gcc-4.5.3/gcc/config/mips/mips.c
+--- org.gcc-4.5.3//gcc/config/mips/mips.c	2011-03-04 13:10:00.721311850 +0900
++++ gcc-4.5.3/gcc/config/mips/mips.c	2011-03-04 13:08:51.986628514 +0900
 @@ -239,6 +239,11 @@
    /* As above, but the instruction only sets a single $fcc register.  */
    MIPS_BUILTIN_CMP_SINGLE,
@@ -4006,9 +4006,9 @@ diff -u -r -N org.gcc-4.5.2//gcc/config/mips/mips.c gcc-4.5.2/gcc/config/mips/mi
  #undef TARGET_IRA_COVER_CLASSES
  #define TARGET_IRA_COVER_CLASSES mips_ira_cover_classes
  
-diff -u -r -N org.gcc-4.5.2//gcc/config/mips/mips.h gcc-4.5.2/gcc/config/mips/mips.h
---- org.gcc-4.5.2//gcc/config/mips/mips.h	2011-03-04 13:10:00.717311926 +0900
-+++ gcc-4.5.2/gcc/config/mips/mips.h	2011-03-04 13:06:12.429686391 +0900
+diff -u -r -N org.gcc-4.5.3//gcc/config/mips/mips.h gcc-4.5.3/gcc/config/mips/mips.h
+--- org.gcc-4.5.3//gcc/config/mips/mips.h	2011-03-04 13:10:00.717311926 +0900
++++ gcc-4.5.3/gcc/config/mips/mips.h	2011-03-04 13:06:12.429686391 +0900
 @@ -71,6 +71,7 @@
    PROCESSOR_SB1,
    PROCESSOR_SB1A,
@@ -4116,9 +4116,9 @@ diff -u -r -N org.gcc-4.5.2//gcc/config/mips/mips.h gcc-4.5.2/gcc/config/mips/mi
  #ifndef HAVE_AS_TLS
  #define HAVE_AS_TLS 0
  #endif
-diff -u -r -N org.gcc-4.5.2//gcc/config/mips/mips.md gcc-4.5.2/gcc/config/mips/mips.md
---- org.gcc-4.5.2//gcc/config/mips/mips.md	2011-03-04 13:10:00.717311926 +0900
-+++ gcc-4.5.2/gcc/config/mips/mips.md	2011-03-04 13:06:12.429686391 +0900
+diff -u -r -N org.gcc-4.5.3//gcc/config/mips/mips.md gcc-4.5.3/gcc/config/mips/mips.md
+--- org.gcc-4.5.3//gcc/config/mips/mips.md	2011-03-04 13:10:00.717311926 +0900
++++ gcc-4.5.3/gcc/config/mips/mips.md	2011-03-04 13:06:12.429686391 +0900
 @@ -231,6 +231,18 @@
     (UNSPEC_DPSQX_S_W_PH		447)
     (UNSPEC_DPSQX_SA_W_PH	448)
@@ -4245,9 +4245,9 @@ diff -u -r -N org.gcc-4.5.2//gcc/config/mips/mips.md gcc-4.5.2/gcc/config/mips/m
 +
  ; ST-Microelectronics Loongson-2E/2F-specific patterns.
  (include "loongson.md")
-diff -u -r -N org.gcc-4.5.2//gcc/config/mips/mips.opt gcc-4.5.2/gcc/config/mips/mips.opt
---- org.gcc-4.5.2//gcc/config/mips/mips.opt	2011-03-04 13:10:00.717311926 +0900
-+++ gcc-4.5.2/gcc/config/mips/mips.opt	2011-03-04 13:06:12.433686315 +0900
+diff -u -r -N org.gcc-4.5.3//gcc/config/mips/mips.opt gcc-4.5.3/gcc/config/mips/mips.opt
+--- org.gcc-4.5.3//gcc/config/mips/mips.opt	2011-03-04 13:10:00.717311926 +0900
++++ gcc-4.5.3/gcc/config/mips/mips.opt	2011-03-04 13:06:12.433686315 +0900
 @@ -295,3 +295,7 @@
  mxgot
  Target Report Var(TARGET_XGOT)
@@ -4256,9 +4256,9 @@ diff -u -r -N org.gcc-4.5.2//gcc/config/mips/mips.opt gcc-4.5.2/gcc/config/mips/
 +mpreferred-stack-boundary=
 +Target RejectNegative Joined Var(mips_preferred_stack_boundary_string)
 +Attempt to keep stack aligned to this power of 2
-diff -u -r -N org.gcc-4.5.2//gcc/config/mips/psp.h gcc-4.5.2/gcc/config/mips/psp.h
---- org.gcc-4.5.2//gcc/config/mips/psp.h	1970-01-01 09:00:00.000000000 +0900
-+++ gcc-4.5.2/gcc/config/mips/psp.h	2011-03-04 13:06:12.433686315 +0900
+diff -u -r -N org.gcc-4.5.3//gcc/config/mips/psp.h gcc-4.5.3/gcc/config/mips/psp.h
+--- org.gcc-4.5.3//gcc/config/mips/psp.h	1970-01-01 09:00:00.000000000 +0900
++++ gcc-4.5.3/gcc/config/mips/psp.h	2011-03-04 13:06:12.433686315 +0900
 @@ -0,0 +1,31 @@
 +/* Support for Sony's Playstation Portable (PSP).
 +   Copyright (C) 2005 Free Software Foundation, Inc.
@@ -4291,9 +4291,9 @@ diff -u -r -N org.gcc-4.5.2//gcc/config/mips/psp.h gcc-4.5.2/gcc/config/mips/psp
 +/* Get rid of the .pdr section. */
 +#undef SUBTARGET_ASM_SPEC
 +#define SUBTARGET_ASM_SPEC "-mno-pdr"
-diff -u -r -N org.gcc-4.5.2//gcc/config/mips/t-allegrex gcc-4.5.2/gcc/config/mips/t-allegrex
---- org.gcc-4.5.2//gcc/config/mips/t-allegrex	1970-01-01 09:00:00.000000000 +0900
-+++ gcc-4.5.2/gcc/config/mips/t-allegrex	2011-03-04 13:06:12.433686315 +0900
+diff -u -r -N org.gcc-4.5.3//gcc/config/mips/t-allegrex gcc-4.5.3/gcc/config/mips/t-allegrex
+--- org.gcc-4.5.3//gcc/config/mips/t-allegrex	1970-01-01 09:00:00.000000000 +0900
++++ gcc-4.5.3/gcc/config/mips/t-allegrex	2011-03-04 13:06:12.433686315 +0900
 @@ -0,0 +1,29 @@
 +# Suppress building libgcc1.a, since the MIPS compiler port is complete
 +# and does not need anything from libgcc1.a.
@@ -4324,9 +4324,9 @@ diff -u -r -N org.gcc-4.5.2//gcc/config/mips/t-allegrex gcc-4.5.2/gcc/config/mip
 +
 +LIBGCC = stmp-multilib
 +INSTALL_LIBGCC = install-multilib
-diff -u -r -N org.gcc-4.5.2//gcc/config.gcc gcc-4.5.2/gcc/config.gcc
---- org.gcc-4.5.2//gcc/config.gcc	2011-03-04 13:10:02.269282201 +0900
-+++ gcc-4.5.2/gcc/config.gcc	2011-03-04 13:06:12.433686315 +0900
+diff -u -r -N org.gcc-4.5.3//gcc/config.gcc gcc-4.5.3/gcc/config.gcc
+--- org.gcc-4.5.3//gcc/config.gcc	2011-03-04 13:10:02.269282201 +0900
++++ gcc-4.5.3/gcc/config.gcc	2011-03-04 13:06:12.433686315 +0900
 @@ -1892,6 +1892,18 @@
  	tm_file="elfos.h newlib-stdint.h ${tm_file} mips/r3900.h mips/elf.h"
  	tmake_file="mips/t-r3900 mips/t-libgcc-mips16"
@@ -4346,9 +4346,9 @@ diff -u -r -N org.gcc-4.5.2//gcc/config.gcc gcc-4.5.2/gcc/config.gcc
  mmix-knuth-mmixware)
  	tm_file="${tm_file} newlib-stdint.h"
  	need_64bit_hwint=yes
-diff -u -r -N org.gcc-4.5.2//libgcc/config.host gcc-4.5.2/libgcc/config.host
---- org.gcc-4.5.2//libgcc/config.host	2011-03-04 13:10:14.525047474 +0900
-+++ gcc-4.5.2/libgcc/config.host	2011-03-04 13:06:12.433686315 +0900
+diff -u -r -N org.gcc-4.5.3//libgcc/config.host gcc-4.5.3/libgcc/config.host
+--- org.gcc-4.5.3//libgcc/config.host	2011-03-04 13:10:14.525047474 +0900
++++ gcc-4.5.3/libgcc/config.host	2011-03-04 13:06:12.433686315 +0900
 @@ -433,6 +433,8 @@
  	;;
  mipstx39-*-elf* | mipstx39el-*-elf*)
@@ -4358,9 +4358,9 @@ diff -u -r -N org.gcc-4.5.2//libgcc/config.host gcc-4.5.2/libgcc/config.host
  mmix-knuth-mmixware)
  	extra_parts="crti.o crtn.o crtbegin.o crtend.o"
  	tmake_file="${tmake_file} ${cpu_type}/t-${cpu_type}"
-diff -u -r -N org.gcc-4.5.2//libobjc/Makefile.in gcc-4.5.2/libobjc/Makefile.in
---- org.gcc-4.5.2//libobjc/Makefile.in	2011-03-04 13:10:34.624662543 +0900
-+++ gcc-4.5.2/libobjc/Makefile.in	2011-03-04 13:06:12.433686315 +0900
+diff -u -r -N org.gcc-4.5.3//libobjc/Makefile.in gcc-4.5.3/libobjc/Makefile.in
+--- org.gcc-4.5.3//libobjc/Makefile.in	2011-03-04 13:10:34.624662543 +0900
++++ gcc-4.5.3/libobjc/Makefile.in	2011-03-04 13:06:12.433686315 +0900
 @@ -73,7 +73,7 @@
  RANLIB = @RANLIB@
  
