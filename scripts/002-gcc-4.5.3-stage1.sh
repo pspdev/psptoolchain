@@ -1,11 +1,11 @@
 #!/bin/sh
-# gcc-4.5.2-stage1.sh by Dan Peori (danpeori@oopo.net) customized by yreeen(yreeen@gmail.com)
+# gcc-4.5.3-stage1.sh by Dan Peori (danpeori@oopo.net) customized by yreeen(yreeen@gmail.com)
 
  ## Exit on errors
  set -e
 
  ## Download the source code.
- wget --continue ftp://ftp.gnu.org/pub/gnu/gcc/gcc-4.5.2/gcc-4.5.2.tar.bz2
+ wget --continue ftp://ftp.gnu.org/pub/gnu/gcc/gcc-4.5.3/gcc-4.5.3.tar.bz2
 
  ## Downlow the library source code.
  wget --continue ftp://ftp.gmplib.org/pub/gmp-5.0.1/gmp-5.0.1.tar.bz2
@@ -13,12 +13,12 @@
  wget --continue http://www.mpfr.org/mpfr-2.4.2/mpfr-2.4.2.tar.bz2
 
  ## Unpack the source code.
- rm -Rf gcc-4.5.2
- tar xfvj gcc-4.5.2.tar.bz2
+ rm -Rf gcc-4.5.3
+ tar xfvj gcc-4.5.3.tar.bz2
 
  ## Enter the source directory and patch the source code.
- cd gcc-4.5.2
- patch -p1 < ../../patches/gcc-4.5.2-PSP.patch
+ cd gcc-4.5.3
+ patch -p1 < ../../patches/gcc-4.5.3-PSP.patch
 
  ## Unpack the library source code.
  tar xfvj ../gmp-5.0.1.tar.bz2 && ln -s gmp-5.0.1 gmp
