@@ -3,5 +3,6 @@
 
  ## Check for the ncurses library.
  ls /usr/include/ncurses.h 1> /dev/null ||
+ ls /usr/include/ncurses/ncurses.h 1> /dev/null ||
  ls /usr/local/include/ncurses.h 1> /dev/null ||
  { echo "ERROR: Install ncurses before continuing."; exit 1; }
