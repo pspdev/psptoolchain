@@ -13,6 +13,7 @@
 
  ## Enter the source directory and patch the source code.
  cd gdb-6.8
+ patch -p1 < ../../patches/gdb-6.8-fix-stpcpy.patch
  patch -p1 < ../../patches/gdb-6.8-PSP.patch
 
  ## Create and enter the build directory.

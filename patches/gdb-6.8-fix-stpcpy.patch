@@ -1,0 +1,16 @@
+diff -r bd1c80d7592b -r 9c3b8e40d77c patches/gdb/6.8/150-handle-stpcpy-define.patch
+--- /dev/null	Thu Jan 01 00:00:00 1970 +0000
++++ b/patches/gdb/6.8/150-handle-stpcpy-define.patch	Mon Aug 22 09:35:29 2011 +0200
+@@ -0,0 +1,12 @@
++diff -ru gdb-6.8.orig/bfd/sysdep.h gdb-6.8/bfd/sysdep.h
++--- gdb-6.8.orig/bfd/sysdep.h	2007-07-03 16:26:42.000000000 +0200
+++++ gdb-6.8/bfd/sysdep.h	2011-08-21 13:33:47.000000000 +0200
++@@ -131,7 +131,7 @@
++ extern PTR realloc ();
++ #endif
++ 
++-#if !HAVE_DECL_STPCPY
+++#if !HAVE_DECL_STPCPY && !defined(stpcpy)
++ extern char *stpcpy (char *__dest, const char *__src);
++ #endif
++ 
