@@ -18,10 +18,9 @@
  tar xfvj gcc-4.5.3.tar.bz2
 
  ## Extra step for gdc: unpack and move into gcc
- wget --continue https://bitbucket.org/goshawk/gdc/get/c46d1009bd78.tar.bz2 -O gdc-0.30.tar.bz2
- rm -Rf goshawk-gdc-c46d1009bd78
- tar xfvj gdc-0.30.tar.bz2
- cp -a goshawk-gdc-c46d1009bd78/d gcc-4.5.3/gcc/d
+ rm -Rf gdc
+ hg clone https://bitbucket.org/goshawk/gdc
+ cp -a gdc/d gcc-4.5.3/gcc/d
 
  ## Enter the source directory and patch the source code.
  cd gcc-4.5.3
