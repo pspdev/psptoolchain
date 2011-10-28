@@ -108,7 +108,7 @@ a patch that fixes a bug that I discovered while working on this patch
  #define arch_eltdata(bfd) ((struct areltdata *) ((bfd)->arelt_data))
  #define arch_hdr(bfd) ((struct ar_hdr *) arch_eltdata(bfd)->arch_header)
 -
-+
+
 +void
 +_bfd_ar_spacepad (char *p, size_t n, const char *fmt, long val)
 +{
@@ -124,7 +124,7 @@ a patch that fixes a bug that I discovered while working on this patch
 +  else
 +    memcpy (p, buf, n);
 +}
- 
+
  bfd_boolean
  _bfd_generic_mkarchive (bfd *abfd)
 @@ -1262,17 +1277,8 @@ _bfd_construct_extended_name_table (bfd 
