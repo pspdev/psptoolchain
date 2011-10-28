@@ -26,6 +26,9 @@
  cd gcc-4.5.3
  patch -p1 < ../../patches/gcc-4.5.3-PSP.patch
 
+ ## Extra step for gdc: apply D2 patches.
+ ./gcc/d/setup-gcc.sh -v2
+
  ## Unpack the library source code.
  tar xfvj ../gmp-5.0.1.tar.bz2 && ln -s gmp-5.0.1 gmp
  tar xfvz ../mpc-0.8.2.tar.gz && ln -s mpc-0.8.2 mpc
