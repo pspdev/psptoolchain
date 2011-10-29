@@ -9,7 +9,7 @@
 
  ## Unpack the source code.
  rm -Rf binutils-2.16.1
- tar xfvj binutils-2.16.1a.tar.bz2
+ tar xfj binutils-2.16.1a.tar.bz2
 
  ## Enter the source directory and patch the source code.
  cd binutils-2.16.1

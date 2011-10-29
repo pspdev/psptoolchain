@@ -9,7 +9,7 @@
 
  ## Unpack the source code.
  rm -Rf gdb-6.8
- tar xfvj gdb-6.8a.tar.bz2
+ tar xfj gdb-6.8a.tar.bz2
 
  ## Enter the source directory and patch the source code.
  cd gdb-6.8

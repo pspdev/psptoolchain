@@ -14,16 +14,16 @@
 
  ## Unpack the source code.
  rm -Rf gcc-4.5.3
- tar xfvj gcc-4.5.3.tar.bz2
+ tar xfj gcc-4.5.3.tar.bz2
 
  ## Enter the source directory and patch the source code.
  cd gcc-4.5.3
  patch -p1 < ../../patches/gcc-4.5.3-PSP.patch
 
  ## Unpack the library source code.
- tar xfvj ../gmp-5.0.1.tar.bz2 && ln -s gmp-5.0.1 gmp
- tar xfvz ../mpc-0.8.2.tar.gz && ln -s mpc-0.8.2 mpc
- tar xfvj ../mpfr-2.4.2.tar.bz2 && ln -s mpfr-2.4.2 mpfr
+ tar xfj ../gmp-5.0.1.tar.bz2 && ln -s gmp-5.0.1 gmp
+ tar xfz ../mpc-0.8.2.tar.gz && ln -s mpc-0.8.2 mpc
+ tar xfj ../mpfr-2.4.2.tar.bz2 && ln -s mpfr-2.4.2 mpfr
 
  ## Create and enter the build directory.
  mkdir build-psp

@@ -10,7 +10,7 @@ exit;
 
  ## Unpack the source code.
  rm -Rf insight-6.4
- tar xfvj insight-6.4a.tar.bz2
+ tar xfj insight-6.4a.tar.bz2
 
  ## Enter the source directory and patch the source code.
  cd insight-6.4
