@@ -40,7 +40,8 @@
  cd build-psp
 
  ## Configure the build.
- ../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c,c++,d" --enable-lto --with-newlib --with-gmp --with-mpfr --enable-cxx-flags="-G0"
+ ## If you want to build gdc add "d" to --enable-languages option.
+ ../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c,c++" --enable-lto --with-newlib --with-gmp --with-mpfr --enable-cxx-flags="-G0"
 
  ## Compile and install.
  make clean
