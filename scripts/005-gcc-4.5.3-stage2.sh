@@ -19,7 +19,7 @@
 
  ## Extra step for gdc: unpack and move into gcc
  rm -Rf gdc
- hg clone https://bitbucket.org/goshawk/gdc
+ hg clone https://bitbucket.org/take_cheeze/gdc
  cp -a gdc/d gcc-4.5.3/gcc/d
 
  ## Enter the source directory and patch the source code.
