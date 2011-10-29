@@ -19,7 +19,7 @@
 
  ## Extra step for gdc: unpack and move into gcc
  wget --continue https://bitbucket.org/take_cheeze/gdc/get/default.zip
- rm -Rf gdc
+ rm -Rf take_cheeze-gdc-default
  unzip default.zip
  cp -a take_cheeze-gdc-default/d gcc-4.5.3/gcc/d
 
