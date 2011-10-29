@@ -18,9 +18,10 @@
  tar xfj gcc-4.5.3.tar.bz2
 
  ## Extra step for gdc: unpack and move into gcc
+ wget --continue https://bitbucket.org/take_cheeze/gdc/get/default.zip
  rm -Rf gdc
- hg clone https://bitbucket.org/take_cheeze/gdc
- cp -a gdc/d gcc-4.5.3/gcc/d
+ unzip default.zip
+ cp -a take_cheeze-gdc-default/d gcc-4.5.3/gcc/d
 
  ## Enter the source directory and patch the source code.
  cd gcc-4.5.3
