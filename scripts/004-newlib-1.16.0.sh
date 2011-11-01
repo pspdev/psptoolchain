@@ -20,7 +20,10 @@
  cd build-psp
 
  ## Configure the build.
- ../configure --prefix="$PSPDEV" --target="psp"
+ ../configure --prefix="$PSPDEV" --target="psp" \
+     --enable-newlib-iconv \
+     --enable-newlib-multithread \
+     --enable-newlib-mb \
 
  ## Compile and install.
  make clean
