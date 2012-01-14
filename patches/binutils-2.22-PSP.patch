@@ -158,7 +158,7 @@ diff -burN orig.binutils-2.22/configure binutils-2.22/configure
      case "${target}" in
 diff -burN orig.binutils-2.22/gas/config/tc-mips.c binutils-2.22/gas/config/tc-mips.c
 --- orig.binutils-2.22/gas/config/tc-mips.c	2011-11-21 10:29:32.000000000 +0100
-+++ binutils-2.22/gas/config/tc-mips.c	2012-01-04 22:50:33.433936088 +0100
++++ binutils-2.22/gas/config/tc-mips.c	2012-01-14 23:46:05.823744072 +0100
 @@ -91,8 +91,32 @@
  
  #define ZERO 0
@@ -837,7 +837,7 @@ diff -burN orig.binutils-2.22/gas/config/tc-mips.c binutils-2.22/gas/config/tc-m
  
    insn_error = NULL;
  
-@@ -11683,6 +12225,1154 @@
+@@ -11683,6 +12225,1151 @@
  	    case 'y':		/* ALNV.PS source register.  */
  	      gas_assert (mips_opts.micromips);
  	      goto do_reg;
@@ -1685,7 +1685,6 @@ diff -burN orig.binutils-2.22/gas/config/tc-mips.c binutils-2.22/gas/config/tc-m
 +           char *save_in;
 +           char *err;
 +           int len;
-+           unsigned int length;
 +           unsigned char temp[8];
 +           unsigned int f32, f16;
 +           int exponent32, exponent16;
@@ -1696,14 +1695,12 @@ diff -burN orig.binutils-2.22/gas/config/tc-mips.c binutils-2.22/gas/config/tc-m
 +           save_in = input_line_pointer;
 +           input_line_pointer = s;
 +           err = md_atof ('f', (char *) temp, &len);
-+           length = len;
 +           s = input_line_pointer;
 +           input_line_pointer = save_in;
 +           if (err != NULL && *err != '\0')
 +             {
 +           as_bad (_("Bad half floating point constant: %s"), err);
 +           memset (temp, '\0', sizeof temp);
-+           length = 4;
 +             }
 +
 +           if (! target_big_endian)
@@ -1992,7 +1989,7 @@ diff -burN orig.binutils-2.22/gas/config/tc-mips.c binutils-2.22/gas/config/tc-m
  	    case 'x':		/* Ignore register name.  */
  	    case 'U':           /* Destination register (CLO/CLZ).  */
  	    case 'g':		/* Coprocessor destination register.  */
-@@ -11877,6 +13567,7 @@
+@@ -11877,6 +13564,7 @@
  		{
  		  if ((regno & 1) != 0
  		      && HAVE_32BIT_FPRS
@@ -2000,7 +1997,7 @@ diff -burN orig.binutils-2.22/gas/config/tc-mips.c binutils-2.22/gas/config/tc-m
  		      && !mips_oddfpreg_ok (ip->insn_mo, argnum))
  		    as_warn (_("Float register should be even, was %d"),
  			     regno);
-@@ -18227,7 +19918,7 @@
+@@ -18227,7 +19915,7 @@
  			 | RELAX_DELAY_SLOT_SIZE_SECOND);
  	  msg = macro_warning (s);
  	  if (msg != NULL)
@@ -2009,7 +2006,7 @@ diff -burN orig.binutils-2.22/gas/config/tc-mips.c binutils-2.22/gas/config/tc-m
  	  subtype &= ~s;
  	}
  
-@@ -18241,7 +19932,7 @@
+@@ -18241,7 +19929,7 @@
  	       & (RELAX_SECOND_LONGER | RELAX_NOMACRO | RELAX_DELAY_SLOT));
  	  msg = macro_warning (s);
  	  if (msg != NULL)
@@ -2018,7 +2015,7 @@ diff -burN orig.binutils-2.22/gas/config/tc-mips.c binutils-2.22/gas/config/tc-m
  	  subtype &= ~s;
  	}
  
-@@ -18913,6 +20604,8 @@
+@@ -18913,6 +20601,8 @@
  
    /* MIPS II */
    { "r6000",          0,			ISA_MIPS2,      CPU_R6000 },
