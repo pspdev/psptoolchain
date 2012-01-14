@@ -1,20 +1,20 @@
 #!/bin/sh
-# gdb-6.8.3.sh by Dan Peori (danpeori@oopo.net)
+# gdb-7.3.1.sh by Dan Peori (danpeori@oopo.net)
 
  ## Exit on errors
  set -e
 
  ## Download the source code.
- wget --continue ftp://ftp.gnu.org/pub/gnu/gdb/gdb-6.8a.tar.bz2
+ wget --continue ftp://ftp.gnu.org/pub/gnu/gdb/gdb-7.3.1.tar.bz2
 
  ## Unpack the source code.
- rm -Rf gdb-6.8
- tar xfvj gdb-6.8a.tar.bz2
+ rm -Rf gdb-7.3.1
+ tar xfvj gdb-7.3.1.tar.bz2
 
  ## Enter the source directory and patch the source code.
- cd gdb-6.8
- patch -p1 < ../../patches/gdb-6.8-fix-stpcpy.patch
- patch -p1 < ../../patches/gdb-6.8-PSP.patch
+ cd gdb-7.3.1
+ patch -p1 < ../../patches/gdb-7.3.1-fix-stpcpy.patch
+ patch -p1 < ../../patches/gdb-7.3.1-PSP.patch
 
  ## Create and enter the build directory.
  mkdir build-psp
