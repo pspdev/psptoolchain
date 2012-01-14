@@ -1,29 +1,29 @@
 #!/bin/sh
-# gcc-4.5.3-stage1.sh by Dan Peori (danpeori@oopo.net) customized by yreeen(yreeen@gmail.com)
+# gcc-4.6.2-stage1.sh by Dan Peori (danpeori@oopo.net) customized by yreeen(yreeen@gmail.com)
 
  ## Exit on errors
  set -e
 
  ## Download the source code.
- wget --continue ftp://ftp.gnu.org/pub/gnu/gcc/gcc-4.5.3/gcc-4.5.3.tar.bz2
+ wget --continue ftp://ftp.gnu.org/pub/gnu/gcc/gcc-4.6.2/gcc-4.6.2.tar.bz2
 
- ## Downlow the library source code.
- wget --continue ftp://ftp.gmplib.org/pub/gmp-5.0.1/gmp-5.0.1.tar.bz2
+ ## Download the library source code.
+ wget --continue ftp://ftp.gmplib.org/pub/gmp-5.0.2/gmp-5.0.2.tar.bz2
  wget --continue http://www.multiprecision.org/mpc/download/mpc-0.8.2.tar.gz
- wget --continue http://www.mpfr.org/mpfr-2.4.2/mpfr-2.4.2.tar.bz2
+ wget --continue http://www.mpfr.org/mpfr-3.1.0/mpfr-3.1.0.tar.bz2
 
  ## Unpack the source code.
- rm -Rf gcc-4.5.3
- tar xfvj gcc-4.5.3.tar.bz2
+ rm -Rf gcc-4.6.2
+ tar xfvj gcc-4.6.2.tar.bz2
 
  ## Enter the source directory and patch the source code.
- cd gcc-4.5.3
- patch -p1 < ../../patches/gcc-4.5.3-PSP.patch
+ cd gcc-4.6.2
+ patch -p1 < ../../patches/gcc-4.6.2-PSP.patch
 
  ## Unpack the library source code.
- tar xfvj ../gmp-5.0.1.tar.bz2 && ln -s gmp-5.0.1 gmp
+ tar xfvj ../gmp-5.0.2.tar.bz2 && ln -s gmp-5.0.2 gmp
  tar xfvz ../mpc-0.8.2.tar.gz && ln -s mpc-0.8.2 mpc
- tar xfvj ../mpfr-2.4.2.tar.bz2 && ln -s mpfr-2.4.2 mpfr
+ tar xfvj ../mpfr-3.1.0.tar.bz2 && ln -s mpfr-3.1.0 mpfr
 
  ## Create and enter the build directory.
  mkdir build-psp
