@@ -1,20 +1,19 @@
 #!/bin/sh
-# binutils-2.16.1.sh by Dan Peori (danpeori@oopo.net)
+# binutils-2.22.sh by Dan Peori (danpeori@oopo.net)
 
  ## Exit on errors
  set -e
 
  ## Download the source code.
- wget --continue ftp://ftp.gnu.org/pub/gnu/binutils/binutils-2.16.1a.tar.bz2
+ wget --continue ftp://ftp.gnu.org/pub/gnu/binutils/binutils-2.22.tar.bz2
 
  ## Unpack the source code.
- rm -Rf binutils-2.16.1
- tar xfj binutils-2.16.1a.tar.bz2
+ rm -Rf binutils-2.22
+ tar xfvj binutils-2.22.tar.bz2
 
  ## Enter the source directory and patch the source code.
- cd binutils-2.16.1
- patch -p1 < ../../patches/binutils-2.16.1-PSP.patch
- patch -p0 < ../../patches/binutils-2.16.1-fix-ar.patch
+ cd binutils-2.22
+ patch -p1 < ../../patches/binutils-2.22-PSP.patch
 
  ## Create and enter the build directory.
  mkdir build-psp
