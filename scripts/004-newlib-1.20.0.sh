@@ -9,7 +9,7 @@
 
  ## Unpack the source code.
  rm -Rf newlib-1.20.0
- tar xfvz newlib-1.20.0.tar.gz
+ tar xfz newlib-1.20.0.tar.gz
 
  ## Enter the source directory and patch the source code.
  cd newlib-1.20.0
