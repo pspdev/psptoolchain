@@ -18,17 +18,17 @@
  tar xfj gcc-4.6.2.tar.bz2
 
  ## Extra step for gdc: unpack and move into gcc
- wget --continue https://bitbucket.org/take_cheeze/gdc/get/default.zip
- rm -Rf take_cheeze-gdc-default
- unzip default.zip
- cp -a take_cheeze-gdc-default/d gcc-4.5.3/gcc/d
+ # wget --continue https://bitbucket.org/take_cheeze/gdc/get/default.zip
+ # rm -Rf take_cheeze-gdc-default
+ # unzip default.zip
+ # cp -a take_cheeze-gdc-default/d gcc-4.5.3/gcc/d
 
  ## Enter the source directory and patch the source code.
  cd gcc-4.6.2
  patch -p1 < ../../patches/gcc-4.6.2-PSP.patch
 
  ## Extra step for gdc: apply D2 patches.
- ./gcc/d/setup-gcc.sh -v2
+ # ./gcc/d/setup-gcc.sh -v2
 
  ## Unpack the library source code.
  tar xfj ../gmp-5.0.2.tar.bz2 && ln -s gmp-5.0.2 gmp
