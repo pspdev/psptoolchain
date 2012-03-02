@@ -1,11 +1,14 @@
 #!/bin/sh
-# gcc-4.6.2-stage1.sh by Dan Peori (danpeori@oopo.net) customized by yreeen(yreeen@gmail.com)
+# gcc-stage1.sh by Dan Peori (danpeori@oopo.net) customized by yreeen(yreeen@gmail.com)
+
+ ## set gcc version
+ GCC_VERSION=4.6.3
 
  ## Exit on errors
  set -e
 
  ## Download the source code.
- wget --continue ftp://ftp.gnu.org/pub/gnu/gcc/gcc-4.6.2/gcc-4.6.2.tar.bz2
+ wget --continue ftp://ftp.gnu.org/pub/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.bz2
 
  ## Download the library source code.
  wget --continue ftp://ftp.gmplib.org/pub/gmp-5.0.2/gmp-5.0.2.tar.bz2
@@ -13,12 +16,12 @@
  wget --continue http://www.mpfr.org/mpfr-3.1.0/mpfr-3.1.0.tar.bz2
 
  ## Unpack the source code.
- rm -Rf gcc-4.6.2
- tar xfj gcc-4.6.2.tar.bz2
+ rm -Rf gcc-$GCC_VERSION
+ tar xfj gcc-$GCC_VERSION.tar.bz2
 
  ## Enter the source directory and patch the source code.
- cd gcc-4.6.2
- patch -p1 < ../../patches/gcc-4.6.2-PSP.patch
+ cd gcc-$GCC_VERSION
+ patch -p1 < ../../patches/gcc-$GCC_VERSION-PSP.patch
 
  ## Unpack the library source code.
  tar xfj ../gmp-5.0.2.tar.bz2 && ln -s gmp-5.0.2 gmp
