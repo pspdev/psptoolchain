@@ -20,18 +20,9 @@
  rm -Rf gcc-$GCC_VERSION
  tar xfj gcc-$GCC_VERSION.tar.bz2
 
- ## Extra step for gdc: unpack and move into gcc
- # wget --continue https://bitbucket.org/take_cheeze/gdc/get/default.zip
- # rm -Rf take_cheeze-gdc-default
- # unzip default.zip
- # cp -a take_cheeze-gdc-default/d gcc-4.5.3/gcc/d
-
  ## Enter the source directory and patch the source code.
  cd gcc-$GCC_VERSION
  patch -p1 < ../../patches/gcc-$GCC_VERSION-PSP.patch
-
- ## Extra step for gdc: apply D2 patches.
- # ./gcc/d/setup-gcc.sh -v2
 
  ## Unpack the library source code.
  tar xfj ../gmp-5.0.2.tar.bz2 && ln -s gmp-5.0.2 gmp
