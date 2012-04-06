@@ -1,6 +1,6 @@
-diff -burN orig.gcc-4.6.2/config.sub gcc-4.6.2/config.sub
---- orig.gcc-4.6.2/config.sub	2010-05-25 15:22:07.000000000 +0200
-+++ gcc-4.6.2/config.sub	2012-01-11 21:44:43.014817796 +0100
+diff -Nbaur gcc-4.6.3/config.sub gcc-4.6.3-psp/config.sub
+--- gcc-4.6.3/config.sub	2010-05-25 14:22:07.000000000 +0100
++++ gcc-4.6.3-psp/config.sub	2012-04-04 22:37:30.000000000 +0100
 @@ -279,6 +279,7 @@
  	| mipsisa64sb1 | mipsisa64sb1el \
  	| mipsisa64sr71k | mipsisa64sr71kel \
@@ -28,9 +28,9 @@ diff -burN orig.gcc-4.6.2/config.sub gcc-4.6.2/config.sub
  	mips3*-*)
  		basic_machine=`echo $basic_machine | sed -e 's/mips3/mips64/'`
  		;;
-diff -burN orig.gcc-4.6.2/gcc/config/mips/allegrex.md gcc-4.6.2/gcc/config/mips/allegrex.md
---- orig.gcc-4.6.2/gcc/config/mips/allegrex.md	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-4.6.2/gcc/config/mips/allegrex.md	2012-01-08 16:45:12.604982794 +0100
+diff -Nbaur gcc-4.6.3/gcc/config/mips/allegrex.md gcc-4.6.3-psp/gcc/config/mips/allegrex.md
+--- gcc-4.6.3/gcc/config/mips/allegrex.md	1970-01-01 01:00:00.000000000 +0100
++++ gcc-4.6.3-psp/gcc/config/mips/allegrex.md	2012-04-04 22:37:30.000000000 +0100
 @@ -0,0 +1,191 @@
 +;; Sony ALLEGREX instructions.
 +;; Copyright (C) 2005 Free Software Foundation, Inc.
@@ -223,9 +223,30 @@ diff -burN orig.gcc-4.6.2/gcc/config/mips/allegrex.md gcc-4.6.2/gcc/config/mips/
 +  "round.w.s\t%0,%1"
 +  [(set_attr "type"    "fcvt")
 +   (set_attr "mode"    "SF")])
-diff -burN orig.gcc-4.6.2/gcc/config/mips/mips.c gcc-4.6.2/gcc/config/mips/mips.c
---- orig.gcc-4.6.2/gcc/config/mips/mips.c	2011-05-29 19:48:14.000000000 +0200
-+++ gcc-4.6.2/gcc/config/mips/mips.c	2012-01-11 21:47:24.904022512 +0100
+diff -Nbaur gcc-4.6.3/gcc/config/mips/mips-ftypes.def gcc-4.6.3-psp/gcc/config/mips/mips-ftypes.def
+--- gcc-4.6.3/gcc/config/mips/mips-ftypes.def	2009-02-20 15:20:38.000000000 +0000
++++ gcc-4.6.3-psp/gcc/config/mips/mips-ftypes.def	2012-04-04 22:37:31.000000000 +0100
+@@ -53,9 +53,12 @@
+ 
+ DEF_MIPS_FTYPE (2, (SI, DI, SI))
+ DEF_MIPS_FTYPE (2, (SI, POINTER, SI))
++DEF_MIPS_FTYPE (1, (SI, HI))
++DEF_MIPS_FTYPE (1, (SI, SF))
+ DEF_MIPS_FTYPE (1, (SI, SI))
+ DEF_MIPS_FTYPE (2, (SI, SI, SI))
+ DEF_MIPS_FTYPE (3, (SI, SI, SI, SI))
++DEF_MIPS_FTYPE (1, (SI, QI))
+ DEF_MIPS_FTYPE (1, (SI, V2HI))
+ DEF_MIPS_FTYPE (2, (SI, V2HI, V2HI))
+ DEF_MIPS_FTYPE (1, (SI, V4QI))
+@@ -124,3 +127,4 @@
+ DEF_MIPS_FTYPE (2, (VOID, SI, SI))
+ DEF_MIPS_FTYPE (2, (VOID, V2HI, V2HI))
+ DEF_MIPS_FTYPE (2, (VOID, V4QI, V4QI))
++DEF_MIPS_FTYPE (1, (VOID, VOID))
+diff -Nbaur gcc-4.6.3/gcc/config/mips/mips.c gcc-4.6.3-psp/gcc/config/mips/mips.c
+--- gcc-4.6.3/gcc/config/mips/mips.c	2011-05-29 18:48:14.000000000 +0100
++++ gcc-4.6.3-psp/gcc/config/mips/mips.c	2012-04-04 22:37:31.000000000 +0100
 @@ -239,7 +239,12 @@
    MIPS_BUILTIN_CMP_SINGLE,
  
@@ -430,30 +451,9 @@ diff -burN orig.gcc-4.6.2/gcc/config/mips/mips.c gcc-4.6.2/gcc/config/mips/mips.
  }
  
  /* Implement TARGET_OPTION_OPTIMIZATION_TABLE.  */
-diff -burN orig.gcc-4.6.2/gcc/config/mips/mips-ftypes.def gcc-4.6.2/gcc/config/mips/mips-ftypes.def
---- orig.gcc-4.6.2/gcc/config/mips/mips-ftypes.def	2009-02-20 16:20:38.000000000 +0100
-+++ gcc-4.6.2/gcc/config/mips/mips-ftypes.def	2012-01-06 22:26:47.604437011 +0100
-@@ -53,9 +53,12 @@
- 
- DEF_MIPS_FTYPE (2, (SI, DI, SI))
- DEF_MIPS_FTYPE (2, (SI, POINTER, SI))
-+DEF_MIPS_FTYPE (1, (SI, HI))
-+DEF_MIPS_FTYPE (1, (SI, SF))
- DEF_MIPS_FTYPE (1, (SI, SI))
- DEF_MIPS_FTYPE (2, (SI, SI, SI))
- DEF_MIPS_FTYPE (3, (SI, SI, SI, SI))
-+DEF_MIPS_FTYPE (1, (SI, QI))
- DEF_MIPS_FTYPE (1, (SI, V2HI))
- DEF_MIPS_FTYPE (2, (SI, V2HI, V2HI))
- DEF_MIPS_FTYPE (1, (SI, V4QI))
-@@ -124,3 +127,4 @@
- DEF_MIPS_FTYPE (2, (VOID, SI, SI))
- DEF_MIPS_FTYPE (2, (VOID, V2HI, V2HI))
- DEF_MIPS_FTYPE (2, (VOID, V4QI, V4QI))
-+DEF_MIPS_FTYPE (1, (VOID, VOID))
-diff -burN orig.gcc-4.6.2/gcc/config/mips/mips.h gcc-4.6.2/gcc/config/mips/mips.h
---- orig.gcc-4.6.2/gcc/config/mips/mips.h	2011-03-08 21:51:11.000000000 +0100
-+++ gcc-4.6.2/gcc/config/mips/mips.h	2012-01-11 21:50:51.601755421 +0100
+diff -Nbaur gcc-4.6.3/gcc/config/mips/mips.h gcc-4.6.3-psp/gcc/config/mips/mips.h
+--- gcc-4.6.3/gcc/config/mips/mips.h	2011-03-08 20:51:11.000000000 +0000
++++ gcc-4.6.3-psp/gcc/config/mips/mips.h	2012-04-04 22:37:31.000000000 +0100
 @@ -231,6 +231,7 @@
  #define TARGET_SB1                  (mips_arch == PROCESSOR_SB1		\
  				     || mips_arch == PROCESSOR_SB1A)
@@ -556,9 +556,9 @@ diff -burN orig.gcc-4.6.2/gcc/config/mips/mips.h gcc-4.6.2/gcc/config/mips/mips.
  #ifndef HAVE_AS_TLS
  #define HAVE_AS_TLS 0
  #endif
-diff -burN orig.gcc-4.6.2/gcc/config/mips/mips.md gcc-4.6.2/gcc/config/mips/mips.md
---- orig.gcc-4.6.2/gcc/config/mips/mips.md	2011-03-03 22:56:58.000000000 +0100
-+++ gcc-4.6.2/gcc/config/mips/mips.md	2012-01-11 21:33:48.732224422 +0100
+diff -Nbaur gcc-4.6.3/gcc/config/mips/mips.md gcc-4.6.3-psp/gcc/config/mips/mips.md
+--- gcc-4.6.3/gcc/config/mips/mips.md	2012-01-09 22:09:53.000000000 +0000
++++ gcc-4.6.3-psp/gcc/config/mips/mips.md	2012-04-04 22:37:31.000000000 +0100
 @@ -37,6 +37,7 @@
    74kf2_1
    74kf1_1
@@ -700,9 +700,9 @@ diff -burN orig.gcc-4.6.2/gcc/config/mips/mips.md gcc-4.6.2/gcc/config/mips/mips
  (define_c_enum "unspec" [
    UNSPEC_ADDRESS_FIRST
  ])
-diff -burN orig.gcc-4.6.2/gcc/config/mips/mips.opt gcc-4.6.2/gcc/config/mips/mips.opt
---- orig.gcc-4.6.2/gcc/config/mips/mips.opt	2011-02-17 02:59:04.000000000 +0100
-+++ gcc-4.6.2/gcc/config/mips/mips.opt	2012-01-06 22:26:47.631436766 +0100
+diff -Nbaur gcc-4.6.3/gcc/config/mips/mips.opt gcc-4.6.3-psp/gcc/config/mips/mips.opt
+--- gcc-4.6.3/gcc/config/mips/mips.opt	2011-02-17 01:59:04.000000000 +0000
++++ gcc-4.6.3-psp/gcc/config/mips/mips.opt	2012-04-04 22:37:31.000000000 +0100
 @@ -306,5 +306,9 @@
  Target Report Var(TARGET_XGOT)
  Lift restrictions on GOT size
@@ -713,9 +713,9 @@ diff -burN orig.gcc-4.6.2/gcc/config/mips/mips.opt gcc-4.6.2/gcc/config/mips/mip
 +
  noasmopt
  Driver
-diff -burN orig.gcc-4.6.2/gcc/config/mips/psp.h gcc-4.6.2/gcc/config/mips/psp.h
---- orig.gcc-4.6.2/gcc/config/mips/psp.h	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-4.6.2/gcc/config/mips/psp.h	2012-01-06 22:26:47.631436766 +0100
+diff -Nbaur gcc-4.6.3/gcc/config/mips/psp.h gcc-4.6.3-psp/gcc/config/mips/psp.h
+--- gcc-4.6.3/gcc/config/mips/psp.h	1970-01-01 01:00:00.000000000 +0100
++++ gcc-4.6.3-psp/gcc/config/mips/psp.h	2012-04-04 22:37:31.000000000 +0100
 @@ -0,0 +1,31 @@
 +/* Support for Sony's Playstation Portable (PSP).
 +   Copyright (C) 2005 Free Software Foundation, Inc.
@@ -748,9 +748,9 @@ diff -burN orig.gcc-4.6.2/gcc/config/mips/psp.h gcc-4.6.2/gcc/config/mips/psp.h
 +/* Get rid of the .pdr section. */
 +#undef SUBTARGET_ASM_SPEC
 +#define SUBTARGET_ASM_SPEC "-mno-pdr"
-diff -burN orig.gcc-4.6.2/gcc/config/mips/t-allegrex gcc-4.6.2/gcc/config/mips/t-allegrex
---- orig.gcc-4.6.2/gcc/config/mips/t-allegrex	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-4.6.2/gcc/config/mips/t-allegrex	2012-01-06 22:34:14.128213080 +0100
+diff -Nbaur gcc-4.6.3/gcc/config/mips/t-allegrex gcc-4.6.3-psp/gcc/config/mips/t-allegrex
+--- gcc-4.6.3/gcc/config/mips/t-allegrex	1970-01-01 01:00:00.000000000 +0100
++++ gcc-4.6.3-psp/gcc/config/mips/t-allegrex	2012-04-04 22:37:31.000000000 +0100
 @@ -0,0 +1,29 @@
 +# Suppress building libgcc1.a, since the MIPS compiler port is complete
 +# and does not need anything from libgcc1.a.
@@ -781,9 +781,9 @@ diff -burN orig.gcc-4.6.2/gcc/config/mips/t-allegrex gcc-4.6.2/gcc/config/mips/t
 +
 +LIBGCC = stmp-multilib
 +INSTALL_LIBGCC = install-multilib
-diff -burN orig.gcc-4.6.2/gcc/config.gcc gcc-4.6.2/gcc/config.gcc
---- orig.gcc-4.6.2/gcc/config.gcc	2011-07-22 18:44:50.000000000 +0200
-+++ gcc-4.6.2/gcc/config.gcc	2012-01-06 22:26:48.506428949 +0100
+diff -Nbaur gcc-4.6.3/gcc/config.gcc gcc-4.6.3-psp/gcc/config.gcc
+--- gcc-4.6.3/gcc/config.gcc	2011-07-22 17:44:50.000000000 +0100
++++ gcc-4.6.3-psp/gcc/config.gcc	2012-04-04 22:37:31.000000000 +0100
 @@ -2033,6 +2033,18 @@
  	tm_file="elfos.h newlib-stdint.h ${tm_file} mips/r3900.h mips/elf.h"
  	tmake_file="mips/t-r3900 mips/t-libgcc-mips16"
@@ -803,27 +803,41 @@ diff -burN orig.gcc-4.6.2/gcc/config.gcc gcc-4.6.2/gcc/config.gcc
  mmix-knuth-mmixware)
  	tm_file="${tm_file} newlib-stdint.h"
  	need_64bit_hwint=yes
-diff -burN orig.gcc-4.6.2/libgcc/config.host gcc-4.6.2/libgcc/config.host
---- orig.gcc-4.6.2/libgcc/config.host	2011-03-14 07:06:23.000000000 +0100
-+++ gcc-4.6.2/libgcc/config.host	2012-01-06 22:26:42.156485677 +0100
-@@ -445,6 +445,8 @@
+diff -Nbaur gcc-4.6.3/gcc/crtstuff.c gcc-4.6.3-psp/gcc/crtstuff.c
+--- gcc-4.6.3/gcc/crtstuff.c	2010-12-23 12:08:21.000000000 +0000
++++ gcc-4.6.3-psp/gcc/crtstuff.c	2012-04-04 22:37:31.000000000 +0100
+@@ -48,7 +48,7 @@
+ 
+ /* Target machine header files require this define. */
+ #define IN_LIBGCC2
+-
++#define USED_FOR_TARGET
+ /* FIXME: Including auto-host is incorrect, but until we have
+    identified the set of defines that need to go into auto-target.h,
+    this will have to do.  */
+diff -Nbaur gcc-4.6.3/libcpp/Makefile.in gcc-4.6.3-psp/libcpp/Makefile.in
+--- gcc-4.6.3/libcpp/Makefile.in	2012-03-01 12:03:46.000000000 +0000
++++ gcc-4.6.3-psp/libcpp/Makefile.in	2012-04-05 09:32:31.000000000 +0100
+@@ -212,8 +212,8 @@
+ # Note that we put the dependencies into a .Tpo file, then move them
+ # into place if the compile succeeds.  We need this because gcc does
+ # not atomically write the dependency output file.
+-COMPILE = $(COMPILE.base) -o $@ -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Tpo
+-POSTCOMPILE = @mv $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
++COMPILE = $(COMPILE.base) -o $@
++POSTCOMPILE =
+ else
+ COMPILE = source='$<' object='$@' libtool=no DEPDIR=$(DEPDIR) $(DEPMODE) \
+ 	  $(depcomp) $(COMPILE.base)
+diff -Nbaur gcc-4.6.3/libgcc/config.host gcc-4.6.3-psp/libgcc/config.host
+--- gcc-4.6.3/libgcc/config.host	2011-11-23 22:15:54.000000000 +0000
++++ gcc-4.6.3-psp/libgcc/config.host	2012-04-04 22:37:31.000000000 +0100
+@@ -436,6 +436,8 @@
  	;;
  mipstx39-*-elf* | mipstx39el-*-elf*)
  	;;
-+mips*-psp-elf)
++mips*-psp-elf*)
 +	;;
  mmix-knuth-mmixware)
  	extra_parts="crti.o crtn.o crtbegin.o crtend.o"
  	tmake_file="${tmake_file} ${cpu_type}/t-${cpu_type}"
-diff -burN orig.gcc-4.6.2/libobjc/Makefile.in gcc-4.6.2/libobjc/Makefile.in
---- orig.gcc-4.6.2/libobjc/Makefile.in	2010-12-23 12:26:14.000000000 +0100
-+++ gcc-4.6.2/libobjc/Makefile.in	2012-01-06 22:26:49.832417088 +0100
-@@ -74,7 +74,7 @@
- RANLIB = @RANLIB@
- 
- CC = @CC@
--CFLAGS = @CFLAGS@
-+CFLAGS = -G 0 -G0 @CFLAGS@
- WARN_CFLAGS = -W -Wall -Wwrite-strings -Wstrict-prototypes
- ALL_CFLAGS = -I. -I$(srcdir) $(CPPFLAGS) $(DEFS) $(CFLAGS) $(WARN_CFLAGS) \
- 	-DIN_GCC -DIN_TARGET_LIBS -fno-strict-aliasing -fexceptions
