@@ -13,7 +13,7 @@
 
  ## Enter the source directory.
  cd psplibraries
- git pull
+ git pull origin master
 
  ## Configure the build.
  ./libraries.sh
