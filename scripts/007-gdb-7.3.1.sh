@@ -9,7 +9,7 @@
 
  ## Unpack the source code.
  rm -Rf gdb-7.3.1
- tar xfvj gdb-7.3.1.tar.bz2
+ tar xfj gdb-7.3.1.tar.bz2
 
  ## Enter the source directory and patch the source code.
  cd gdb-7.3.1

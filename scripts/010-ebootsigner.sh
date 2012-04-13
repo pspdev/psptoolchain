@@ -9,7 +9,7 @@
  wget --continue --no-check-certificate https://github.com/int-0/ebootsigner/tarball/master -O ebootsigner.tar.gz
 
  ## Unpack the source code.
- rm -Rf ebootsigner && mkdir ebootsigner && tar --strip-components=1 --directory=ebootsigner -xvzf ebootsigner.tar.gz
+ rm -Rf ebootsigner && mkdir ebootsigner && tar --strip-components=1 --directory=ebootsigner -xzf ebootsigner.tar.gz
 
  ## Enter the source directory.
  cd ebootsigner
