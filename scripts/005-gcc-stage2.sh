@@ -1,11 +1,15 @@
 #!/bin/sh
-# gcc-4.6.2-stage2.sh by Dan Peori (danpeori@oopo.net) customized by yreeen (yreeen@gmail.com)
+# gcc-stage2.sh by Dan Peori (danpeori@oopo.net) customized by yreeen (yreeen@gmail.com)
+# gdc support from TurkeyMan( https://github.com/TurkeyMan )
+
+ ## set gcc version
+ GCC_VERSION=4.6.3
 
  ## Exit on errors
  set -e
 
  ## Download the source code.
- wget --continue ftp://ftp.gnu.org/pub/gnu/gcc/gcc-4.6.3/gcc-4.6.3.tar.bz2
+ wget --continue ftp://ftp.gnu.org/pub/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.bz2
 
  ## Download the library source code.
  wget --continue ftp://ftp.gmplib.org/pub/gmp-5.0.2/gmp-5.0.2.tar.bz2
@@ -13,23 +17,24 @@
  wget --continue http://www.mpfr.org/mpfr-3.1.0/mpfr-3.1.0.tar.bz2
 
  ## Unpack the source code.
- rm -Rf gcc-4.6.3
- tar xfvj gcc-4.6.3.tar.bz2
+ rm -Rf gcc-$GCC_VERSION
+ tar xfj gcc-$GCC_VERSION.tar.bz2
 
  ## Enter the source directory and patch the source code.
- cd gcc-4.6.3
- patch -p1 < ../../patches/gcc-4.6.3-PSP.patch
+ cd gcc-$GCC_VERSION
+ patch -p1 < ../../patches/gcc-$GCC_VERSION-PSP.patch
 
  ## Unpack the library source code.
- tar xfvj ../gmp-5.0.2.tar.bz2 && ln -s gmp-5.0.2 gmp
- tar xfvz ../mpc-0.8.2.tar.gz && ln -s mpc-0.8.2 mpc
- tar xfvj ../mpfr-3.1.0.tar.bz2 && ln -s mpfr-3.1.0 mpfr
+ tar xfj ../gmp-5.0.2.tar.bz2 && ln -s gmp-5.0.2 gmp
+ tar xfz ../mpc-0.8.2.tar.gz && ln -s mpc-0.8.2 mpc
+ tar xfj ../mpfr-3.1.0.tar.bz2 && ln -s mpfr-3.1.0 mpfr
 
  ## Create and enter the build directory.
  mkdir build-psp
  cd build-psp
 
  ## Configure the build.
+ ## If you want to build gdc add "d" to --enable-languages option.
  ../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c,c++" --enable-lto --with-newlib --with-gmp --with-mpfr --enable-cxx-flags="-G0"
 
  ## Compile and install.
