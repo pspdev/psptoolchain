@@ -4,4 +4,4 @@
  ls /usr/include/usb.h 1> /dev/null || \
  ls /usr/local/include/usb.h 1> /dev/null || \
  ls /opt/local/include/usb.h 1> /dev/null || \
-  { echo "ERROR: Install elf before continuing."; exit 1; }
+  { echo "ERROR: Install libusb before continuing."; exit 1; }
