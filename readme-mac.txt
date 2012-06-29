@@ -1,0 +1,1 @@
+Before running toolchain-sudo.sh, please install MacPorts from http://www.macports.org/, then run the prepare-mac-os.sh script. This will auto-install all the libraries you will need before building.
