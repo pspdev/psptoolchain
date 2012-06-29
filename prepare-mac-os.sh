@@ -3,7 +3,6 @@
 if [ -e "/opt/local/bin/port"]; then
 	sudo port install wget
 	sudo port install libelf
-	sudo port install gmp
 	sudo port install libmpc
 	sudo port install libusb
 	
