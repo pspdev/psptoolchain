@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -e "/opt/local/bin/port"]; then
+if [ -e "/opt/local/bin/port" ]; then
 	sudo port install wget
 	sudo port install libelf
 	sudo port install libmpc
