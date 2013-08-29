@@ -14,6 +14,7 @@
  ## Enter the source directory and patch the source code.
  cd binutils-2.22
  patch -p1 < ../../patches/binutils-2.22-PSP.patch
+ patch -p1 < ../../patches/binutils-2.22-texinfofix.patch
 
  ## Create and enter the build directory.
  mkdir build-psp
