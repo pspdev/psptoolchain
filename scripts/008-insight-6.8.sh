@@ -6,11 +6,11 @@ exit;
  set -e
 
  ## Download the source code.
- wget --continue ftp://sourceware.org/pub/insight/releases/insight-6.8.tar.bz2
+ wget --continue ftp://sourceware.org/pub/insight/releases/insight-6.8a.tar.bz2
 
  ## Unpack the source code.
  rm -Rf insight-6.8
- tar xfj insight-6.8.tar.bz2
+ tar xfj insight-6.8a.tar.bz2
 
  ## Enter the source directory and patch the source code.
  cd insight-6.8
