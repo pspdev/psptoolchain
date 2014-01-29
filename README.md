@@ -21,6 +21,32 @@ How do I use it?
 
         ./toolchain.sh
 
+
+Ubuntu
+------
+
+1. Install the required packages by running.
+
+        sudo apt-get install g++ build-essential autoconf automake bison flex libncurses5-dev libreadline-dev libusb-dev texinfo libgmp3-dev libmpfr-dev libelf-dev libmpc-dev zlib1g-dev libtool subversion git
+
+2. Build and install the toolchain and SDK.
+
+        sudo ./toolchain-sudo.sh
+ 
+> NOTE: If you do not wish for the toolchain to be installed in /usr/local/pspdev then edit toolchain-sudo.sh and change the INSTALLDIR variable.
+
+OSX
+---
+
+1. Install [`port`][MacPorts] or [`brew`][HomeBrew].
+2. Run `prepare-mac-os.sh`. This will auto-install all the libraries you will need before building.
+        
+        sudo ./prepare-mac-os.sh
+
+3. Build and install the toolchain and SDK.
+        
+        sudo ./toolchain-sudo.sh
+
 Where do I go from here?
 ========================
 
@@ -28,3 +54,6 @@ Visit the following sites to learn more:
 
 http://www.ps2dev.org
 http://forums.ps2dev.org
+
+[MacPorts]: http://www.macports.org/
+[HomeBrew]: http://brew.sh/
