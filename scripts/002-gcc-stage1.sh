@@ -26,6 +26,7 @@
  cd gcc-$GCC_VERSION
  patch -p1 < ../../patches/gcc-$GCC_VERSION-PSP.patch
  patch -p1 < ../../patches/gcc-$GCC_VERSION-texinfofix.patch
+ patch -p2 < ../../patches/gcc-$GCC_VERSION-fix54638.patch
 
  ## Unpack the library source code.
  tar xfj ../gmp-$GMP_VERSION.tar.bz2 && ln -s gmp-$GMP_VERSION gmp
