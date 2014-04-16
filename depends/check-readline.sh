@@ -4,4 +4,5 @@
  ## Check for the readline library.
  ls /usr/include/readline/readline.h 1> /dev/null || \
  ls /usr/local/include/readline/readline.h 1> /dev/null || \
+ ls /opt/local/include/readline/readline.h 1> /dev/null || \
  { echo "ERROR: Install readline before continuing."; exit 1; }
