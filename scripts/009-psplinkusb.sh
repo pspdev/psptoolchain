@@ -10,9 +10,14 @@
  ## Unpack the source code.
  rm -Rf psplinkusb && mkdir psplinkusb && tar --strip-components=1 --directory=psplinkusb -xzf psplinkusb.tar.gz
 
- ## Enter the source directory.
+ ## Enter the source directory and patch the source code.
  cd psplinkusb
- 
+
+unamestr=`uname`
+ if [[ "$unamestr" == 'Darwin' ]]; then
+   patch -p1 < ../../patches/psplinkusb-Darwin.patch
+ fi
+
  ## MacPorts fix
  export C_INCLUDE_PATH="/opt/local/include"
  export CPLUS_INCLUDE_PATH="/opt/local/include"
