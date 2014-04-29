@@ -13,7 +13,7 @@
  ## Enter the source directory and patch the source code.
  cd psplinkusb
 
-unamestr=`uname`
+ unamestr=`uname`
  if [[ "$unamestr" == 'Darwin' ]]; then
    patch -p1 < ../../patches/psplinkusb-Darwin.patch
  fi
