@@ -16,6 +16,7 @@
  patch -p1 < ../../patches/gdb-7.3.1-fix-stpcpy.patch
  patch -p1 < ../../patches/gdb-7.3.1-PSP.patch
  patch -p1 < ../../patches/gdb-7.3.1-texinfofix.patch
+ patch -p1 < ../../patches/gdb-7.3.1-fix-sim-arange.patch
 
  ## Create and enter the build directory.
  mkdir build-psp
