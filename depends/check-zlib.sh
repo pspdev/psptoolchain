@@ -5,4 +5,5 @@
  ## Check for the z library.
  ls /usr/include/zlib.h 1> /dev/null ||
  ls /usr/local/include/zlib.h 1> /dev/null ||
+ ls /opt/local/include/zlib.h 1> /dev/null ||
  { echo "ERROR: Install zlib before continuing."; exit 1; }
