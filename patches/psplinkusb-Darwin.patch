@@ -1,0 +1,22 @@
+Index: psplinkusb/pspsh/pspsh.C
+===================================================================
+--- psplinkusb/pspsh/pspsh.C	(revision 2494)
++++ psplinkusb/pspsh/pspsh.C	(working copy)
+@@ -970,7 +970,7 @@ char** shell_completion(const char *text, int start, int end)
+ 	{
+ 		if(strchr(text, '.') || strchr(text, '/'))
+ 		{
+-			rl_completion_display_matches_hook = completion_display;
++			rl_completion_display_matches_hook = (void (*)()) completion_display;
+ 			matches = rl_completion_matches(text, filename_gen);
+ 		}
+ 		else
+@@ -980,7 +980,7 @@ char** shell_completion(const char *text, int start, int end)
+ 	}
+ 	else
+ 	{
+-		rl_completion_display_matches_hook = completion_display;
++		rl_completion_display_matches_hook = (void (*)()) completion_display;
+ 		if(text[0] == '@')
+ 		{
+ 			matches = rl_completion_matches(text, uid_gen);
