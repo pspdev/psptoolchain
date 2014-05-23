@@ -1,9 +1,10 @@
 #!/bin/sh
 # check-mpc.sh by yreeen (yreeen@gmail.com)
 
- ## Check for the mpc library.
- ls /usr/include/mpc.h 1> /dev/null || \
- ls /usr/local/include/mpc.h 1> /dev/null || \
- ls /opt/include/mpc.h 1> /dev/null || \
- ls /opt/local/include/mpc.h 1> /dev/null || \
- { echo "ERROR: Install mpc before continuing."; exit 1; }
+## Check for the mpc library.
+ls /usr/include/mpc.h > /dev/null 2>&1 || \
+ls /usr/local/include/mpc.h > /dev/null 2>&1 || \
+ls /opt/include/mpc.h > /dev/null 2>&1 || \
+ls /opt/local/include/mpc.h > /dev/null 2>&1 || \
+{ echo "ERROR: Install mpc before continuing."; exit 1; }
+
