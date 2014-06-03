@@ -4,8 +4,8 @@
  ## Exit on errors
  set -e
  
- ## Download the source code.
- wget --continue --no-check-certificate https://github.com/pspdev/psplinkusb/tarball/master -O psplinkusb.tar.gz
+ ## Download the source code if it does not already exist.
+ [ -f psplinkusb.tar.gz ] || wget --continue --no-check-certificate https://github.com/pspdev/psplinkusb/tarball/master -O psplinkusb.tar.gz
 
  ## Unpack the source code.
  rm -Rf psplinkusb && mkdir psplinkusb && tar --strip-components=1 --directory=psplinkusb -xzf psplinkusb.tar.gz

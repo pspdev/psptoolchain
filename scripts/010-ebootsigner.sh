@@ -5,8 +5,8 @@
  ## Exit on errors
  set -e
 
- ## Download the source code.
- wget --continue --no-check-certificate https://github.com/int-0/ebootsigner/tarball/master -O ebootsigner.tar.gz
+ ## Download the source code if it does not already exist.
+ [ -f ebootsigner.tar.gz ] || wget --continue --no-check-certificate https://github.com/int-0/ebootsigner/tarball/master -O ebootsigner.tar.gz
 
  ## Unpack the source code.
  rm -Rf ebootsigner && mkdir ebootsigner && tar --strip-components=1 --directory=ebootsigner -xzf ebootsigner.tar.gz

@@ -4,8 +4,8 @@
  ## Exit on errors
  set -e
 
- ## Download the source code.
- wget --continue ftp://sources.redhat.com/pub/newlib/newlib-1.20.0.tar.gz
+ ## Download the source code if it does not already exist.
+ [ -f newlib-1.20.0.tar.gz ] || wget --continue ftp://sources.redhat.com/pub/newlib/newlib-1.20.0.tar.gz
 
  ## Unpack the source code.
  rm -Rf newlib-1.20.0

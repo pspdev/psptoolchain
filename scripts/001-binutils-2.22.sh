@@ -4,8 +4,8 @@
  ## Exit on errors
  set -e
 
- ## Download the source code.
- wget --continue ftp://ftp.gnu.org/pub/gnu/binutils/binutils-2.22.tar.bz2
+ ## Download the source code if it does not already exist.
+ [ -f binutils-2.22.tar.bz2 ] || wget --continue ftp://ftp.gnu.org/pub/gnu/binutils/binutils-2.22.tar.bz2
 
  ## Unpack the source code.
  rm -Rf binutils-2.22

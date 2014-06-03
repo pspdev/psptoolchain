@@ -10,13 +10,13 @@
  ## Exit on errors
  set -e
 
- ## Download the source code.
- wget --continue ftp://ftp.gnu.org/pub/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.bz2
+ ## Download the source code if it does not already exist.
+ [ -f gcc-$GCC_VERSION.tar.bz2 ] || wget --continue ftp://ftp.gnu.org/pub/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.bz2
 
- ## Download the library source code.
- wget --continue ftp://ftp.gmplib.org/pub/gmp-$GMP_VERSION/gmp-$GMP_VERSION.tar.bz2
- wget --continue http://www.multiprecision.org/mpc/download/mpc-$MPC_VERSION.tar.gz
- wget --continue http://www.mpfr.org/mpfr-$MPFR_VERSION/mpfr-$MPFR_VERSION.tar.bz2
+ ## Download the library source code if it does not already exist.
+ [ -f gmp-$GMP_VERSION.tar.bz2 ] || wget --continue ftp://ftp.gmplib.org/pub/gmp-$GMP_VERSION/gmp-$GMP_VERSION.tar.bz2
+ [ -f mpc-$MPC_VERSION.tar.gz ] || wget --continue http://www.multiprecision.org/mpc/download/mpc-$MPC_VERSION.tar.gz
+ [ -f mpfr-$MPFR_VERSION.tar.bz2 ] || wget --continue http://www.mpfr.org/mpfr-$MPFR_VERSION/mpfr-$MPFR_VERSION.tar.bz2
 
  ## Unpack the source code.
  rm -Rf gcc-$GCC_VERSION

@@ -4,8 +4,8 @@
  ## Exit on errors
  set -e
 
- ## Download the source code.
- wget --continue --no-check-certificate https://github.com/pspdev/pspsdk/tarball/master -O pspsdk.tar.gz
+ ## Download the source code if it does not already exist.
+ [ -f pspsdk.tar.gz ] || wget --continue --no-check-certificate https://github.com/pspdev/pspsdk/tarball/master -O pspsdk.tar.gz
 
  ## Unpack the source code.
  rm -Rf pspsdk && mkdir pspsdk && tar --strip-components=1 --directory=pspsdk -xzf pspsdk.tar.gz
