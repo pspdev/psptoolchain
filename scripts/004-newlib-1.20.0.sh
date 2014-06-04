@@ -1,15 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 # newlib-1.20.0.sh by Dan Peori (danpeori@oopo.net)
 
  ## Exit on errors
  set -e
 
  ## Download the source code if it does not already exist.
- [ -f newlib-1.20.0.tar.gz ] || wget --continue ftp://sources.redhat.com/pub/newlib/newlib-1.20.0.tar.gz
-
- ## Unpack the source code.
- rm -Rf newlib-1.20.0
- tar xfz newlib-1.20.0.tar.gz
+ download_and_extract ftp://sources.redhat.com/pub/newlib/newlib-1.20.0.tar.gz newlib-1.20.0
 
  ## Enter the source directory and patch the source code.
  cd newlib-1.20.0

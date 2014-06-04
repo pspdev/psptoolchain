@@ -1,15 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 # binutils-2.22.sh by Dan Peori (danpeori@oopo.net)
 
  ## Exit on errors
  set -e
 
  ## Download the source code if it does not already exist.
- [ -f binutils-2.22.tar.bz2 ] || wget --continue ftp://ftp.gnu.org/pub/gnu/binutils/binutils-2.22.tar.bz2
-
- ## Unpack the source code.
- rm -Rf binutils-2.22
- tar xfj binutils-2.22.tar.bz2
+ download_and_extract ftp://ftp.gnu.org/pub/gnu/binutils/binutils-2.22.tar.bz2 binutils-2.22
 
  ## Enter the source directory and patch the source code.
  cd binutils-2.22

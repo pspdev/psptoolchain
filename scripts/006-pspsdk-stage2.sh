@@ -1,14 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 # pspsdk-stage2.sh by Dan Peori (danpeori@oopo.net)
 
  ## Exit on errors
  set -e
 
  ## Download the source code if it does not already exist.
- [ -f pspsdk.tar.gz ] || wget --continue --no-check-certificate https://github.com/pspdev/pspsdk/tarball/master -O pspsdk.tar.gz
-
- ## Unpack the source code.
- rm -Rf pspsdk && mkdir pspsdk && tar --strip-components=1 --directory=pspsdk -xzf pspsdk.tar.gz
+ clone_git_repo github.com pspdev pspsdk
 
  ## Enter the source directory.
  cd pspsdk

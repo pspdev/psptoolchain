@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # gcc-stage1.sh by Dan Peori (danpeori@oopo.net) customized by yreeen(yreeen@gmail.com)
 
  ## set gcc version
@@ -11,16 +11,12 @@
  set -e
 
  ## Download the source code if it does not already exist.
- [ -f gcc-$GCC_VERSION.tar.bz2 ] || wget --continue ftp://ftp.gnu.org/pub/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.bz2
+ download_and_extract ftp://ftp.gnu.org/pub/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.bz2 gcc-$GCC_VERSION
 
  ## Download the library source code if it does not already exist.
- [ -f gmp-$GMP_VERSION.tar.bz2 ] || wget --continue ftp://ftp.gmplib.org/pub/gmp-$GMP_VERSION/gmp-$GMP_VERSION.tar.bz2
- [ -f mpc-$MPC_VERSION.tar.gz ] || wget --continue http://www.multiprecision.org/mpc/download/mpc-$MPC_VERSION.tar.gz
- [ -f mpfr-$MPFR_VERSION.tar.bz2 ] || wget --continue http://www.mpfr.org/mpfr-$MPFR_VERSION/mpfr-$MPFR_VERSION.tar.bz2
-
- ## Unpack the source code.
- rm -Rf gcc-$GCC_VERSION
- tar xfj gcc-$GCC_VERSION.tar.bz2
+ download_and_extract ftp://ftp.gmplib.org/pub/gmp-$GMP_VERSION/gmp-$GMP_VERSION.tar.bz2 gmp-$GMP_VERSION
+ download_and_extract http://www.multiprecision.org/mpc/download/mpc-$MPC_VERSION.tar.gz mpc-$MPC_VERSION
+ download_and_extract http://www.mpfr.org/mpfr-$MPFR_VERSION/mpfr-$MPFR_VERSION.tar.bz2 mpfr-$MPFR_VERSION
 
  ## Enter the source directory and patch the source code.
  cd gcc-$GCC_VERSION
@@ -29,9 +25,9 @@
  patch -p2 < ../../patches/gcc-$GCC_VERSION-fix54638.patch
 
  ## Unpack the library source code.
- tar xfj ../gmp-$GMP_VERSION.tar.bz2 && ln -s gmp-$GMP_VERSION gmp
- tar xfz ../mpc-$MPC_VERSION.tar.gz && ln -s mpc-$MPC_VERSION mpc
- tar xfj ../mpfr-$MPFR_VERSION.tar.bz2 && ln -s mpfr-$MPFR_VERSION mpfr
+ ln -fs ../gmp-$GMP_VERSION.tar.bz2 gmp
+ ln -fs ../mpc-$MPC_VERSION.tar.gz mpc
+ ln -fs ../mpfr-$MPFR_VERSION.tar.bz2 mpfr
 
  ## Create and enter the build directory.
  mkdir build-psp
