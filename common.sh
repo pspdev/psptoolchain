@@ -9,14 +9,14 @@ function auto_extract
 	echo "Extracting $name..."
 	
 	case $ext in
-		"tar") tar -xf $name && return 0 ;;
-		"gz"|"tgz") tar -xzf $name && return 0 ;;
-		"bz2"|"tbz2") tar -xjf $name && return 0 ;;
-		"zip") unzip $name && return 0 ;;
-		*) echo "download_and_extract doesn't know how to extract $ext archives!" ;;
+		"tar") tar -xf $path ;;
+		"gz"|"tgz") tar -xzf $path ;;
+		"bz2"|"tbz2") tar -xjf $path ;;
+		"zip") unzip $path ;;
+		*) echo "I don't know how to extract $ext archives!" && return 1 ;;
 	esac
 	
-	return 1
+	return 0
 }
 
 # Downloads and extracts a file, with some extra checks.
