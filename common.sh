@@ -6,6 +6,8 @@ function auto_extract
 	name=`echo $path|sed -e "s/.*\///"`
 	ext=`echo $name|sed -e "s/.*\.//"`
 	
+	echo "Extracting $name..."
+	
 	case $ext in
 		"tar") tar -xf $name && return 0 ;;
 		"gz"|"tgz") tar -xzf $name && return 0 ;;
@@ -27,7 +29,7 @@ function download_and_extract
 	
 	# If there are already an extracted directory, delete it, otherwise
 	# reapplying patches gets messy. I tried.
-	[ -d $outdir ] && echo "Deleting old version of $outdir" && rm -Rf outdir
+	[ -d $outdir ] && echo "Deleting old version of $outdir" && rm -rf $outdir
 	
 	# First, if the archive already exists, attempt to extract it. Failing
 	# that, attempt to continue an interrupted download. If that also fails,
