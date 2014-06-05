@@ -40,9 +40,9 @@ function download_and_extract
 	# downloaded, or it was deleted for being corrupted. Just go ahead and
 	# download it.
 	# Using wget --continue here would make buggy servers flip out for nothing.
-	[ -f $name ] || wget --no-check-certificate $1 -O $name && auto_extract $name
+	[ ! -f $name ] && wget --no-check-certificate $1 -O $name && auto_extract $name
 	
-	# Update the modification time of the file even if it exists, for patch_once
+	# Update the modification time of the file even if it exists
 	[ -f $name ] && touch $name
 }
 
@@ -62,5 +62,5 @@ function clone_git_repo
 	# or it was nuked due to being corrupted. Clone and track master, please.
 	# Attempt to clone over SSH if possible, use anonymous HTTP as fallback.
 	# SSH_ASKPASS=false prevents the script from stopping to ask for auth.
-	[ -d $repo ] || SSH_ASKPASS=false git clone --recursive -b master git@$host:$repo.git || SSH_ASKPASS=false git clone --recursive -b master https://$host/$user/$repo.git || return 1
+	[ ! -d $repo ] && SSH_ASKPASS=false git clone --recursive -b master git@$host:$repo.git || SSH_ASKPASS=false git clone --recursive -b master https://$host/$user/$repo.git || return 1
 }
