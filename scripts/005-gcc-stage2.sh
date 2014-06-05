@@ -26,9 +26,9 @@
  patch -p2 -i ../../patches/gcc-$GCC_VERSION-fix54638.patch
 
  ## Unpack the library source code.
- ln -fs ../gmp-$GMP_VERSION.tar.bz2 gmp
- ln -fs ../mpc-$MPC_VERSION.tar.gz mpc
- ln -fs ../mpfr-$MPFR_VERSION.tar.bz2 mpfr
+ ln -fs ../gmp-$GMP_VERSION gmp
+ ln -fs ../mpc-$MPC_VERSION mpc
+ ln -fs ../mpfr-$MPFR_VERSION mpfr
 
  ## Create and enter the build directory.
  mkdir build-psp
