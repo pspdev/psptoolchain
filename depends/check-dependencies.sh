@@ -64,15 +64,27 @@ check_program	git
 check_program	svn
 check_program	wget
 check_program	patch
+check_program	tar
+check_program	unzip
+
+check_program	autoconf
+check_program	automake
+check_program	automake-1.9	# This particular version is needed too
+check_program	libtool
+check_program	cmake
+check_program	make
+check_program	gcc
+check_program	g++
+
+check_program	sdl-config
+check_program	freetype-config
 
 check_program	bison
 check_program	flex
-check_program	autoconf
-check_program	automake
-check_program	make
+check_program	tclsh
+
 check_program	makeinfo
-check_program	gcc
-check_program	g++
+check_program	doxygen
 
 
 
