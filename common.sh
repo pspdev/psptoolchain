@@ -13,7 +13,7 @@ function auto_extract
 		"gz"|"tgz") tar -xzf $path ;;
 		"bz2"|"tbz2") tar -xjf $path ;;
 		"zip") unzip $path ;;
-		*) echo "I don't know how to extract $ext archives!" && return 1 ;;
+		*) echo "I don't know how to extract $ext archives!"; return 1 ;;
 	esac
 	
 	return 0
@@ -34,16 +34,13 @@ function download_and_extract
 	# First, if the archive already exists, attempt to extract it. Failing
 	# that, attempt to continue an interrupted download. If that also fails,
 	# remove the presumably corrupted file.
-	[ -f $name ] && auto_extract $name || wget --continue --no-check-certificate $1 -O $name || rm -f $name
+	[ -f $name ] && auto_extract $name || { wget --continue --no-check-certificate $url -O $name || rm -f $name; }
 	
 	# If the file does not exist at this point, it means it was either never
 	# downloaded, or it was deleted for being corrupted. Just go ahead and
 	# download it.
 	# Using wget --continue here would make buggy servers flip out for nothing.
-	[ ! -f $name ] && wget --no-check-certificate $1 -O $name && auto_extract $name
-	
-	# Update the modification time of the file even if it exists
-	[ -f $name ] && touch $name
+	[ -f $name ] || wget --no-check-certificate $url -O $name && auto_extract $name
 }
 
 # Clones or updates a Git repository.
