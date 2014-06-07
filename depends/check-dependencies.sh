@@ -10,6 +10,11 @@ header_paths=(
 	# -- Add more locations here --
 )
 
+aclocal_paths=(
+	"/usr/share/aclocal"
+	"/usr/local/share/aclocal"
+)
+
 missing_depends=()
 
 function check_header
@@ -28,6 +33,15 @@ function check_program
 	binary=${2:-$1}
 	for place in ${PATH//:/ }; do
 		[ -f "$place/$binary" ] || [ -f "$place/$binary.exe" ] && return 0
+	done
+	
+	missing_depends+=($1); return 1
+}
+
+function check_aclocal
+{
+	for place in ${aclocal_paths[@]}; do
+		[ -f "$place/$2" ] && return 0
 	done
 	
 	missing_depends+=($1); return 1
