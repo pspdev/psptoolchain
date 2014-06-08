@@ -93,4 +93,5 @@ if [ ${#missing_depends[@]} -ne 0 ]; then
     for dep in $missing_depends; do
         echo "  - $dep"
     done
+	exit 1
 fi
