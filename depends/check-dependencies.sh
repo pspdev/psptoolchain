@@ -32,7 +32,7 @@ function check_program
 {
 	binary=${2:-$1}
 	for place in ${PATH//:/ }; do
-		[ -f "$place/$binary" ] || [ -f "$place/$binary.exe" ] && return 0
+		[ -x "$place/$binary" ] || [ -x "$place/$binary.exe" ] && return 0
 	done
 	
 	missing_depends+=($1); return 1
@@ -52,7 +52,7 @@ function check_aclocal
 check_header	gmp			gmp.h
 check_header	mpc			mpc.h
 check_header	mpfr		mpfr.h
-check_header	libelf		elf.h gelf.h libelf.h libelf/libelf.h
+check_header	libelf		elf.h libelf.h libelf/libelf.h gelf.h libelf/gelf.h
 check_header	libusb		usb.h
 check_header	ncurses		ncurses.h ncurses/ncurses.h
 check_header	readline	readline.h readline/readline.h
