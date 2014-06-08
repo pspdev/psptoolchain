@@ -51,13 +51,18 @@ function clone_git_repo
     user=$2
     repo=$3
     
-    # If the target directory exists, assume it's a repository and updating it.
-    # If it's not, or if it's corrupted and fails to pull, just nuke it.
-    [ -d $repo ] && cd $repo && git pull || cd .. && rm -rf $repo
+    OLDPWD=$PWD
+    
+    # Try to update an existing repository at the target path.
+    # Nuke it if it's corrupted and the pull fails.
+    [ -d $repo/.git ] && { cd $repo && git pull; } || rm -rf $OLDPWD/$repo
+    
+    # The above command may leave us standing in the existing repo.
+    cd $OLDPWD
     
     # If it does not exist at this point, it was never there in the first place
     # or it was nuked due to being corrupted. Clone and track master, please.
     # Attempt to clone over SSH if possible, use anonymous HTTP as fallback.
-    # SSH_ASKPASS=false prevents the script from stopping to ask for auth.
-    [ ! -d $repo ] && SSH_ASKPASS=false git clone --recursive -b master git@$host:$repo.git < /dev/null || SSH_ASKPASS=false git clone --recursive -b master https://$host/$user/$repo.git < /dev/null || return 1
+    # Set SSH_ASKPASS and stdin(<) to prevent it from freezing to ask for auth.
+    [ -d $repo ] || SSH_ASKPASS=false git clone --recursive -b master git@$host:$user/$repo.git $repo < /dev/null || SSH_ASKPASS=false git clone --recursive -b master https://$host/$user/$repo.git $repo < /dev/null || return 1
 }
