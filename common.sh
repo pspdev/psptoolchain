@@ -59,5 +59,5 @@ function clone_git_repo
 	# or it was nuked due to being corrupted. Clone and track master, please.
 	# Attempt to clone over SSH if possible, use anonymous HTTP as fallback.
 	# SSH_ASKPASS=false prevents the script from stopping to ask for auth.
-	[ ! -d $repo ] && SSH_ASKPASS=false git clone --recursive -b master git@$host:$repo.git || SSH_ASKPASS=false git clone --recursive -b master https://$host/$user/$repo.git || return 1
+	[ ! -d $repo ] && SSH_ASKPASS=false git clone --recursive -b master git@$host:$repo.git < /dev/null || SSH_ASKPASS=false git clone --recursive -b master https://$host/$user/$repo.git < /dev/null || return 1
 }
