@@ -1,6 +1,12 @@
 #!/bin/bash
 # toolchain.sh by Dan Peori (danpeori@oopo.net)
 
+ ## Load and export shared functions
+ source common.sh
+ export -f auto_extract
+ export -f download_and_extract
+ export -f clone_git_repo
+
  ## Enter the psptoolchain directory.
  cd "`dirname $0`" || { echo "ERROR: Could not enter the psptoolchain directory."; exit 1; }
 

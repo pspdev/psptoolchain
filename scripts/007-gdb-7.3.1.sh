@@ -1,15 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 # gdb-7.3.1.sh by Dan Peori (danpeori@oopo.net)
 
  ## Exit on errors
  set -e
 
- ## Download the source code.
- wget --continue ftp://ftp.gnu.org/pub/gnu/gdb/gdb-7.3.1.tar.bz2
-
- ## Unpack the source code.
- rm -Rf gdb-7.3.1
- tar xfj gdb-7.3.1.tar.bz2
+ ## Download the source code if it does not already exist.
+ download_and_extract ftp://ftp.gnu.org/pub/gnu/gdb/gdb-7.3.1.tar.bz2 gdb-7.3.1
 
  ## Enter the source directory and patch the source code.
  cd gdb-7.3.1

@@ -1,16 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 # insight-6.8.sh by Dan Peori (danpeori@oopo.net)
 exit;
 
  ## Exit on errors
  set -e
 
- ## Download the source code.
- wget --continue ftp://sourceware.org/pub/insight/releases/insight-6.8a.tar.bz2
-
- ## Unpack the source code.
- rm -Rf insight-6.8
- tar xfj insight-6.8a.tar.bz2
+ ## Download the source code if it does not already exist.
+ download_and_extract ftp://sourceware.org/pub/insight/releases/insight-6.8a.tar.bz2 insight-6.8
 
  ## Enter the source directory and patch the source code.
  cd insight-6.8
