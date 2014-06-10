@@ -3,10 +3,10 @@
 # gdc support from TurkeyMan( https://github.com/TurkeyMan )
 
  ## set gcc version
- GCC_VERSION=4.6.3
- GMP_VERSION=5.1.0
- MPC_VERSION=1.0.1
- MPFR_VERSION=3.1.1
+ GCC_VERSION=4.6.4
+ GMP_VERSION=5.1.3
+ MPC_VERSION=1.0.2
+ MPFR_VERSION=3.1.2
  
  ## Exit on errors
  set -e
@@ -22,8 +22,6 @@
  ## Enter the source directory and patch the source code.
  cd gcc-$GCC_VERSION
  patch -p1 -i ../../patches/gcc-$GCC_VERSION-PSP.patch
- patch -p1 -i ../../patches/gcc-$GCC_VERSION-texinfofix.patch
- patch -p2 -i ../../patches/gcc-$GCC_VERSION-fix54638.patch
 
  ## Unpack the library source code.
  ln -fs ../gmp-$GMP_VERSION gmp
