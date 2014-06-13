@@ -27,7 +27,7 @@ Ubuntu
 
 1. Install the required packages by running.
 
-        sudo apt-get install g++ build-essential autoconf automake automake1.9 cmake doxygen bison flex libncurses5-dev libreadline-dev libusb-dev texinfo libgmp3-dev libmpfr-dev libelf-dev libmpc-dev libfreetype6-dev zlib1g-dev libtool subversion git tcl unzip
+        sudo apt-get install g++ build-essential autoconf automake automake1.9 cmake doxygen bison flex libncurses5-dev libreadline-dev libusb-dev texinfo libgmp3-dev libmpfr-dev libelf-dev libmpc-dev libfreetype6-dev zlib1g-dev libtool subversion git tcl unzip libsdl-dev
 
 2. Build and install the toolchain and SDK.
 
