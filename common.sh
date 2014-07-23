@@ -50,10 +50,7 @@ function clone_git_repo
     host=$1
     user=$2
     repo=$3
-    branch=$4
-
-    # If the branch is empty, set to master
-    [ -z "$branch" ] && echo "Branch arg is empty, setting to Master" && branch="master"
+    branch=${4:-master}
     
     OLDPWD=$PWD
     
