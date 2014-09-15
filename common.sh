@@ -44,12 +44,13 @@ function download_and_extract
 }
 
 # Clones or updates a Git repository.
-# Usage: clone_git_repo <hostname> <user> <repo>
+# Usage: clone_git_repo <hostname> <user> <repo> <branch>
 function clone_git_repo
 {
     host=$1
     user=$2
     repo=$3
+    branch=${4:-master}
     
     OLDPWD=$PWD
     
@@ -64,5 +65,5 @@ function clone_git_repo
     # or it was nuked due to being corrupted. Clone and track master, please.
     # Attempt to clone over SSH if possible, use anonymous HTTP as fallback.
     # Set SSH_ASKPASS and stdin(<) to prevent it from freezing to ask for auth.
-    [ -d $repo ] || SSH_ASKPASS=false git clone --recursive -b master git@$host:$user/$repo.git $repo < /dev/null || SSH_ASKPASS=false git clone --recursive -b master https://$host/$user/$repo.git $repo < /dev/null || return 1
+    [ -d $repo ] || SSH_ASKPASS=false git clone --recursive -b $branch git@$host:$user/$repo.git $repo < /dev/null || SSH_ASKPASS=false git clone --recursive -b $branch https://$host/$user/$repo.git $repo < /dev/null || return 1
 }
