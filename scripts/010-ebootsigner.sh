@@ -12,5 +12,5 @@
  cd ebootsigner
  
  ## Build and install
- make && make install
-
+ make -j $(num_cpus)
+ make -j $(num_cpus) install

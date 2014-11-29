@@ -1,3 +1,11 @@
+# Returns the number of processor cores available
+# Usage: num_cpus
+function num_cpus
+{
+    # This *should* be available on literally everything, including OSX
+    getconf _NPROCESSORS_ONLN
+}
+
 # Extracts a file based on its extension
 # Usage: extract <archive>
 function auto_extract

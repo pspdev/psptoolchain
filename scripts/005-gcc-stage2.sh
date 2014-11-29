@@ -37,7 +37,7 @@
  CFLAGS="$CFLAGS -I/opt/local/include" CPPFLAGS="$CPPFLAGS -I/opt/local/include" LDFLAGS="$LDFLAGS -L/opt/local/lib" ../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c,c++" --enable-lto --with-newlib --with-gmp --with-mpfr --enable-cxx-flags="-G0"
 
  ## Compile and install.
- make clean
- CFLAGS_FOR_TARGET="-G0" make -j 2
- make install
- make clean
+ make -j $(num_cpus) clean
+ CFLAGS_FOR_TARGET="-G0" make -j $(num_cpus)
+ make -j $(num_cpus) install
+ make -j $(num_cpus) clean
