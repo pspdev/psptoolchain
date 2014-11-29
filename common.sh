@@ -9,9 +9,9 @@ function auto_extract
     echo "Extracting $name..."
     
     case $ext in
-        "tar") tar -xf $path ;;
-        "gz"|"tgz") tar -xzf $path ;;
-        "bz2"|"tbz2") tar -xjf $path ;;
+        "tar") tar --no-same-owner -xf $path ;;
+        "gz"|"tgz") tar --no-same-owner -xzf $path ;;
+        "bz2"|"tbz2") tar --no-same-owner -xjf $path ;;
         "zip") unzip $path ;;
         *) echo "I don't know how to extract $ext archives!"; return 1 ;;
     esac
