@@ -11,4 +11,5 @@
  export PATH=$PATH:$PSPDEV/bin
 
  ## Run the toolchain script.
+ cd "$(dirname "${BASH_SOURCE[0]}")"
  ./toolchain.sh $@ || { echo "ERROR: Could not run the toolchain script."; exit 1; }
