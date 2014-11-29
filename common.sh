@@ -31,16 +31,19 @@ function download_and_extract
     # reapplying patches gets messy. I tried.
     [ -d $outdir ] && echo "Deleting old version of $outdir" && rm -rf $outdir
     
+    # Instead of wget's progress bar, just print that we're downloading the url
+    echo "Downloading: $url"; 
+    
     # First, if the archive already exists, attempt to extract it. Failing
     # that, attempt to continue an interrupted download. If that also fails,
     # remove the presumably corrupted file.
-    [ -f $name ] && auto_extract $name || { wget --continue --no-check-certificate $url -O $name || rm -f $name; }
+    [ -f $name ] && auto_extract $name || { wget --continue --no-verbose --no-check-certificate $url -O $name || rm -f $name; }
     
     # If the file does not exist at this point, it means it was either never
     # downloaded, or it was deleted for being corrupted. Just go ahead and
     # download it.
     # Using wget --continue here would make buggy servers flip out for nothing.
-    [ -f $name ] || wget --no-check-certificate $url -O $name && auto_extract $name
+    [ -f $name ] || wget --no-verbose --no-check-certificate $url -O $name && auto_extract $name
 }
 
 # Clones or updates a Git repository.
