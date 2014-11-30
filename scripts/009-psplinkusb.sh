@@ -17,8 +17,7 @@
  export LIBRARY_PATH="/opt/local/lib"
 
  ## Build and install.
- make -f Makefile.clients clean
- make -f Makefile.clients
- make -f Makefile.clients install
- make -f Makefile.clients clean
-
+ make -f Makefile.clients -j $(num_cpus) clean
+ make -f Makefile.clients -j $(num_cpus)
+ make -f Makefile.clients -j $(num_cpus) install
+ make -f Makefile.clients -j $(num_cpus) clean

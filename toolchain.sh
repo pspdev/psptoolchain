@@ -3,6 +3,7 @@
 
  ## Load and export shared functions
  source common.sh
+ export -f num_cpus
  export -f auto_extract
  export -f download_and_extract
  export -f clone_git_repo

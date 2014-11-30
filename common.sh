@@ -1,3 +1,11 @@
+# Returns the number of processor cores available
+# Usage: num_cpus
+function num_cpus
+{
+    # This *should* be available on literally everything, including OSX
+    getconf _NPROCESSORS_ONLN
+}
+
 # Extracts a file based on its extension
 # Usage: extract <archive>
 function auto_extract
@@ -9,14 +17,14 @@ function auto_extract
     echo "Extracting $name..."
     
     case $ext in
-        "tar") tar -xf $path ;;
-        "gz"|"tgz") tar -xzf $path ;;
-        "bz2"|"tbz2") tar -xjf $path ;;
+        "tar") tar --no-same-owner -xf $path ;;
+        "gz"|"tgz") tar --no-same-owner -xzf $path ;;
+        "bz2"|"tbz2") tar --no-same-owner -xjf $path ;;
         "zip") unzip $path ;;
         *) echo "I don't know how to extract $ext archives!"; return 1 ;;
     esac
     
-    return 0
+    return $?
 }
 
 # Downloads and extracts a file, with some extra checks.

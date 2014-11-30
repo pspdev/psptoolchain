@@ -22,7 +22,7 @@
  CFLAGS="$CFLAGS -I/opt/local/include" CPPFLAGS="$CPPFLAGS -I/opt/local/include" LDFLAGS="$LDFLAGS -L/opt/local/lib" ../configure --prefix="$PSPDEV" --target="psp" --disable-werror --disable-nls
 
  ## Compile and install.
- make clean
- make -j 2
- make install
- make clean
+ make -j $(num_cpus) clean
+ make -j $(num_cpus)
+ make -j $(num_cpus) install
+ make -j $(num_cpus) clean

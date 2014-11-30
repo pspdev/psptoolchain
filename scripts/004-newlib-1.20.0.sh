@@ -22,7 +22,7 @@
      --enable-newlib-mb \
 
  ## Compile and install.
- make clean
- make -j 2
- make install
- make clean
+ make -j $(num_cpus) clean
+ make -j $(num_cpus)
+ make -j $(num_cpus) install
+ make -j $(num_cpus) clean
