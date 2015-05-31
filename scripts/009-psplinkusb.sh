@@ -7,9 +7,8 @@
  ## Download the source code if it does not already exist
  clone_git_repo github.com pspdev psplinkusb
 
- ## Enter the source directory and patch the source code
+ ## Enter the source directory
  cd psplinkusb
- [[ "$(uname)" == 'Darwin' ]] && patch -p1 < ../../patches/psplinkusb-Darwin.patch
 
  ## MacPorts fix
  export C_INCLUDE_PATH="/opt/local/include"
