@@ -22,6 +22,7 @@
  ## Enter the source directory and patch the source code.
  cd gcc-$GCC_VERSION
  patch -p1 -i ../../patches/gcc-$GCC_VERSION-PSP.patch
+ patch -p0 -i ../../patches/patch-gcc_cp_cfns.h
 
  ## Unpack the library source code.
  ln -fs ../gmp-$GMP_VERSION gmp
