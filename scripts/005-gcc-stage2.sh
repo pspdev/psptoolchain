@@ -35,7 +35,7 @@
 
  ## Configure the build.
  ## If you want to build gdc add "d" to --enable-languages option.
- CFLAGS="$CFLAGS -I/opt/local/include" CPPFLAGS="$CPPFLAGS -I/opt/local/include" LDFLAGS="$LDFLAGS -L/opt/local/lib" ../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c,c++" --enable-lto --with-newlib --with-gmp --with-mpfr --enable-cxx-flags="-G0"
+ CFLAGS="$CFLAGS -I/opt/local/include" CPPFLAGS="$CPPFLAGS -I/opt/local/include" LDFLAGS="$LDFLAGS -L/opt/local/lib" ../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c,c++" --enable-lto --with-newlib --with-gmp-include="$(pwd)/gmp" --with-gmp-lib="$(pwd)/gmp/.libs" --with-mpfr-include="$(pwd)/../mpfr/src" --with-mpfr-lib="$(pwd)/mpfr/src/.libs" --enable-cxx-flags="-G0"
 
  ## Compile and install.
  make -j $(num_cpus) clean

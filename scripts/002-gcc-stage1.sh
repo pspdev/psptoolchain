@@ -32,7 +32,7 @@
  cd build-psp
 
  ## Configure the build.
- CFLAGS="$CFLAGS -I/opt/local/include" CPPFLAGS="$CPPFLAGS -I/opt/local/include" LDFLAGS="$LDFLAGS -L/opt/local/lib" ../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c" --enable-lto --with-newlib --with-gmp --with-mpfr --without-headers --disable-libssp
+ CFLAGS="$CFLAGS -I/opt/local/include" CPPFLAGS="$CPPFLAGS -I/opt/local/include" LDFLAGS="$LDFLAGS -L/opt/local/lib" ../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c" --enable-lto --with-newlib --with-gmp-include="$(pwd)/gmp" --with-gmp-lib="$(pwd)/gmp/.libs" --with-mpfr-include="$(pwd)/../mpfr/src" --with-mpfr-lib="$(pwd)/mpfr/src/.libs" --without-headers --disable-libssp
 
  ## Compile and install.
  make -j $(num_cpus) clean
