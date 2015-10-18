@@ -81,7 +81,7 @@ check_program   unzip
 
 check_program   autoconf
 check_program   automake
-check_program   automake-1.9    # This particular version is needed too
+#check_program   automake-1.9    # This particular version is needed too
 check_program   cmake
 check_program   make
 check_program   gcc
