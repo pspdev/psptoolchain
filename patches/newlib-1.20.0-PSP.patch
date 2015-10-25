@@ -93,6 +93,21 @@ diff -burN orig.newlib-1.20.0/newlib/libc/include/machine/time.h newlib-1.20.0/n
  #ifdef __SPU__
  #include <sys/types.h>
  int nanosleep (const struct timespec *, struct timespec *);
+diff -burN orig.newlib-1.20.0/newlib/libc/include/memory.h newlib-1.20.0/newlib/libc/include/memory.h
+--- orig.newlib-1.20.0/newlib/libc/include/memory.h	1970-01-01 01:00:00.000000000 +0100
++++ newlib-1.20.0/newlib/libc/include/memory.h	2015-10-25 21:51:34.000000000 +0100
+@@ -0,0 +1,11 @@
++/*
++ * memory.h
++ *
++ */
++
++#ifndef _MEMORY_H_
++#define _MEMORY_H_
++
++#include <string.h>
++
++#endif /* _MEMORY_H_ */
 diff -burN orig.newlib-1.20.0/newlib/libc/include/stdint.h newlib-1.20.0/newlib/libc/include/stdint.h
 --- orig.newlib-1.20.0/newlib/libc/include/stdint.h	2009-04-24 23:55:07.000000000 +0200
 +++ newlib-1.20.0/newlib/libc/include/stdint.h	2012-01-12 17:32:29.126185197 +0100
