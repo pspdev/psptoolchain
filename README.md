@@ -21,6 +21,16 @@ How do I use it?
 
         ./toolchain.sh
 
+> NOTE: If you have issues with compiling try increasing the amount of memory
+> available to your system by creating a swapfile.
+>
+>     dd if=/dev/zero of=/swapfile bs=1M count=2048
+>     chmod 600 /swapfile
+>     mkswap /swapfile
+>     swapon /swapfile
+>
+> After you are done use `swapoff -a` disable the swapfile. Finally you can
+> remove it with `rm`.
 
 Ubuntu
 ------
