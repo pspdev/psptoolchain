@@ -24,6 +24,11 @@ elif [ -e "/usr/local/bin/brew" ]; then
 	sudo -u $CURRENT_USER brew install libusb
     sudo -U $CURRENT_USER brew install sdl
     sudo -U $CURRENT_USER brew install doxygen
+    sudo -U $CURRENT_USER brew install gcc
+    sudo -U $CURRENT_USER brew install bison
+    sudo -U $CURRENT_USER brew install flex
+    sudo -U $CURRENT_USER brew install libtool
+    sudo -U $CURRENT_USER brew install subversion
 	sudo -u $CURRENT_USER brew install libusb-compat
 else
 	echo "Go install MacPorts from http://www.macports.org/ or Homebrew from http://brew.sh/ first, then we can talk"
