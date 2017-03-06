@@ -23,6 +23,9 @@
  cd gcc-$GCC_VERSION
  patch -p1 -i ../../patches/gcc-$GCC_VERSION-PSP.patch
  patch -p0 -i ../../patches/patch-gcc_cp_cfns.h
+ if [ "$GCC_VERSION" == "4.9.3" ]; then
+     patch -p1 -i ../../patches/patch-gcc-bug-58158.patch
+ fi
 
  ## Unpack the library source code.
  ln -fs ../gmp-$GMP_VERSION gmp

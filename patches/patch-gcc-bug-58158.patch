@@ -1,0 +1,18 @@
+diff --git a/mids.md b/mips.md
+index 70f9f7d..9da8337 100644
+--- gcc-4.9.3/gcc/config/mips/mips.md
++++ gcc-4.9.3-psp/gcc/config/mips/mips.md
+@@ -6960,10 +6960,10 @@
+ 	(if_then_else:GPR (match_dup 5)
+ 			  (match_operand:GPR 2 "reg_or_0_operand")
+ 			  (match_operand:GPR 3 "reg_or_0_operand")))]
+-  "ISA_HAS_CONDMOVE || ISA_HAS_INT_CONDMOVE"
++  "ISA_HAS_CONDMOVE"
+ {
+-  if (ISA_HAS_INT_CONDMOVE
+-      && GET_MODE_CLASS (GET_MODE (operands[0])) == MODE_FLOAT)
++  if (!ISA_HAS_FP_CONDMOVE
++      && !INTEGRAL_MODE_P (GET_MODE (XEXP (operands[1], 0))))
+     FAIL;
+ 
+   mips_expand_conditional_move (operands);
