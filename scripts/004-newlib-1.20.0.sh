@@ -5,7 +5,7 @@
  set -e
 
  ## Download the source code if it does not already exist.
- download_and_extract ftp://sources.redhat.com/pub/newlib/newlib-1.20.0.tar.gz newlib-1.20.0
+ download_and_extract ftp://sourceware.org/pub/newlib/newlib-1.20.0.tar.gz newlib-1.20.0
 
  ## Enter the source directory and patch the source code.
  cd newlib-1.20.0
