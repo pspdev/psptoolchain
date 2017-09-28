@@ -93,6 +93,21 @@ diff -burN orig.newlib-1.20.0/newlib/libc/include/machine/time.h newlib-1.20.0/n
  #ifdef __SPU__
  #include <sys/types.h>
  int nanosleep (const struct timespec *, struct timespec *);
+diff -burN orig.newlib-1.20.0/newlib/libc/include/memory.h newlib-1.20.0/newlib/libc/include/memory.h
+--- orig.newlib-1.20.0/newlib/libc/include/memory.h	1970-01-01 01:00:00.000000000 +0100
++++ newlib-1.20.0/newlib/libc/include/memory.h	2015-10-25 21:51:34.000000000 +0100
+@@ -0,0 +1,11 @@
++/*
++ * memory.h
++ *
++ */
++
++#ifndef _MEMORY_H_
++#define _MEMORY_H_
++
++#include <string.h>
++
++#endif /* _MEMORY_H_ */
 diff -burN orig.newlib-1.20.0/newlib/libc/include/stdint.h newlib-1.20.0/newlib/libc/include/stdint.h
 --- orig.newlib-1.20.0/newlib/libc/include/stdint.h	2009-04-24 23:55:07.000000000 +0200
 +++ newlib-1.20.0/newlib/libc/include/stdint.h	2012-01-12 17:32:29.126185197 +0100
@@ -109,6 +124,17 @@ diff -burN orig.newlib-1.20.0/newlib/libc/include/stdint.h newlib-1.20.0/newlib/
  #endif
  
  #if __STDINT_EXP(SCHAR_MAX) == 0x7f
+diff -burN orig.newlib-1.20.0/newlib/libc/include/stdlib.h newlib-1.20.0/newlib/libc/include/stdlib.h
+--- orig.newlib-1.20.0/newlib/libc/include/stdlib.h	2015-10-25 21:15:11.000000000 +0100
++++ newlib-1.20.0/newlib/libc/include/stdlib.h	2015-10-25 21:16:25.000000000 +0100
+@@ -122,6 +122,7 @@
+ #ifndef __STRICT_ANSI__
+ _PTR	_EXFUN(reallocf,(_PTR __r, size_t __size));
+ #endif
++char * _EXFUN(realpath,(const char *, char *));
+ _VOID	_EXFUN(srand,(unsigned __seed));
+ double	_EXFUN(strtod,(const char *__n, char **__end_PTR));
+ double	_EXFUN(_strtod_r,(struct _reent *,const char *__n, char **__end_PTR));
 diff -burN orig.newlib-1.20.0/newlib/libc/include/sys/config.h newlib-1.20.0/newlib/libc/include/sys/config.h
 --- orig.newlib-1.20.0/newlib/libc/include/sys/config.h	2010-12-02 20:30:46.000000000 +0100
 +++ newlib-1.20.0/newlib/libc/include/sys/config.h	2012-01-12 17:32:45.489987517 +0100
