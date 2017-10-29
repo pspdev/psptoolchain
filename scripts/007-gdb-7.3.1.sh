@@ -5,7 +5,7 @@
  set -e
 
  ## Download the source code if it does not already exist.
- download_and_extract ftp://ftp.gnu.org/pub/gnu/gdb/gdb-7.3.1.tar.bz2 gdb-7.3.1
+ download_and_extract https://ftp.gnu.org/gnu/gdb/gdb-7.3.1.tar.bz2 gdb-7.3.1
 
  ## Enter the source directory and patch the source code.
  cd gdb-7.3.1

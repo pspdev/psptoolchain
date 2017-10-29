@@ -5,7 +5,7 @@
  set -e
 
  ## Download the source code if it does not already exist.
- download_and_extract ftp://ftp.gnu.org/pub/gnu/binutils/binutils-2.22.tar.bz2 binutils-2.22
+ download_and_extract https://ftp.gnu.org/pub/gnu/binutils/binutils-2.22.tar.bz2 binutils-2.22
 
  ## Enter the source directory and patch the source code.
  cd binutils-2.22
