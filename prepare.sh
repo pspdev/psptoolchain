@@ -37,6 +37,7 @@ _EOF_
 				libreadline-dev \
 				libusb-dev \
 				libtool \
+				libtool-bin \
 				subversion \
 				tcl \
 				texinfo \
@@ -77,6 +78,7 @@ _EOF_
 				libreadline-dev \
 				libusb-dev \
 				libtool \
+				libtool-bin \
 				subversion \
 				tcl \
 				texinfo \
