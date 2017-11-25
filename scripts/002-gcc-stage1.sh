@@ -2,7 +2,7 @@
 # gcc-stage1.sh by Dan Peori (danpeori@oopo.net) customized by yreeen(yreeen@gmail.com)
 
  ## set gcc version
- GCC_VERSION=4.9.3
+ GCC_VERSION=5.4.0
  GMP_VERSION=5.1.3
  MPC_VERSION=1.0.2
  MPFR_VERSION=3.1.2
