@@ -1,5 +1,5 @@
 #!/bin/bash
-# binutils-2.22.sh by Dan Peori (danpeori@oopo.net)
+# binutils-2.22.sh by Naomi Peori (naomi@peori.ca)
 
  ## Exit on errors
  set -e

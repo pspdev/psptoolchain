@@ -1,5 +1,5 @@
 #!/bin/bash
-# psplinkusb.sh by Dan Peori (danpeori@oopo.net)
+# psplinkusb.sh by Naomi Peori (naomi@peori.ca)
 
  ## Exit on errors
  set -e

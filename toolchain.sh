@@ -1,5 +1,5 @@
 #!/bin/bash
-# toolchain.sh by Dan Peori (danpeori@oopo.net)
+# toolchain.sh by Naomi Peori (naomi@peori.ca)
 
  ## Load and export shared functions
  source common.sh

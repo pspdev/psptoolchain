@@ -1,5 +1,5 @@
 #!/bin/bash
-# toolchain-sudo.sh by Dan Peori (danpeori@oopo.net)
+# toolchain-sudo.sh by Naomi Peori (naomi@peori.ca)
  
  INSTALLDIR=/usr/local/pspdev
  

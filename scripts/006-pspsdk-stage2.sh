@@ -1,5 +1,5 @@
 #!/bin/bash
-# pspsdk-stage2.sh by Dan Peori (danpeori@oopo.net)
+# pspsdk-stage2.sh by Naomi Peori (naomi@peori.ca)
 
  ## Exit on errors
  set -e

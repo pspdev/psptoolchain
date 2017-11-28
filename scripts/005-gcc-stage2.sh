@@ -1,5 +1,5 @@
 #!/bin/bash
-# gcc-stage2.sh by Dan Peori (danpeori@oopo.net) customized by yreeen (yreeen@gmail.com)
+# gcc-stage2.sh by Naomi Peori (naomi@peori.ca) customized by yreeen (yreeen@gmail.com)
 # gdc support from TurkeyMan( https://github.com/TurkeyMan )
 
  ## set gcc version

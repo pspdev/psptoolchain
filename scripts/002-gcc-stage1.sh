@@ -1,5 +1,5 @@
 #!/bin/bash
-# gcc-stage1.sh by Dan Peori (danpeori@oopo.net) customized by yreeen(yreeen@gmail.com)
+# gcc-stage1.sh by Naomi Peori (naomi@peori.ca) customized by yreeen(yreeen@gmail.com)
 
  ## set gcc version
  GCC_VERSION=4.9.3

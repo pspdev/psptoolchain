@@ -1,6 +1,6 @@
 #!/bin/bash
 # ebootsigner.sh by Sam Hegarty (samr.hegarty@gmail.com)
-# Modification of script by Dan Peori (danpeori@oopo.net)
+# Modification of script by Naomi Peori (naomi@peori.ca)
 
  ## Exit on errors
  set -e

@@ -1,5 +1,5 @@
 #!/bin/bash
-# newlib-1.20.0.sh by Dan Peori (danpeori@oopo.net)
+# newlib-1.20.0.sh by Naomi Peori (naomi@peori.ca)
 
  ## Exit on errors
  set -e

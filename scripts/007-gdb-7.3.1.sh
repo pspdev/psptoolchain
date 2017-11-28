@@ -1,5 +1,5 @@
 #!/bin/bash
-# gdb-7.3.1.sh by Dan Peori (danpeori@oopo.net)
+# gdb-7.3.1.sh by Naomi Peori (naomi@peori.ca)
 
  ## Exit on errors
  set -e
