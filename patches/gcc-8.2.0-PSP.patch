@@ -1,7 +1,7 @@
-diff -Nru gcc-4.9.3/config.sub gcc-4.9.3-psp/config.sub
---- gcc-4.9.3/config.sub	2013-10-01 17:50:56.000000000 +0100
-+++ gcc-4.9.3-psp/config.sub	2015-10-19 00:17:27.020646514 +0100
-@@ -289,6 +289,7 @@
+diff -adurB --new-file gcc-8.2.0/config.sub gcc-8.2.0-psp/config.sub
+--- gcc-8.2.0/config.sub	2018-01-03 05:25:18.000000000 +0100
++++ gcc-8.2.0-psp/config.sub	2018-12-16 08:04:00.773455255 +0100
+@@ -288,6 +288,7 @@
  	| mipsisa64sr71k | mipsisa64sr71kel \
  	| mipsr5900 | mipsr5900el \
  	| mipstx39 | mipstx39el \
@@ -9,7 +9,7 @@ diff -Nru gcc-4.9.3/config.sub gcc-4.9.3-psp/config.sub
  	| mn10200 | mn10300 \
  	| moxie \
  	| mt \
-@@ -408,6 +409,7 @@
+@@ -415,6 +416,7 @@
  	| mipsisa64sr71k-* | mipsisa64sr71kel-* \
  	| mipsr5900-* | mipsr5900el-* \
  	| mipstx39-* | mipstx39el-* \
@@ -17,7 +17,7 @@ diff -Nru gcc-4.9.3/config.sub gcc-4.9.3-psp/config.sub
  	| mmix-* \
  	| mt-* \
  	| msp430-* \
-@@ -810,6 +812,10 @@
+@@ -836,6 +838,10 @@
  		basic_machine=m68k-atari
  		os=-mint
  		;;
@@ -28,9 +28,9 @@ diff -Nru gcc-4.9.3/config.sub gcc-4.9.3-psp/config.sub
  	mips3*-*)
  		basic_machine=`echo $basic_machine | sed -e 's/mips3/mips64/'`
  		;;
-diff -Nru gcc-4.9.3/gcc/config/mips/allegrex.md gcc-4.9.3-psp/gcc/config/mips/allegrex.md
---- gcc-4.9.3/gcc/config/mips/allegrex.md	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-4.9.3-psp/gcc/config/mips/allegrex.md	2015-10-19 00:17:27.020646514 +0100
+diff -adurB --new-file gcc-8.2.0/gcc/config/mips/allegrex.md gcc-8.2.0-psp/gcc/config/mips/allegrex.md
+--- gcc-8.2.0/gcc/config/mips/allegrex.md	1970-01-01 01:00:00.000000000 +0100
++++ gcc-8.2.0-psp/gcc/config/mips/allegrex.md	2018-12-16 08:04:00.773455255 +0100
 @@ -0,0 +1,172 @@
 +;; Sony ALLEGREX instructions.
 +;; Copyright (C) 2005 Free Software Foundation, Inc.
@@ -204,11 +204,11 @@ diff -Nru gcc-4.9.3/gcc/config/mips/allegrex.md gcc-4.9.3-psp/gcc/config/mips/al
 +  "round.w.s\t%0,%1"
 +  [(set_attr "type"    "fcvt")
 +   (set_attr "mode"    "SF")])
-diff -Nru gcc-4.9.3/gcc/config/mips/mips.c gcc-4.9.3-psp/gcc/config/mips/mips.c
---- gcc-4.9.3/gcc/config/mips/mips.c	2014-03-08 09:27:23.000000000 +0000
-+++ gcc-4.9.3-psp/gcc/config/mips/mips.c	2015-10-19 00:27:43.682089841 +0100
-@@ -248,7 +248,12 @@
-   MIPS_BUILTIN_CMP_SINGLE,
+diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips.c gcc-8.2.0-psp/gcc/config/mips/mips.c
+--- gcc-8.2.0/gcc/config/mips/mips.c	2018-03-01 12:37:35.000000000 +0100
++++ gcc-8.2.0-psp/gcc/config/mips/mips.c	2018-12-16 08:31:05.320049739 +0100
+@@ -253,7 +253,12 @@
+   MIPS_BUILTIN_MSA_TEST_BRANCH,
  
    /* For generating bposge32 branch instructions in MIPS32 DSP ASE.  */
 -  MIPS_BUILTIN_BPOSGE32
@@ -221,7 +221,7 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.c gcc-4.9.3-psp/gcc/config/mips/mips.c
  };
  
  /* Invoke MACRO (COND) for each C.cond.fmt condition.  */
-@@ -574,6 +579,10 @@
+@@ -460,6 +465,10 @@
     normal branch.  */
  static bool mips_branch_likely;
  
@@ -232,7 +232,7 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.c gcc-4.9.3-psp/gcc/config/mips/mips.c
  /* The current instruction-set architecture.  */
  enum processor mips_arch;
  const struct mips_cpu_info *mips_arch_info;
-@@ -919,6 +928,9 @@
+@@ -820,6 +829,9 @@
  		     1,           /* branch_cost */
  		     4            /* memory_latency */
    },
@@ -242,15 +242,15 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.c gcc-4.9.3-psp/gcc/config/mips/mips.c
    { /* Loongson-2E */
      DEFAULT_COSTS
    },
-@@ -13780,6 +13792,7 @@
+@@ -15181,6 +15193,7 @@
  AVAIL_NON_MIPS16 (dspr2_32, !TARGET_64BIT && TARGET_DSPR2)
  AVAIL_NON_MIPS16 (loongson, TARGET_LOONGSON_VECTORS)
  AVAIL_NON_MIPS16 (cache, TARGET_CACHE_BUILTIN)
 +AVAIL_NON_MIPS16 (allegrex, TARGET_ALLEGREX)
+ AVAIL_NON_MIPS16 (msa, TARGET_MSA)
  
  /* Construct a mips_builtin_description from the given arguments.
- 
-@@ -13876,6 +13889,30 @@
+@@ -15278,6 +15291,30 @@
    MIPS_BUILTIN (bposge, f, "bposge" #VALUE,				\
  		MIPS_BUILTIN_BPOSGE ## VALUE, MIPS_SI_FTYPE_VOID, AVAIL)
  
@@ -281,7 +281,7 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.c gcc-4.9.3-psp/gcc/config/mips/mips.c
  /* Define a Loongson MIPS_BUILTIN_DIRECT function __builtin_loongson_<FN_NAME>
     for instruction CODE_FOR_loongson_<INSN>.  FUNCTION_TYPE is a
     builtin_description field.  */
-@@ -14122,6 +14159,38 @@
+@@ -15753,6 +15790,38 @@
    DIRECT_BUILTIN (dpsqx_s_w_ph, MIPS_DI_FTYPE_DI_V2HI_V2HI, dspr2_32),
    DIRECT_BUILTIN (dpsqx_sa_w_ph, MIPS_DI_FTYPE_DI_V2HI_V2HI, dspr2_32),
  
@@ -320,16 +320,16 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.c gcc-4.9.3-psp/gcc/config/mips/mips.c
    /* Builtin functions for ST Microelectronics Loongson-2E/2F cores.  */
    LOONGSON_BUILTIN (packsswh, MIPS_V4HI_FTYPE_V2SI_V2SI),
    LOONGSON_BUILTIN (packsshb, MIPS_V8QI_FTYPE_V4HI_V4HI),
-@@ -14273,6 +14342,8 @@
- /* Standard mode-based argument types.  */
+@@ -16441,6 +16510,8 @@
  #define MIPS_ATYPE_UQI unsigned_intQI_type_node
+ #define MIPS_ATYPE_HI intHI_type_node
  #define MIPS_ATYPE_SI intSI_type_node
 +#define MIPS_ATYPE_HI intHI_type_node
 +#define MIPS_ATYPE_QI intQI_type_node
  #define MIPS_ATYPE_USI unsigned_intSI_type_node
  #define MIPS_ATYPE_DI intDI_type_node
  #define MIPS_ATYPE_UDI unsigned_intDI_type_node
-@@ -14575,6 +14646,26 @@
+@@ -17112,6 +17183,26 @@
  				       const1_rtx, const0_rtx);
  }
  
@@ -356,7 +356,7 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.c gcc-4.9.3-psp/gcc/config/mips/mips.c
  /* Implement TARGET_EXPAND_BUILTIN.  */
  
  static rtx
-@@ -14620,6 +14711,9 @@
+@@ -17160,6 +17251,9 @@
  
      case MIPS_BUILTIN_BPOSGE32:
        return mips_expand_builtin_bposge (d->builtin_type, target);
@@ -366,11 +366,10 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.c gcc-4.9.3-psp/gcc/config/mips/mips.c
      }
    gcc_unreachable ();
  }
-@@ -17376,6 +17470,22 @@
- 
+@@ -20212,6 +20306,22 @@
    if (TARGET_HARD_FLOAT_ABI && TARGET_MIPS5900)
      REAL_MODE_FORMAT (SFmode) = &spu_single_format;
-+
+ 
 +  /* Validate -mpreferred-stack-boundary= value, or provide default.
 +     The default of 128-bit is for newABI else 64-bit.  */
 +  mips_preferred_stack_boundary = (TARGET_NEWABI ? 128 : 64);
@@ -386,13 +385,14 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.c gcc-4.9.3-psp/gcc/config/mips/mips.c
 +          mips_preferred_stack_boundary = mips_preferred_stack_align * 8;
 +        }
 +    }
++
+   mips_register_frame_header_opt ();
  }
  
- /* Swap the register information for registers I and I + 1, which
-diff -Nru gcc-4.9.3/gcc/config/mips/mips-cpus.def gcc-4.9.3-psp/gcc/config/mips/mips-cpus.def
---- gcc-4.9.3/gcc/config/mips/mips-cpus.def	2014-03-04 21:39:50.000000000 +0000
-+++ gcc-4.9.3-psp/gcc/config/mips/mips-cpus.def	2015-10-19 00:17:27.022646519 +0100
-@@ -55,6 +55,7 @@
+diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips-cpus.def gcc-8.2.0-psp/gcc/config/mips/mips-cpus.def
+--- gcc-8.2.0/gcc/config/mips/mips-cpus.def	2018-01-03 11:03:58.000000000 +0100
++++ gcc-8.2.0-psp/gcc/config/mips/mips-cpus.def	2018-12-16 08:04:00.777455227 +0100
+@@ -62,6 +62,7 @@
  
  /* MIPS II processors.  */
  MIPS_CPU ("r6000", PROCESSOR_R6000, 2, 0)
@@ -400,31 +400,38 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips-cpus.def gcc-4.9.3-psp/gcc/config/mips/
  
  /* MIPS III processors.  */
  MIPS_CPU ("r4000", PROCESSOR_R4000, 3, 0)
-diff -Nru gcc-4.9.3/gcc/config/mips/mips-ftypes.def gcc-4.9.3-psp/gcc/config/mips/mips-ftypes.def
---- gcc-4.9.3/gcc/config/mips/mips-ftypes.def	2014-02-02 16:05:09.000000000 +0000
-+++ gcc-4.9.3-psp/gcc/config/mips/mips-ftypes.def	2015-10-19 00:17:27.023646521 +0100
-@@ -53,9 +53,12 @@
- DEF_MIPS_FTYPE (2, (SI, DI, SI))
- DEF_MIPS_FTYPE (2, (SI, POINTER, SI))
+diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips-ftypes.def gcc-8.2.0-psp/gcc/config/mips/mips-ftypes.def
+--- gcc-8.2.0/gcc/config/mips/mips-ftypes.def	2018-01-03 11:03:58.000000000 +0100
++++ gcc-8.2.0-psp/gcc/config/mips/mips-ftypes.def	2018-12-16 08:06:01.088722866 +0100
+@@ -44,6 +44,8 @@
+ DEF_MIPS_FTYPE (3, (DI, DI, V2HI, V2HI))
+ DEF_MIPS_FTYPE (3, (DI, DI, V4QI, V4QI))
  DEF_MIPS_FTYPE (2, (DI, POINTER, SI))
 +DEF_MIPS_FTYPE (1, (SI, HI))
 +DEF_MIPS_FTYPE (1, (SI, SF))
+ DEF_MIPS_FTYPE (2, (DI, SI, SI))
+ DEF_MIPS_FTYPE (2, (DI, USI, USI))
+ DEF_MIPS_FTYPE (2, (DI, V2DI, UQI))
+@@ -63,6 +65,7 @@
  DEF_MIPS_FTYPE (1, (SI, SI))
  DEF_MIPS_FTYPE (2, (SI, SI, SI))
  DEF_MIPS_FTYPE (3, (SI, SI, SI, SI))
 +DEF_MIPS_FTYPE (1, (SI, QI))
- DEF_MIPS_FTYPE (1, (SI, V2HI))
- DEF_MIPS_FTYPE (2, (SI, V2HI, V2HI))
- DEF_MIPS_FTYPE (1, (SI, V4QI))
-@@ -127,3 +130,4 @@
- DEF_MIPS_FTYPE (1, (VOID, USI))
+ DEF_MIPS_FTYPE (1, (SI, UQI))
+ DEF_MIPS_FTYPE (1, (SI, UV16QI))
+ DEF_MIPS_FTYPE (1, (SI, UV2DI))
+@@ -281,6 +284,7 @@
+ DEF_MIPS_FTYPE (3, (VOID, V2DI, CVPOINTER, SI))
  DEF_MIPS_FTYPE (2, (VOID, V2HI, V2HI))
  DEF_MIPS_FTYPE (2, (VOID, V4QI, V4QI))
 +DEF_MIPS_FTYPE (1, (VOID, VOID))
-diff -Nru gcc-4.9.3/gcc/config/mips/mips.h gcc-4.9.3-psp/gcc/config/mips/mips.h
---- gcc-4.9.3/gcc/config/mips/mips.h	2015-02-26 10:40:06.000000000 +0000
-+++ gcc-4.9.3-psp/gcc/config/mips/mips.h	2015-10-19 00:23:37.066514436 +0100
-@@ -231,6 +231,7 @@
+ DEF_MIPS_FTYPE (3, (VOID, V4SF, POINTER, SI))
+ DEF_MIPS_FTYPE (3, (VOID, V4SI, CVPOINTER, SI))
+ DEF_MIPS_FTYPE (3, (VOID, V8HI, CVPOINTER, SI))
+diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips.h gcc-8.2.0-psp/gcc/config/mips/mips.h
+--- gcc-8.2.0/gcc/config/mips/mips.h	2018-01-03 11:03:58.000000000 +0100
++++ gcc-8.2.0-psp/gcc/config/mips/mips.h	2018-12-16 08:22:53.283288722 +0100
+@@ -285,6 +285,7 @@
  #define TARGET_SB1                  (mips_arch == PROCESSOR_SB1		\
  				     || mips_arch == PROCESSOR_SB1A)
  #define TARGET_SR71K                (mips_arch == PROCESSOR_SR71000)
@@ -432,15 +439,15 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.h gcc-4.9.3-psp/gcc/config/mips/mips.h
  #define TARGET_XLP                  (mips_arch == PROCESSOR_XLP)
  
  /* Scheduling target defines.  */
-@@ -260,6 +261,7 @@
- 				     || mips_tune == PROCESSOR_OCTEON2)
+@@ -315,6 +316,7 @@
+ 				     || mips_tune == PROCESSOR_OCTEON3)
  #define TUNE_SB1                    (mips_tune == PROCESSOR_SB1		\
  				     || mips_tune == PROCESSOR_SB1A)
 +#define TUNE_ALLEGREX               (mips_tune == PROCESSOR_ALLEGREX)
+ #define TUNE_P5600                  (mips_tune == PROCESSOR_P5600)
+ #define TUNE_I6400                  (mips_tune == PROCESSOR_I6400)
  
- /* Whether vector modes and intrinsics for ST Microelectronics
-    Loongson-2E/2F processors should be enabled.  In o32 pairs of
-@@ -868,6 +870,9 @@
+@@ -1018,6 +1020,9 @@
  				 && !TARGET_MIPS5900			\
  				 && !TARGET_MIPS16)
  
@@ -450,23 +457,25 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.h gcc-4.9.3-psp/gcc/config/mips/mips.h
  /* ISA has the mips4 FP condition code instructions: FP-compare to CC,
     branch on CC, and move (both FP and non-FP) on CC.  */
  #define ISA_HAS_8CC		(ISA_MIPS4				\
-@@ -895,6 +900,7 @@
+@@ -1053,6 +1058,7 @@
  
  /* ISA has conditional trap instructions.  */
  #define ISA_HAS_COND_TRAP	(!ISA_MIPS1				\
 +				 && !TARGET_ALLEGREX				\
  				 && !TARGET_MIPS16)
  
- /* ISA has integer multiply-accumulate instructions, madd and msub.  */
-@@ -938,6 +944,7 @@
+ /* ISA has conditional trap with immediate instructions.  */
+@@ -1112,7 +1118,8 @@
+ #define ISA_HAS_IEEE_754_2008	(mips_isa_rev >= 2)
+ 
  /* ISA has count leading zeroes/ones instruction (not implemented).  */
- #define ISA_HAS_CLZ_CLO		((ISA_MIPS32				\
- 				  || ISA_MIPS32R2			\
-+				  || TARGET_ALLEGREX		\
- 				  || ISA_MIPS64				\
- 				  || ISA_MIPS64R2)			\
- 				 && !TARGET_MIPS16)
-@@ -983,6 +990,7 @@
+-#define ISA_HAS_CLZ_CLO		(mips_isa_rev >= 1 && !TARGET_MIPS16)
++#define ISA_HAS_CLZ_CLO		((mips_isa_rev >= 1 && !TARGET_MIPS16) \
++                                 || TARGET_ALLEGREX)
+ 
+ /* ISA has three operand multiply instructions that put
+    the high part in an accumulator: mulhi or mulhiu.  */
+@@ -1154,6 +1161,7 @@
  				  || TARGET_MIPS5400			\
  				  || TARGET_MIPS5500			\
  				  || TARGET_SR71K			\
@@ -474,22 +483,23 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.h gcc-4.9.3-psp/gcc/config/mips/mips.h
  				  || TARGET_SMARTMIPS)			\
  				 && !TARGET_MIPS16)
  
-@@ -1014,11 +1022,13 @@
+@@ -1183,10 +1191,12 @@
+ #define ISA_HAS_TRUNC_W		(!ISA_MIPS1)
  
  /* ISA includes the MIPS32r2 seb and seh instructions.  */
- #define ISA_HAS_SEB_SEH		((ISA_MIPS32R2		\
-+				  || TARGET_ALLEGREX	\
- 				  || ISA_MIPS64R2)	\
- 				 && !TARGET_MIPS16)
+-#define ISA_HAS_SEB_SEH		(mips_isa_rev >= 2 && !TARGET_MIPS16)
++#define ISA_HAS_SEB_SEH		((mips_isa_rev >= 2 && !TARGET_MIPS16) \
++                                 || TARGET_ALLEGREX)
  
  /* ISA includes the MIPS32/64 rev 2 ext and ins instructions.  */
- #define ISA_HAS_EXT_INS		((ISA_MIPS32R2		\
-+				  || TARGET_ALLEGREX	\
- 				  || ISA_MIPS64R2)	\
- 				 && !TARGET_MIPS16)
+-#define ISA_HAS_EXT_INS		(mips_isa_rev >= 2 && !TARGET_MIPS16)
++#define ISA_HAS_EXT_INS		((mips_isa_rev >= 2 && !TARGET_MIPS16) \
++                                 || TARGET_ALLEGREX)
  
-@@ -1084,7 +1094,8 @@
- 				 || ISA_MIPS64R2			\
+ /* ISA has instructions for accessing top part of 64-bit fp regs.  */
+ #define ISA_HAS_MXHC1		(!TARGET_FLOAT32	\
+@@ -1249,7 +1259,8 @@
+ #define ISA_HAS_HILO_INTERLOCKS	(mips_isa_rev >= 1			\
  				 || TARGET_MIPS5500			\
  				 || TARGET_MIPS5900			\
 -				 || TARGET_LOONGSON_2EF)
@@ -497,8 +507,8 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.h gcc-4.9.3-psp/gcc/config/mips/mips.h
 +				 || TARGET_ALLEGREX)
  
  /* ISA includes synci, jr.hb and jalr.hb.  */
- #define ISA_HAS_SYNCI ((ISA_MIPS32R2		\
-@@ -2209,7 +2220,7 @@
+ #define ISA_HAS_SYNCI (mips_isa_rev >= 2 && !TARGET_MIPS16)
+@@ -2365,7 +2376,7 @@
     `crtl->outgoing_args_size'.  */
  #define OUTGOING_REG_PARM_STACK_SPACE(FNTYPE) 1
  
@@ -507,16 +517,16 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.h gcc-4.9.3-psp/gcc/config/mips/mips.h
  
  /* Symbolic macros for the registers used to return integer and floating
     point values.  */
-@@ -2321,7 +2332,7 @@
+@@ -2492,7 +2503,7 @@
  /* Treat LOC as a byte offset from the stack pointer and round it up
     to the next fully-aligned offset.  */
  #define MIPS_STACK_ALIGN(LOC) \
--  (TARGET_NEWABI ? ((LOC) + 15) & -16 : ((LOC) + 7) & -8)
-+  (((LOC) + (mips_preferred_stack_align - 1)) & -(mips_preferred_stack_align))
+-  (TARGET_NEWABI ? ROUND_UP ((LOC), 16) : ROUND_UP ((LOC), 8))
++  (ROUND_UP ((LOC), mips_preferred_stack_align))
  
  
  /* Output assembler code to FILE to increment profiler label # LABELNO
-@@ -2937,6 +2948,9 @@
+@@ -3141,6 +3152,9 @@
  	" TEXT_SECTION_ASM_OP);
  #endif
  
@@ -526,9 +536,9 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.h gcc-4.9.3-psp/gcc/config/mips/mips.h
  #ifndef HAVE_AS_TLS
  #define HAVE_AS_TLS 0
  #endif
-diff -Nru gcc-4.9.3/gcc/config/mips/mips.md gcc-4.9.3-psp/gcc/config/mips/mips.md
---- gcc-4.9.3/gcc/config/mips/mips.md	2014-02-02 16:05:09.000000000 +0000
-+++ gcc-4.9.3-psp/gcc/config/mips/mips.md	2015-10-19 00:22:37.694375908 +0100
+diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips.md gcc-8.2.0-psp/gcc/config/mips/mips.md
+--- gcc-8.2.0/gcc/config/mips/mips.md	2018-01-03 11:03:58.000000000 +0100
++++ gcc-8.2.0-psp/gcc/config/mips/mips.md	2018-12-16 08:18:53.013151197 +0100
 @@ -35,6 +35,7 @@
    74kf2_1
    74kf1_1
@@ -537,15 +547,15 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.md gcc-4.9.3-psp/gcc/config/mips/mips.m
    loongson_2e
    loongson_2f
    loongson_3a
-@@ -756,6 +757,7 @@
+@@ -810,6 +811,7 @@
  (define_mode_iterator MOVECC [SI (DI "TARGET_64BIT")
                                (CC "TARGET_HARD_FLOAT
  				   && !TARGET_LOONGSON_2EF
 +				   && !TARGET_ALLEGREX
  				   && !TARGET_MIPS5900")])
  
- ;; 32-bit integer moves for which we provide move patterns.
-@@ -2070,11 +2072,11 @@
+ ;; This mode iterator allows :FPCC to be used anywhere that an FP condition
+@@ -2248,11 +2250,11 @@
  	   (mult:DI
  	      (any_extend:DI (match_operand:SI 1 "register_operand" "d"))
  	      (any_extend:DI (match_operand:SI 2 "register_operand" "d")))))]
@@ -559,7 +569,7 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.md gcc-4.9.3-psp/gcc/config/mips/mips.m
      return "msub<u>\t%1,%2";
    else
      return "msac<u>\t$0,%1,%2";
-@@ -2312,14 +2314,14 @@
+@@ -2522,14 +2524,14 @@
  	 (mult:DI (any_extend:DI (match_operand:SI 1 "register_operand" "d"))
  		  (any_extend:DI (match_operand:SI 2 "register_operand" "d")))
  	 (match_operand:DI 3 "muldiv_target_operand" "0")))]
@@ -576,7 +586,7 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.md gcc-4.9.3-psp/gcc/config/mips/mips.m
      return "madd<u>\t%1,%2";
    else
      /* See comment in *macc.  */
-@@ -2857,6 +2859,33 @@
+@@ -3173,6 +3175,33 @@
  ;;
  ;;  ....................
  ;;
@@ -610,7 +620,7 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.md gcc-4.9.3-psp/gcc/config/mips/mips.m
  ;;	NEGATION and ONE'S COMPLEMENT
  ;;
  ;;  ....................
-@@ -2909,6 +2938,25 @@
+@@ -3225,6 +3254,25 @@
     (set_attr "compression" "micromips,*")
     (set_attr "mode" "<MODE>")])
  
@@ -636,7 +646,7 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.md gcc-4.9.3-psp/gcc/config/mips/mips.m
  ;;
  ;;  ....................
  ;;
-@@ -6869,7 +6917,7 @@
+@@ -7196,7 +7244,7 @@
  		 (const_int 0)])
  	 (match_operand:GPR 2 "reg_or_0_operand" "dJ,0")
  	 (match_operand:GPR 3 "reg_or_0_operand" "0,dJ")))]
@@ -645,23 +655,18 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.md gcc-4.9.3-psp/gcc/config/mips/mips.m
    "@
      mov%T4\t%0,%z2,%1
      mov%t4\t%0,%z3,%1"
-@@ -6912,8 +6960,12 @@
+@@ -7274,7 +7322,7 @@
  	(if_then_else:GPR (match_dup 5)
  			  (match_operand:GPR 2 "reg_or_0_operand")
  			  (match_operand:GPR 3 "reg_or_0_operand")))]
--  "ISA_HAS_CONDMOVE"
-+  "ISA_HAS_CONDMOVE || ISA_HAS_INT_CONDMOVE"
+-  "ISA_HAS_CONDMOVE || ISA_HAS_SEL"
++  "ISA_HAS_CONDMOVE || ISA_HAS_SEL || ISA_HAS_INT_CONDMOVE"
  {
-+  if (ISA_HAS_INT_CONDMOVE
-+      && GET_MODE_CLASS (GET_MODE (operands[0])) == MODE_FLOAT)
-+    FAIL;
-+
-   mips_expand_conditional_move (operands);
-   DONE;
- })
-@@ -7185,6 +7237,9 @@
- ; ST-Microelectronics Loongson-2E/2F-specific patterns.
- (include "loongson.md")
+   if (!ISA_HAS_FP_CONDMOVE
+       && !INTEGRAL_MODE_P (GET_MODE (XEXP (operands[1], 0))))
+@@ -7694,6 +7742,9 @@
+ ; The MIPS MSA Instructions.
+ (include "mips-msa.md")
  
 +; Sony ALLEGREX instructions.
 +(include "allegrex.md")
@@ -669,12 +674,12 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.md gcc-4.9.3-psp/gcc/config/mips/mips.m
  (define_c_enum "unspec" [
    UNSPEC_ADDRESS_FIRST
  ])
-diff -Nru gcc-4.9.3/gcc/config/mips/mips.opt gcc-4.9.3-psp/gcc/config/mips/mips.opt
---- gcc-4.9.3/gcc/config/mips/mips.opt	2014-02-21 13:30:47.000000000 +0000
-+++ gcc-4.9.3-psp/gcc/config/mips/mips.opt	2015-10-19 00:17:27.025646526 +0100
-@@ -400,5 +400,9 @@
- Target Report Var(TARGET_XGOT)
- Lift restrictions on GOT size
+diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips.opt gcc-8.2.0-psp/gcc/config/mips/mips.opt
+--- gcc-8.2.0/gcc/config/mips/mips.opt	2018-01-03 11:03:58.000000000 +0100
++++ gcc-8.2.0-psp/gcc/config/mips/mips.opt	2018-12-16 08:04:00.781455198 +0100
+@@ -428,6 +428,10 @@
+ Target Report Var(flag_frame_header_optimization) Optimization
+ Optimize frame header.
  
 +mpreferred-stack-boundary=
 +Target RejectNegative Joined Var(mips_preferred_stack_boundary_string)
@@ -682,10 +687,11 @@ diff -Nru gcc-4.9.3/gcc/config/mips/mips.opt gcc-4.9.3-psp/gcc/config/mips/mips.
 +
  noasmopt
  Driver
-diff -Nru gcc-4.9.3/gcc/config/mips/psp.h gcc-4.9.3-psp/gcc/config/mips/psp.h
---- gcc-4.9.3/gcc/config/mips/psp.h	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-4.9.3-psp/gcc/config/mips/psp.h	2015-10-19 00:17:27.025646526 +0100
-@@ -0,0 +1,31 @@
+ 
+diff -adurB --new-file gcc-8.2.0/gcc/config/mips/psp.h gcc-8.2.0-psp/gcc/config/mips/psp.h
+--- gcc-8.2.0/gcc/config/mips/psp.h	1970-01-01 01:00:00.000000000 +0100
++++ gcc-8.2.0-psp/gcc/config/mips/psp.h	2018-12-16 10:29:10.953973626 +0100
+@@ -0,0 +1,33 @@
 +/* Support for Sony's Playstation Portable (PSP).
 +   Copyright (C) 2005 Free Software Foundation, Inc.
 +   Contributed by Marcus R. Brown <mrbrown@ocgnet.org>
@@ -717,9 +723,11 @@ diff -Nru gcc-4.9.3/gcc/config/mips/psp.h gcc-4.9.3-psp/gcc/config/mips/psp.h
 +/* Get rid of the .pdr section. */
 +#undef SUBTARGET_ASM_SPEC
 +#define SUBTARGET_ASM_SPEC "-mno-pdr"
-diff -Nru gcc-4.9.3/gcc/config/mips/t-allegrex gcc-4.9.3-psp/gcc/config/mips/t-allegrex
---- gcc-4.9.3/gcc/config/mips/t-allegrex	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-4.9.3-psp/gcc/config/mips/t-allegrex	2015-10-19 00:17:27.025646526 +0100
++
++#include "../newlib-stdint.h"
+diff -adurB --new-file gcc-8.2.0/gcc/config/mips/t-allegrex gcc-8.2.0-psp/gcc/config/mips/t-allegrex
+--- gcc-8.2.0/gcc/config/mips/t-allegrex	1970-01-01 01:00:00.000000000 +0100
++++ gcc-8.2.0-psp/gcc/config/mips/t-allegrex	2018-12-16 08:04:00.781455198 +0100
 @@ -0,0 +1,29 @@
 +# Suppress building libgcc1.a, since the MIPS compiler port is complete
 +# and does not need anything from libgcc1.a.
@@ -750,10 +758,10 @@ diff -Nru gcc-4.9.3/gcc/config/mips/t-allegrex gcc-4.9.3-psp/gcc/config/mips/t-a
 +
 +LIBGCC = stmp-multilib
 +INSTALL_LIBGCC = install-multilib
-diff -Nru gcc-4.9.3/gcc/config.gcc gcc-4.9.3-psp/gcc/config.gcc
---- gcc-4.9.3/gcc/config.gcc	2015-05-21 21:50:59.000000000 +0100
-+++ gcc-4.9.3-psp/gcc/config.gcc	2015-10-19 00:17:27.025646526 +0100
-@@ -2118,6 +2118,18 @@
+diff -adurB --new-file gcc-8.2.0/gcc/config.gcc gcc-8.2.0-psp/gcc/config.gcc
+--- gcc-8.2.0/gcc/config.gcc	2018-06-25 21:34:01.000000000 +0200
++++ gcc-8.2.0-psp/gcc/config.gcc	2018-12-16 08:04:00.781455198 +0100
+@@ -2315,6 +2315,18 @@
  	tm_file="elfos.h newlib-stdint.h ${tm_file} mips/r3900.h mips/elf.h"
  	tmake_file="mips/t-r3900"
  	;;
@@ -771,10 +779,22 @@ diff -Nru gcc-4.9.3/gcc/config.gcc gcc-4.9.3-psp/gcc/config.gcc
 +   ;;
  mmix-knuth-mmixware)
  	tm_file="${tm_file} newlib-stdint.h"
- 	need_64bit_hwint=yes
-diff -Nru gcc-4.9.3/libcpp/Makefile.in gcc-4.9.3-psp/libcpp/Makefile.in
---- gcc-4.9.3/libcpp/Makefile.in	2015-06-26 18:59:14.000000000 +0100
-+++ gcc-4.9.3-psp/libcpp/Makefile.in	2015-10-19 00:17:27.026646529 +0100
+ 	use_gcc_stdint=wrap
+diff -adurB --new-file gcc-8.2.0/gcc/graphite.h gcc-8.2.0-psp/gcc/graphite.h
+--- gcc-8.2.0/gcc/graphite.h	2018-01-03 11:03:58.000000000 +0100
++++ gcc-8.2.0-psp/gcc/graphite.h	2018-12-16 09:44:43.550612718 +0100
+@@ -37,6 +37,8 @@
+ #include <isl/schedule.h>
+ #include <isl/ast_build.h>
+ #include <isl/schedule_node.h>
++#include <isl/id.h>
++#include <isl/space.h>
+ 
+ typedef struct poly_dr *poly_dr_p;
+ 
+diff -adurB --new-file gcc-8.2.0/libcpp/Makefile.in gcc-8.2.0-psp/libcpp/Makefile.in
+--- gcc-8.2.0/libcpp/Makefile.in	2018-07-26 11:48:58.000000000 +0200
++++ gcc-8.2.0-psp/libcpp/Makefile.in	2018-12-16 08:04:00.781455198 +0100
 @@ -208,8 +208,8 @@
  # Note that we put the dependencies into a .Tpo file, then move them
  # into place if the compile succeeds.  We need this because gcc does
@@ -786,9 +806,9 @@ diff -Nru gcc-4.9.3/libcpp/Makefile.in gcc-4.9.3-psp/libcpp/Makefile.in
  else
  COMPILE = source='$<' object='$@' libtool=no DEPDIR=$(DEPDIR) $(DEPMODE) \
  	  $(depcomp) $(COMPILE.base)
-diff -Nru gcc-4.9.3/libgcc/config/mips/psp.h gcc-4.9.3-psp/libgcc/config/mips/psp.h
---- gcc-4.9.3/libgcc/config/mips/psp.h	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-4.9.3-psp/libgcc/config/mips/psp.h	2015-10-19 00:17:27.026646529 +0100
+diff -adurB --new-file gcc-8.2.0/libgcc/config/mips/psp.h gcc-8.2.0-psp/libgcc/config/mips/psp.h
+--- gcc-8.2.0/libgcc/config/mips/psp.h	1970-01-01 01:00:00.000000000 +0100
++++ gcc-8.2.0-psp/libgcc/config/mips/psp.h	2018-12-16 08:04:00.781455198 +0100
 @@ -0,0 +1,31 @@
 +/* Support for Sony's Playstation Portable (PSP).
 +   Copyright (C) 2005 Free Software Foundation, Inc.
@@ -821,9 +841,9 @@ diff -Nru gcc-4.9.3/libgcc/config/mips/psp.h gcc-4.9.3-psp/libgcc/config/mips/ps
 +/* Get rid of the .pdr section. */
 +#undef SUBTARGET_ASM_SPEC
 +#define SUBTARGET_ASM_SPEC "-mno-pdr"
-diff -Nru gcc-4.9.3/libgcc/config/mips/t-allegrex gcc-4.9.3-psp/libgcc/config/mips/t-allegrex
---- gcc-4.9.3/libgcc/config/mips/t-allegrex	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-4.9.3-psp/libgcc/config/mips/t-allegrex	2015-10-19 00:17:27.026646529 +0100
+diff -adurB --new-file gcc-8.2.0/libgcc/config/mips/t-allegrex gcc-8.2.0-psp/libgcc/config/mips/t-allegrex
+--- gcc-8.2.0/libgcc/config/mips/t-allegrex	1970-01-01 01:00:00.000000000 +0100
++++ gcc-8.2.0-psp/libgcc/config/mips/t-allegrex	2018-12-16 08:04:00.781455198 +0100
 @@ -0,0 +1,20 @@
 +# Suppress building libgcc1.a, since the MIPS compiler port is complete
 +# and does not need anything from libgcc1.a.
@@ -845,59 +865,9 @@ diff -Nru gcc-4.9.3/libgcc/config/mips/t-allegrex gcc-4.9.3-psp/libgcc/config/mi
 +
 +LIBGCC = stmp-multilib
 +INSTALL_LIBGCC = install-multilib
-diff -Nru gcc-4.9.3/libgcc/config.host gcc-4.9.3-psp/libgcc/config.host
---- gcc-4.9.3/libgcc/config.host	2014-03-27 15:40:31.000000000 +0000
-+++ gcc-4.9.3-psp/libgcc/config.host	2015-10-19 00:17:27.026646529 +0100
-@@ -140,11 +140,15 @@ microblaze*-*-*)
- 	cpu_type=microblaze
- 	;;
- mips*-*-*)
--	# All MIPS targets provide a full set of FP routines.
- 	cpu_type=mips
- 	tmake_file="mips/t-mips"
- 	if test "${libgcc_cv_mips_hard_float}" = yes; then
--		tmake_file="${tmake_file} t-hardfp-sfdf t-hardfp"
-+		if test "${libgcc_cv_mips_single_float}" = yes; then
-+			tmake_file="${tmake_file} t-hardfp-sf"
-+		else
-+			tmake_file="${tmake_file} t-hardfp-sfdf"
-+		fi
-+		tmake_file="${tmake_file} t-hardfp"
- 	else
- 		tmake_file="${tmake_file} t-softfp-sfdf"
- 	fi
-@@ -860,6 +860,14 @@
- mipstx39-*-elf* | mipstx39el-*-elf*)
- 	tmake_file="$tmake_file mips/t-crtstuff mips/t-mips16"
- 	;;
-+mips*-psp*)
-+    tmake_file="${tmake_file} mips/t-allegrex"
-+    target_cpu_default="MASK_SINGLE_FLOAT|MASK_DIVIDE_BREAKS"
-+    tm_file="${tm_file} mips/psp.h"
-+	 extra_parts="$extra_parts crti.o crtn.o"
-+    use_fixproto=yes
-+    tm_defines="MIPS_ISA_DEFAULT=2 MIPS_CPU_STRING_DEFAULT=\\\"allegrex\\\" MIPS_ABI_DEFAULT=ABI_EABI"
-+	;;
- mmix-knuth-mmixware)
- 	extra_parts="crti.o crtn.o crtbegin.o crtend.o"
- 	tmake_file="${tmake_file} ${cpu_type}/t-${cpu_type}"
-diff -Nru gcc-4.9.3/libgcc/crtstuff.c gcc-4.9.3-psp/libgcc/crtstuff.c
---- gcc-4.9.3/libgcc/crtstuff.c	2014-03-10 18:31:20.000000000 +0000
-+++ gcc-4.9.3-psp/libgcc/crtstuff.c	2015-10-19 00:17:27.026646529 +0100
-@@ -47,7 +47,7 @@
- 
- /* Target machine header files require this define. */
- #define IN_LIBGCC2
--
-+#define USED_FOR_TARGET
- /* FIXME: Including auto-host is incorrect, but until we have
-    identified the set of defines that need to go into auto-target.h,
-    this will have to do.  */
-diff --git /dev/null gcc-4.9.3-psp/libgcc/config/t-hardfp-sf
-new file mode 100644
-index 00000000000..10682690219
---- /dev/null
-+++ gcc-4.9.3-psp/libgcc/config/t-hardfp-sf
+diff -adurB --new-file gcc-8.2.0/libgcc/config/t-hardfp-sf gcc-8.2.0-psp/libgcc/config/t-hardfp-sf
+--- gcc-8.2.0/libgcc/config/t-hardfp-sf	1970-01-01 01:00:00.000000000 +0100
++++ gcc-8.2.0-psp/libgcc/config/t-hardfp-sf	2018-12-16 08:04:00.781455198 +0100
 @@ -0,0 +1,32 @@
 +# Copyright (C) 2014 Free Software Foundation, Inc.
 +
@@ -931,11 +901,46 @@ index 00000000000..10682690219
 +    _fpcmp_parts_sf _compare_sf _eq_sf _ne_sf _gt_sf _ge_sf \
 +    _lt_sf _le_sf _unord_sf _si_to_sf _sf_to_si _negate_sf \
 +    _thenan_sf _sf_to_usi _usi_to_sf
-diff --git gcc-4.9.3/libgcc/configure gcc-4.9.3-psp/libgcc/configure
-index 35896deb7bf..b04e158e155 100644
---- gcc-4.9.3/libgcc/configure
-+++ gcc-4.9.3-psp/libgcc/configure
-@@ -4352,6 +4352,26 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+diff -adurB --new-file gcc-8.2.0/libgcc/config.host gcc-8.2.0-psp/libgcc/config.host
+--- gcc-8.2.0/libgcc/config.host	2018-04-06 22:04:17.000000000 +0200
++++ gcc-8.2.0-psp/libgcc/config.host	2018-12-16 08:04:00.781455198 +0100
+@@ -140,11 +140,15 @@
+ 	cpu_type=microblaze
+ 	;;
+ mips*-*-*)
+-	# All MIPS targets provide a full set of FP routines.
+ 	cpu_type=mips
+ 	tmake_file="mips/t-mips"
+ 	if test "${libgcc_cv_mips_hard_float}" = yes; then
+-		tmake_file="${tmake_file} t-hardfp-sfdf t-hardfp"
++		if test "${libgcc_cv_mips_single_float}" = yes; then
++			tmake_file="${tmake_file} t-hardfp-sf"
++		else
++			tmake_file="${tmake_file} t-hardfp-sfdf"
++		fi
++		tmake_file="${tmake_file} t-hardfp"
+ 	else
+ 		tmake_file="${tmake_file} t-softfp-sfdf"
+ 	fi
+@@ -959,6 +963,14 @@
+ mipstx39-*-elf* | mipstx39el-*-elf*)
+ 	tmake_file="$tmake_file mips/t-crtstuff mips/t-mips16"
+ 	;;
++mips*-psp*)
++    tmake_file="${tmake_file} mips/t-allegrex"
++    target_cpu_default="MASK_SINGLE_FLOAT|MASK_DIVIDE_BREAKS"
++    tm_file="${tm_file} mips/psp.h"
++	 extra_parts="$extra_parts crti.o crtn.o"
++    use_fixproto=yes
++    tm_defines="MIPS_ISA_DEFAULT=2 MIPS_CPU_STRING_DEFAULT=\\\"allegrex\\\" MIPS_ABI_DEFAULT=ABI_EABI"
++	;;
+ mmix-knuth-mmixware)
+ 	extra_parts="crti.o crtn.o crtbegin.o crtend.o"
+ 	tmake_file="${tmake_file} ${cpu_type}/t-${cpu_type}"
+diff -adurB --new-file gcc-8.2.0/libgcc/configure gcc-8.2.0-psp/libgcc/configure
+--- gcc-8.2.0/libgcc/configure	2018-04-24 18:45:26.000000000 +0200
++++ gcc-8.2.0-psp/libgcc/configure	2018-12-16 08:04:00.781455198 +0100
+@@ -4957,6 +4957,26 @@
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $libgcc_cv_mips_hard_float" >&5
  $as_echo "$libgcc_cv_mips_hard_float" >&6; }
@@ -961,12 +966,11 @@ index 35896deb7bf..b04e158e155 100644
 +$as_echo "$libgcc_cv_mips_single_float" >&6; }
  esac
  
- # Collect host-machine-specific information.
-diff --git gcc-4.9.3/libgcc/configure.ac gcc-4.9.3-psp/libgcc/configure.ac
-index d877d21c092..312bf264679 100644
---- gcc-4.9.3/libgcc/configure.ac
-+++ gcc-4.9.3-psp/libgcc/configure.ac
-@@ -302,6 +302,14 @@ mips*-*-*)
+ case ${host} in
+diff -adurB --new-file gcc-8.2.0/libgcc/configure.ac gcc-8.2.0-psp/libgcc/configure.ac
+--- gcc-8.2.0/libgcc/configure.ac	2018-02-28 09:59:15.000000000 +0100
++++ gcc-8.2.0-psp/libgcc/configure.ac	2018-12-16 08:04:00.781455198 +0100
+@@ -296,6 +296,14 @@
       #endif],
      [libgcc_cv_mips_hard_float=yes],
      [libgcc_cv_mips_hard_float=no])])
@@ -980,4 +984,16 @@ index d877d21c092..312bf264679 100644
 +    [libgcc_cv_mips_single_float=no])])
  esac
  
- # Collect host-machine-specific information.
+ case ${host} in
+diff -adurB --new-file gcc-8.2.0/libgcc/crtstuff.c gcc-8.2.0-psp/libgcc/crtstuff.c
+--- gcc-8.2.0/libgcc/crtstuff.c	2018-01-03 11:03:58.000000000 +0100
++++ gcc-8.2.0-psp/libgcc/crtstuff.c	2018-12-16 08:04:00.781455198 +0100
+@@ -47,7 +47,7 @@
+ 
+ /* Target machine header files require this define. */
+ #define IN_LIBGCC2
+-
++#define USED_FOR_TARGET
+ /* FIXME: Including auto-host is incorrect, but until we have
+    identified the set of defines that need to go into auto-target.h,
+    this will have to do.  */
