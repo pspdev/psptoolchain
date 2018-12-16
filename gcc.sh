@@ -39,7 +39,7 @@
  srcdir="$builddir/.."
 
  ## Configure the build.
- ../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c$EXTRA_LANGUAGES" --enable-lto --with-newlib $EXTRA_CONFIGURE_FLAGS
+ ../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c,lto$EXTRA_LANGUAGES" --enable-lto --with-newlib $EXTRA_CONFIGURE_FLAGS
 
  ## Compile and install.
  make -j $(num_cpus) clean
