@@ -105,10 +105,10 @@ if [ "$(uname)" == "Darwin" ]; then
 
     # GNU libtool will be prepended with letter 'g' to prevent conflicts with
     # the one comes along with OS X.
-    check_program      glibtool
+    check_program      glibtoolize
 else
     check_header       readline     readline.h readline/readline.h
-    check_program      libtool
+    check_program      libtoolize
 fi
 
 if [ ${#missing_depends[@]} -ne 0 ]; then
