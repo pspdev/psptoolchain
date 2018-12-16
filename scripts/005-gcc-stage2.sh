@@ -1,45 +1,8 @@
 #!/bin/bash
-# gcc-stage2.sh by Naomi Peori (naomi@peori.ca) customized by yreeen (yreeen@gmail.com)
-# gdc support from TurkeyMan( https://github.com/TurkeyMan )
 
- ## set gcc version
- GCC_VERSION=8.2.0
- GMP_VERSION=6.1.2
- MPC_VERSION=1.1.0
- MPFR_VERSION=4.0.1
- ISL_VERSION=0.20
+ EXTRA_LANGUAGES=',c++,objc,obj-c++'
+ EXTRA_CONFIGURE_FLAGS='--enable-cxx-flags="-G0"'
+ CFLAGS_FOR_TARGET='-G0'
+ export CFLAGS_FOR_TARGET
 
- ## Exit on errors
- set -e
-
- ## Download the source code if it does not already exist.
- download_and_extract https://ftp.gnu.org/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.xz gcc-$GCC_VERSION
-
- ## Download the library source code if it does not already exist.
- download_and_extract https://ftp.gnu.org/gnu/gmp/gmp-$GMP_VERSION.tar.xz gmp-$GMP_VERSION
- download_and_extract https://ftp.gnu.org/gnu/mpc/mpc-$MPC_VERSION.tar.gz mpc-$MPC_VERSION
- download_and_extract https://ftp.gnu.org/gnu/mpfr/mpfr-$MPFR_VERSION.tar.xz mpfr-$MPFR_VERSION
- download_and_extract http://isl.gforge.inria.fr/isl-$ISL_VERSION.tar.xz isl-$ISL_VERSION
-
- ## Enter the source directory and patch the source code.
- cd gcc-$GCC_VERSION
- patch -p1 -i ../../patches/gcc-$GCC_VERSION-PSP.patch
-
- ## Unpack the library source code.
- ln -fs ../gmp-$GMP_VERSION gmp
- ln -fs ../mpc-$MPC_VERSION mpc
- ln -fs ../mpfr-$MPFR_VERSION mpfr
- ln -fs ../isl-$ISL_VERSION isl
-
- ## Create and enter the build directory.
- mkdir build-psp
- cd build-psp
-
- ## Configure the build.
- CFLAGS="$CFLAGS -I/opt/local/include" CPPFLAGS="$CPPFLAGS -I/opt/local/include" LDFLAGS="$LDFLAGS -L/opt/local/lib" ../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c,c++,lto,objc,obj-c++" --enable-lto --with-newlib --with-gmp-include="$(pwd)/gmp" --with-gmp-lib="$(pwd)/gmp/.libs" --with-mpfr-include="$(pwd)/mpfr/src" --with-mpfr-lib="$(pwd)/mpfr/src/.libs" --with-isl-include="$(pwd)/isl/include" --with-isl-lib="$(pwd)/isl/.libs" --enable-cxx-flags="-G0"
-
- ## Compile and install.
- make -j $(num_cpus) clean
- CFLAGS_FOR_TARGET="-G0" make -j $(num_cpus)
- make -j $(num_cpus) install
- make -j $(num_cpus) clean
+ source ../gcc.sh
