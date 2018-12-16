@@ -62,11 +62,6 @@ function check_aclocal
     missing_depends+=($1); return 1
 }
 
-
-
-# check_header    gmp             gmp.h
-# check_header    mpc             mpc.h
-# check_header    mpfr            mpfr.h
 check_header    libelf          elf.h libelf.h libelf/libelf.h gelf.h libelf/gelf.h
 check_header    libusb          usb.h
 check_header    ncurses         ncurses.h ncurses/ncurses.h
