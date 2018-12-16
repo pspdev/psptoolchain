@@ -62,11 +62,6 @@ function check_aclocal
     missing_depends+=($1); return 1
 }
 
-
-
-# check_header    gmp             gmp.h
-# check_header    mpc             mpc.h
-# check_header    mpfr            mpfr.h
 check_header    libelf          elf.h libelf.h libelf/libelf.h gelf.h libelf/gelf.h
 check_header    libusb          usb.h
 check_header    ncurses         ncurses.h ncurses/ncurses.h
@@ -86,7 +81,7 @@ check_program   make
 check_program   gcc
 check_program   g++
 
-check_program   sdl-config
+# check_program   sdl-config
 # check_program   freetype-config
 
 check_program   bison
@@ -94,7 +89,7 @@ check_program   flex
 check_program   tclsh
 
 check_program   makeinfo
-check_program   doxygen
+# check_program   doxygen
 
 # Sometimes things will be a little different on Mac OS X...
 if [ "$(uname)" == "Darwin" ]; then
