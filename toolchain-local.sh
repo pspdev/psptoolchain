@@ -1,11 +1,3 @@
-export PSPDEV=$(pwd)/pspdev
-export PATH=$PATH:$PSPDEV/bin
+#!/bin/sh
 
-## If specific steps were requested...
-if [ $1 ]; then
-  ## Run the requested build scripts.
-  ./toolchain.sh $@
-else
-  ## Run the all build scripts.
-  ./toolchain.sh $(seq 1 11)
-fi
+exec ./toolchain.sh -d"$(pwd)/pspdev" "$@"

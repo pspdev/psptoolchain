@@ -1,6 +1,9 @@
 #!/bin/bash
 
- EXTRA_LANGUAGES=''
- EXTRA_CONFIGURE_FLAGS='--without-headers --disable-libssp'
+. ../common.sh
 
- source ../gcc.sh
+EXTRA_LANGUAGES=''
+EXTRA_CONFIGURE_FLAGS='--without-headers --disable-libssp'
+VARIANT_SUFFIX='-bootstrap'
+
+source ../gcc.sh

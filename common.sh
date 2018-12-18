@@ -1,78 +1,129 @@
-# Returns the number of processor cores available
-# Usage: num_cpus
-function num_cpus
+#!/bin/sh
+
+# Run the tar command.
+# Usage: run_tar <directory> <tar options...>
+run_tar ()
 {
-    # This *should* be available on literally everything, including OSX
-    getconf _NPROCESSORS_ONLN
+	DIRECTORY="$1"
+	shift
+
+	tar --directory="$DIRECTORY" --no-same-owner --strip-components=1 "$@"
 }
 
 # Extracts a file based on its extension
-# Usage: extract <archive>
-function auto_extract
+# Usage: extract <archive> <directory>
+auto_extract ()
 {
-    path=$1
-    name=`echo $path|sed -e "s/.*\///"`
-    ext=`echo $name|sed -e "s/.*\.//"`
-    
-    echo "Extracting $name..."
-    
-    case $ext in
-        "tar") tar --no-same-owner -xf $path ;;
-        "gz"|"tgz") tar --no-same-owner -xzf $path ;;
-        "bz2"|"tbz2") tar --no-same-owner -xjf $path ;;
-        "xz"|"txz") tar --no-same-owner -xJf $path ;;
-        "zip") unzip $path ;;
-        *) echo "I don't know how to extract $ext archives!"; return 1 ;;
-    esac
-    
-    return $?
+	FILE="$1"
+	NAME="$(echo "$FILE" | sed -e 's|^.*/||')"
+	EXTENSION="$(echo "$NAME" | sed -e 's|.*\.||')"
+	DIRECTORY="$2"
+
+	if [ -d "$DIRECTORY" ]
+	then
+		echo "Deleting existing $DIRECTORY"
+		rm -rf "$DIRECTORY"
+	fi
+
+	mkdir -p "$DIRECTORY"
+
+	echo "Extracting $NAME"
+
+	case "$EXTENSION" in
+		tar)
+			run_tar "$DIRECTORY" -xf "$FILE"
+			;;
+		gz | tgz)
+			run_tar "$DIRECTORY" -xzf "$FILE"
+			;;
+		bz2 | tbz2)
+			run_tar "$DIRECTORY" -xjf "$FILE"
+			;;
+		xz | txz)
+			run_tar "$DIRECTORY" -xJf "$FILE"
+			;;
+		*)
+			cat >&2 <<_EOF_
+Unsupported archive type: $EXTENSION
+_EOF_
+			 return 1
+			 ;;
+	esac
+
+	return $?
 }
 
 # Downloads and extracts a file, with some extra checks.
-# Usage: download_and_extract <url> <output?>
-function download_and_extract
+# Usage: download_and_extract <url> <output directory>
+download_and_extract ()
 {
-    url=$1
-    name=`echo $url|sed -e "s/.*\///"`
-    outdir=$2
-    
-    # If there are already an extracted directory, delete it, otherwise
-    # reapplying patches gets messy. I tried.
-    [ -d $outdir ] && echo "Deleting old version of $outdir" && rm -rf $outdir
-    
-    # First, if the archive already exists, attempt to extract it. Failing
-    # that, attempt to continue an interrupted download. If that also fails,
-    # remove the presumably corrupted file.
-    [ -f $name ] && auto_extract $name || { wget --continue --no-check-certificate $url -O $name || rm -f $name; }
-    
-    # If the file does not exist at this point, it means it was either never
-    # downloaded, or it was deleted for being corrupted. Just go ahead and
-    # download it.
-    # Using wget --continue here would make buggy servers flip out for nothing.
-    [ -f $name ] || wget --no-check-certificate $url -O $name && auto_extract $name
+	URL="$1"
+	NAME="$(echo "$URL" | sed -e 's|^.*/||;s|\?.*$||')"
+	OUT_DIR="$2"
+
+	# First, if the archive already exists, attempt to extract it. Failing
+	# that, attempt to continue an interrupted download. If that also fails,
+	# remove the presumably corrupted file.
+	if [ -f "$NAME" ]
+	then
+		if auto_extract "$NAME" "$OUT_DIR"
+		then
+			return 0
+		else
+			wget --continue --no-check-certificate "$URL" -O "$NAME" || rm -f "$NAME"
+		fi
+	fi
+
+	# If the file does not exist at this point, it means it was either never
+	# downloaded, or it was deleted for being corrupted. Just go ahead and
+	# download it.
+	# Using wget --continue here would make buggy servers flip out for nothing.
+	if ! [ -f "$NAME" ]
+	then
+		wget --no-check-certificate "$URL" -O "$NAME" || return 1
+		auto_extract "$NAME" "$OUT_DIR"
+	fi
+}
+
+# Runs Git in a way that won't lock waiting for the user or anything.
+# Usage: git_noninteractive <normal git args...>
+git_noninteractive ()
+{
+	SSH_ASKPASS=false git "$@" </dev/null
 }
 
 # Clones or updates a Git repository.
-# Usage: clone_git_repo <hostname> <user> <repo> <branch>
-function clone_git_repo
+# Usage: clone_git_repo <url> <dir> [branch]
+clone_git_repo ()
 {
-    host=$1
-    user=$2
-    repo=$3
-    branch=${4:-master}
-    
-    OLDPWD=$PWD
-    
-    # Try to update an existing repository at the target path.
-    # Nuke it if it's corrupted and the pull fails.
-    [ -d $repo/.git ] && { cd $repo && git pull; } || rm -rf $OLDPWD/$repo
-    
-    # The above command may leave us standing in the existing repo.
-    cd $OLDPWD
-    
-    # If it does not exist at this point, it was never there in the first place
-    # or it was nuked due to being corrupted. Clone and track master, please.
-    # Attempt to clone over SSH if possible, use anonymous HTTP as fallback.
-    # Set SSH_ASKPASS and stdin(<) to prevent it from freezing to ask for auth.
-    [ -d $repo ] || SSH_ASKPASS=false git clone --recursive -b $branch git@$host:$user/$repo.git $repo < /dev/null || SSH_ASKPASS=false git clone --recursive -b $branch https://$host/$user/$repo.git $repo < /dev/null || return 1
+	URL="$1"
+	LOCAL_DIR="$2"
+	BRANCH="${3:-master}"
+	
+	# It is possible that this is an actual copy of the repository we are
+	# interested in.
+	if [ -d "$LOCAL_DIR/.git" ] \
+		&& git_noninteractive -C "$LOCAL_DIR" status >/dev/null 2>&1 \
+		&& [ "x$(git_noninteractive -C "$LOCAL_DIR" remote get-url origin 2>/dev/null)" = "x$URL" ]
+	then
+		echo "Updating existing repository in $LOCAL_DIR"
+		cd "$LOCAL_DIR" || return 1
+		git_noninteractive pull --rebase origin "$BRANCH" || return 1
+		git_noninteractive reset --hard || return 1
+		git_noninteractive clean -dfx || return 1
+		cd - >/dev/null 2>&1 || return 1
+		return 0
+	else
+		echo "Deleting existing $LOCAL_DIR"
+		rm -rf "$LOCAL_DIR"
+	fi
+
+	git_noninteractive clone --recursive -b "$BRANCH" "$URL" "$LOCAL_DIR" || return 1
+}
+
+# Runs make with our options.
+# Usage: run_make <normal make args...>
+run_make ()
+{
+	make -j"$JOBS" "$@"
 }
