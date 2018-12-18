@@ -81,8 +81,9 @@ download_and_extract ()
 	if ! [ -f "$NAME" ]
 	then
 		wget --no-check-certificate "$URL" -O "$NAME" || return 1
-		auto_extract "$NAME" "$OUT_DIR"
 	fi
+
+	auto_extract "$NAME" "$OUT_DIR"
 }
 
 # Runs Git in a way that won't lock waiting for the user or anything.
