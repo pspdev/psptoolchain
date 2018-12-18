@@ -39,7 +39,6 @@ _EOF_
 				subversion \
 				tcl \
 				texinfo \
-				unzip \
 				xz-utils \
 				zlib1g-dev
 		elif command -v apt-get >/dev/null
@@ -79,7 +78,6 @@ _EOF_
 				subversion \
 				tcl \
 				texinfo \
-				unzip \
 				xz-utils \
 				zlib1g-dev
 		elif command -v dnf >/dev/null 2>&1

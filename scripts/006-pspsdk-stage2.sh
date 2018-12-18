@@ -1,23 +1,24 @@
 #!/bin/bash
 # pspsdk-stage2.sh by Naomi Peori (naomi@peori.ca)
 
- ## Exit on errors
- set -e
+. ../common.sh
 
- ## Download the source code if it does not already exist.
- clone_git_repo github.com pspdev pspsdk
+# Exit on errors
+set -e
 
- ## Enter the source directory.
- cd pspsdk
+# Download the source code if it does not already exist.
+clone_git_repo 'https://github.com/pspdev/pspsdk/' pspsdk-stage2
 
- ## Bootstrap the source.
- ./bootstrap
+# Enter the source directory.
+cd pspsdk-stage2
 
- ## Configure the build.
- CFLAGS="$CFLAGS -I/opt/local/include" CPPFLAGS="$CPPFLAGS -I/opt/local/include" LDFLAGS="$LDFLAGS -L/opt/local/lib" ./configure --with-pspdev="$PSPDEV"
+# Bootstrap the source.
+./bootstrap
 
- ## Build and install.
- make -j $(num_cpus) clean
- make -j $(num_cpus)
- make -j $(num_cpus) install
- make -j $(num_cpus) clean
+# Configure the build.
+./configure --with-pspdev="$PSPDEV"
+
+## Build and install.
+run_make
+run_make install
+run_make clean
