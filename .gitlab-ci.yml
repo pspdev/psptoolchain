@@ -11,10 +11,7 @@ build-psptoolchain:
         stage: build
         script:
                 - dash ./toolchain-local.sh -j 4
-                # Use pigz for performance reasons
-                # When I tried to use xz -6e, I got timeout because of the
-                # compression (sic!)
-                - tar cv pspdev | pigz -5 -p4 > pspdev.tar.gz
+                - tar cvf pspdev.tar pspdev
         artifacts:
                 paths:
-                        - pspdev.tar.gz
+                        - pspdev.tar
