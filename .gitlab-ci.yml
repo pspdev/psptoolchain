@@ -10,7 +10,7 @@ stages:
 build-psptoolchain:
         stage: build
         script:
-                - dash ./toolchain-local.sh
+                - dash ./toolchain-local.sh -j 4
                 - tar cv pspdev | xz -6e > pspdev.tar.xz
         artifacts:
                 paths:
