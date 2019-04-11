@@ -1,6 +1,6 @@
-diff -adurB --new-file gcc-8.2.0/config.sub gcc-8.2.0-psp/config.sub
---- gcc-8.2.0/config.sub	2018-01-03 05:25:18.000000000 +0100
-+++ gcc-8.2.0-psp/config.sub	2018-12-16 14:48:40.275107924 +0100
+diff --unified -rN a/config.sub b/config.sub
+--- a/config.sub	2018-01-03 05:25:18.000000000 +0100
++++ b/config.sub	2019-04-11 11:48:30.936991476 +0200
 @@ -288,6 +288,7 @@
  	| mipsisa64sr71k | mipsisa64sr71kel \
  	| mipsr5900 | mipsr5900el \
@@ -28,9 +28,9 @@ diff -adurB --new-file gcc-8.2.0/config.sub gcc-8.2.0-psp/config.sub
  	mips3*-*)
  		basic_machine=`echo $basic_machine | sed -e 's/mips3/mips64/'`
  		;;
-diff -adurB --new-file gcc-8.2.0/gcc/config/mips/allegrex.md gcc-8.2.0-psp/gcc/config/mips/allegrex.md
---- gcc-8.2.0/gcc/config/mips/allegrex.md	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-8.2.0-psp/gcc/config/mips/allegrex.md	2018-12-16 14:48:40.275107924 +0100
+diff --unified -rN a/gcc/config/mips/allegrex.md b/gcc/config/mips/allegrex.md
+--- a/gcc/config/mips/allegrex.md	1970-01-01 01:00:00.000000000 +0100
++++ b/gcc/config/mips/allegrex.md	2019-04-11 11:48:30.936991476 +0200
 @@ -0,0 +1,172 @@
 +;; Sony ALLEGREX instructions.
 +;; Copyright (C) 2005 Free Software Foundation, Inc.
@@ -204,9 +204,9 @@ diff -adurB --new-file gcc-8.2.0/gcc/config/mips/allegrex.md gcc-8.2.0-psp/gcc/c
 +  "round.w.s\t%0,%1"
 +  [(set_attr "type"    "fcvt")
 +   (set_attr "mode"    "SF")])
-diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips.c gcc-8.2.0-psp/gcc/config/mips/mips.c
---- gcc-8.2.0/gcc/config/mips/mips.c	2018-03-01 12:37:35.000000000 +0100
-+++ gcc-8.2.0-psp/gcc/config/mips/mips.c	2018-12-16 14:49:17.406847519 +0100
+diff --unified -rN a/gcc/config/mips/mips.c b/gcc/config/mips/mips.c
+--- a/gcc/config/mips/mips.c	2018-03-01 12:37:35.000000000 +0100
++++ b/gcc/config/mips/mips.c	2019-04-11 11:48:30.936991476 +0200
 @@ -253,7 +253,12 @@
    MIPS_BUILTIN_MSA_TEST_BRANCH,
  
@@ -388,9 +388,9 @@ diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips.c gcc-8.2.0-psp/gcc/config
    mips_register_frame_header_opt ();
  }
  
-diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips-cpus.def gcc-8.2.0-psp/gcc/config/mips/mips-cpus.def
---- gcc-8.2.0/gcc/config/mips/mips-cpus.def	2018-01-03 11:03:58.000000000 +0100
-+++ gcc-8.2.0-psp/gcc/config/mips/mips-cpus.def	2018-12-16 14:48:40.279107896 +0100
+diff --unified -rN a/gcc/config/mips/mips-cpus.def b/gcc/config/mips/mips-cpus.def
+--- a/gcc/config/mips/mips-cpus.def	2018-01-03 11:03:58.000000000 +0100
++++ b/gcc/config/mips/mips-cpus.def	2019-04-11 11:48:30.936991476 +0200
 @@ -62,6 +62,7 @@
  
  /* MIPS II processors.  */
@@ -399,9 +399,9 @@ diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips-cpus.def gcc-8.2.0-psp/gcc
  
  /* MIPS III processors.  */
  MIPS_CPU ("r4000", PROCESSOR_R4000, 3, 0)
-diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips-ftypes.def gcc-8.2.0-psp/gcc/config/mips/mips-ftypes.def
---- gcc-8.2.0/gcc/config/mips/mips-ftypes.def	2018-01-03 11:03:58.000000000 +0100
-+++ gcc-8.2.0-psp/gcc/config/mips/mips-ftypes.def	2018-12-16 14:48:40.279107896 +0100
+diff --unified -rN a/gcc/config/mips/mips-ftypes.def b/gcc/config/mips/mips-ftypes.def
+--- a/gcc/config/mips/mips-ftypes.def	2018-01-03 11:03:58.000000000 +0100
++++ b/gcc/config/mips/mips-ftypes.def	2019-04-11 11:48:30.936991476 +0200
 @@ -44,6 +44,8 @@
  DEF_MIPS_FTYPE (3, (DI, DI, V2HI, V2HI))
  DEF_MIPS_FTYPE (3, (DI, DI, V4QI, V4QI))
@@ -427,9 +427,9 @@ diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips-ftypes.def gcc-8.2.0-psp/g
  DEF_MIPS_FTYPE (3, (VOID, V4SF, POINTER, SI))
  DEF_MIPS_FTYPE (3, (VOID, V4SI, CVPOINTER, SI))
  DEF_MIPS_FTYPE (3, (VOID, V8HI, CVPOINTER, SI))
-diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips.h gcc-8.2.0-psp/gcc/config/mips/mips.h
---- gcc-8.2.0/gcc/config/mips/mips.h	2018-01-03 11:03:58.000000000 +0100
-+++ gcc-8.2.0-psp/gcc/config/mips/mips.h	2018-12-16 14:48:40.279107896 +0100
+diff --unified -rN a/gcc/config/mips/mips.h b/gcc/config/mips/mips.h
+--- a/gcc/config/mips/mips.h	2018-01-03 11:03:58.000000000 +0100
++++ b/gcc/config/mips/mips.h	2019-04-11 11:48:30.936991476 +0200
 @@ -285,6 +285,7 @@
  #define TARGET_SB1                  (mips_arch == PROCESSOR_SB1		\
  				     || mips_arch == PROCESSOR_SB1A)
@@ -535,9 +535,9 @@ diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips.h gcc-8.2.0-psp/gcc/config
  #ifndef HAVE_AS_TLS
  #define HAVE_AS_TLS 0
  #endif
-diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips.md gcc-8.2.0-psp/gcc/config/mips/mips.md
---- gcc-8.2.0/gcc/config/mips/mips.md	2018-01-03 11:03:58.000000000 +0100
-+++ gcc-8.2.0-psp/gcc/config/mips/mips.md	2018-12-16 14:48:40.279107896 +0100
+diff --unified -rN a/gcc/config/mips/mips.md b/gcc/config/mips/mips.md
+--- a/gcc/config/mips/mips.md	2018-01-03 11:03:58.000000000 +0100
++++ b/gcc/config/mips/mips.md	2019-04-11 11:48:30.940991455 +0200
 @@ -35,6 +35,7 @@
    74kf2_1
    74kf1_1
@@ -673,9 +673,9 @@ diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips.md gcc-8.2.0-psp/gcc/confi
  (define_c_enum "unspec" [
    UNSPEC_ADDRESS_FIRST
  ])
-diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips.opt gcc-8.2.0-psp/gcc/config/mips/mips.opt
---- gcc-8.2.0/gcc/config/mips/mips.opt	2018-01-03 11:03:58.000000000 +0100
-+++ gcc-8.2.0-psp/gcc/config/mips/mips.opt	2018-12-16 14:48:40.279107896 +0100
+diff --unified -rN a/gcc/config/mips/mips.opt b/gcc/config/mips/mips.opt
+--- a/gcc/config/mips/mips.opt	2018-01-03 11:03:58.000000000 +0100
++++ b/gcc/config/mips/mips.opt	2019-04-11 11:48:30.940991455 +0200
 @@ -428,6 +428,10 @@
  Target Report Var(flag_frame_header_optimization) Optimization
  Optimize frame header.
@@ -687,9 +687,9 @@ diff -adurB --new-file gcc-8.2.0/gcc/config/mips/mips.opt gcc-8.2.0-psp/gcc/conf
  noasmopt
  Driver
  
-diff -adurB --new-file gcc-8.2.0/gcc/config/mips/psp.h gcc-8.2.0-psp/gcc/config/mips/psp.h
---- gcc-8.2.0/gcc/config/mips/psp.h	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-8.2.0-psp/gcc/config/mips/psp.h	2018-12-16 14:48:40.279107896 +0100
+diff --unified -rN a/gcc/config/mips/psp.h b/gcc/config/mips/psp.h
+--- a/gcc/config/mips/psp.h	1970-01-01 01:00:00.000000000 +0100
++++ b/gcc/config/mips/psp.h	2019-04-11 11:48:30.940991455 +0200
 @@ -0,0 +1,33 @@
 +/* Support for Sony's Playstation Portable (PSP).
 +   Copyright (C) 2005 Free Software Foundation, Inc.
@@ -724,9 +724,9 @@ diff -adurB --new-file gcc-8.2.0/gcc/config/mips/psp.h gcc-8.2.0-psp/gcc/config/
 +#define SUBTARGET_ASM_SPEC "-mno-pdr"
 +
 +#include "../newlib-stdint.h"
-diff -adurB --new-file gcc-8.2.0/gcc/config/mips/t-allegrex gcc-8.2.0-psp/gcc/config/mips/t-allegrex
---- gcc-8.2.0/gcc/config/mips/t-allegrex	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-8.2.0-psp/gcc/config/mips/t-allegrex	2018-12-16 14:48:40.279107896 +0100
+diff --unified -rN a/gcc/config/mips/t-allegrex b/gcc/config/mips/t-allegrex
+--- a/gcc/config/mips/t-allegrex	1970-01-01 01:00:00.000000000 +0100
++++ b/gcc/config/mips/t-allegrex	2019-04-11 11:48:30.940991455 +0200
 @@ -0,0 +1,29 @@
 +# Suppress building libgcc1.a, since the MIPS compiler port is complete
 +# and does not need anything from libgcc1.a.
@@ -757,10 +757,10 @@ diff -adurB --new-file gcc-8.2.0/gcc/config/mips/t-allegrex gcc-8.2.0-psp/gcc/co
 +
 +LIBGCC = stmp-multilib
 +INSTALL_LIBGCC = install-multilib
-diff -adurB --new-file gcc-8.2.0/gcc/config.gcc gcc-8.2.0-psp/gcc/config.gcc
---- gcc-8.2.0/gcc/config.gcc	2018-06-25 21:34:01.000000000 +0200
-+++ gcc-8.2.0-psp/gcc/config.gcc	2018-12-16 14:48:40.279107896 +0100
-@@ -2315,6 +2315,18 @@
+diff --unified -rN a/gcc/config.gcc b/gcc/config.gcc
+--- a/gcc/config.gcc	2019-01-29 16:31:10.000000000 +0100
++++ b/gcc/config.gcc	2019-04-11 11:48:40.704941394 +0200
+@@ -2318,6 +2318,18 @@
  	tm_file="elfos.h newlib-stdint.h ${tm_file} mips/r3900.h mips/elf.h"
  	tmake_file="mips/t-r3900"
  	;;
@@ -779,21 +779,9 @@ diff -adurB --new-file gcc-8.2.0/gcc/config.gcc gcc-8.2.0-psp/gcc/config.gcc
  mmix-knuth-mmixware)
  	tm_file="${tm_file} newlib-stdint.h"
  	use_gcc_stdint=wrap
-diff -adurB --new-file gcc-8.2.0/gcc/graphite.h gcc-8.2.0-psp/gcc/graphite.h
---- gcc-8.2.0/gcc/graphite.h	2018-01-03 11:03:58.000000000 +0100
-+++ gcc-8.2.0-psp/gcc/graphite.h	2018-12-16 14:48:40.279107896 +0100
-@@ -37,6 +37,8 @@
- #include <isl/schedule.h>
- #include <isl/ast_build.h>
- #include <isl/schedule_node.h>
-+#include <isl/id.h>
-+#include <isl/space.h>
- 
- typedef struct poly_dr *poly_dr_p;
- 
-diff -adurB --new-file gcc-8.2.0/libcpp/Makefile.in gcc-8.2.0-psp/libcpp/Makefile.in
---- gcc-8.2.0/libcpp/Makefile.in	2018-07-26 11:48:58.000000000 +0200
-+++ gcc-8.2.0-psp/libcpp/Makefile.in	2018-12-16 14:48:40.279107896 +0100
+diff --unified -rN a/libcpp/Makefile.in b/libcpp/Makefile.in
+--- a/libcpp/Makefile.in	2019-02-22 15:22:13.000000000 +0100
++++ b/libcpp/Makefile.in	2019-04-11 11:48:30.940991455 +0200
 @@ -208,8 +208,8 @@
  # Note that we put the dependencies into a .Tpo file, then move them
  # into place if the compile succeeds.  We need this because gcc does
@@ -805,9 +793,9 @@ diff -adurB --new-file gcc-8.2.0/libcpp/Makefile.in gcc-8.2.0-psp/libcpp/Makefil
  else
  COMPILE = source='$<' object='$@' libtool=no DEPDIR=$(DEPDIR) $(DEPMODE) \
  	  $(depcomp) $(COMPILE.base)
-diff -adurB --new-file gcc-8.2.0/libgcc/config/mips/psp.h gcc-8.2.0-psp/libgcc/config/mips/psp.h
---- gcc-8.2.0/libgcc/config/mips/psp.h	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-8.2.0-psp/libgcc/config/mips/psp.h	2018-12-16 14:48:40.283107867 +0100
+diff --unified -rN a/libgcc/config/mips/psp.h b/libgcc/config/mips/psp.h
+--- a/libgcc/config/mips/psp.h	1970-01-01 01:00:00.000000000 +0100
++++ b/libgcc/config/mips/psp.h	2019-04-11 11:48:30.940991455 +0200
 @@ -0,0 +1,31 @@
 +/* Support for Sony's Playstation Portable (PSP).
 +   Copyright (C) 2005 Free Software Foundation, Inc.
@@ -840,9 +828,9 @@ diff -adurB --new-file gcc-8.2.0/libgcc/config/mips/psp.h gcc-8.2.0-psp/libgcc/c
 +/* Get rid of the .pdr section. */
 +#undef SUBTARGET_ASM_SPEC
 +#define SUBTARGET_ASM_SPEC "-mno-pdr"
-diff -adurB --new-file gcc-8.2.0/libgcc/config/mips/t-allegrex gcc-8.2.0-psp/libgcc/config/mips/t-allegrex
---- gcc-8.2.0/libgcc/config/mips/t-allegrex	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-8.2.0-psp/libgcc/config/mips/t-allegrex	2018-12-16 14:48:40.283107867 +0100
+diff --unified -rN a/libgcc/config/mips/t-allegrex b/libgcc/config/mips/t-allegrex
+--- a/libgcc/config/mips/t-allegrex	1970-01-01 01:00:00.000000000 +0100
++++ b/libgcc/config/mips/t-allegrex	2019-04-11 11:48:30.940991455 +0200
 @@ -0,0 +1,20 @@
 +# Suppress building libgcc1.a, since the MIPS compiler port is complete
 +# and does not need anything from libgcc1.a.
@@ -864,9 +852,9 @@ diff -adurB --new-file gcc-8.2.0/libgcc/config/mips/t-allegrex gcc-8.2.0-psp/lib
 +
 +LIBGCC = stmp-multilib
 +INSTALL_LIBGCC = install-multilib
-diff -adurB --new-file gcc-8.2.0/libgcc/config/t-hardfp-sf gcc-8.2.0-psp/libgcc/config/t-hardfp-sf
---- gcc-8.2.0/libgcc/config/t-hardfp-sf	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-8.2.0-psp/libgcc/config/t-hardfp-sf	2018-12-16 14:48:40.283107867 +0100
+diff --unified -rN a/libgcc/config/t-hardfp-sf b/libgcc/config/t-hardfp-sf
+--- a/libgcc/config/t-hardfp-sf	1970-01-01 01:00:00.000000000 +0100
++++ b/libgcc/config/t-hardfp-sf	2019-04-11 11:48:30.968991312 +0200
 @@ -0,0 +1,32 @@
 +# Copyright (C) 2014 Free Software Foundation, Inc.
 +
@@ -900,9 +888,9 @@ diff -adurB --new-file gcc-8.2.0/libgcc/config/t-hardfp-sf gcc-8.2.0-psp/libgcc/
 +    _fpcmp_parts_sf _compare_sf _eq_sf _ne_sf _gt_sf _ge_sf \
 +    _lt_sf _le_sf _unord_sf _si_to_sf _sf_to_si _negate_sf \
 +    _thenan_sf _sf_to_usi _usi_to_sf
-diff -adurB --new-file gcc-8.2.0/libgcc/config.host gcc-8.2.0-psp/libgcc/config.host
---- gcc-8.2.0/libgcc/config.host	2018-04-06 22:04:17.000000000 +0200
-+++ gcc-8.2.0-psp/libgcc/config.host	2018-12-16 14:48:40.283107867 +0100
+diff --unified -rN a/libgcc/config.host b/libgcc/config.host
+--- a/libgcc/config.host	2018-04-06 22:04:17.000000000 +0200
++++ b/libgcc/config.host	2019-04-11 11:48:30.968991312 +0200
 @@ -140,11 +140,15 @@
  	cpu_type=microblaze
  	;;
@@ -936,9 +924,9 @@ diff -adurB --new-file gcc-8.2.0/libgcc/config.host gcc-8.2.0-psp/libgcc/config.
  mmix-knuth-mmixware)
  	extra_parts="crti.o crtn.o crtbegin.o crtend.o"
  	tmake_file="${tmake_file} ${cpu_type}/t-${cpu_type}"
-diff -adurB --new-file gcc-8.2.0/libgcc/configure gcc-8.2.0-psp/libgcc/configure
---- gcc-8.2.0/libgcc/configure	2018-04-24 18:45:26.000000000 +0200
-+++ gcc-8.2.0-psp/libgcc/configure	2018-12-16 14:48:40.283107867 +0100
+diff --unified -rN a/libgcc/configure b/libgcc/configure
+--- a/libgcc/configure	2018-04-24 18:45:26.000000000 +0200
++++ b/libgcc/configure	2019-04-11 11:48:30.968991312 +0200
 @@ -4957,6 +4957,26 @@
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $libgcc_cv_mips_hard_float" >&5
@@ -966,9 +954,9 @@ diff -adurB --new-file gcc-8.2.0/libgcc/configure gcc-8.2.0-psp/libgcc/configure
  esac
  
  case ${host} in
-diff -adurB --new-file gcc-8.2.0/libgcc/configure.ac gcc-8.2.0-psp/libgcc/configure.ac
---- gcc-8.2.0/libgcc/configure.ac	2018-02-28 09:59:15.000000000 +0100
-+++ gcc-8.2.0-psp/libgcc/configure.ac	2018-12-16 14:48:40.283107867 +0100
+diff --unified -rN a/libgcc/configure.ac b/libgcc/configure.ac
+--- a/libgcc/configure.ac	2018-02-28 09:59:15.000000000 +0100
++++ b/libgcc/configure.ac	2019-04-11 11:48:30.968991312 +0200
 @@ -296,6 +296,14 @@
       #endif],
      [libgcc_cv_mips_hard_float=yes],
@@ -984,9 +972,9 @@ diff -adurB --new-file gcc-8.2.0/libgcc/configure.ac gcc-8.2.0-psp/libgcc/config
  esac
  
  case ${host} in
-diff -adurB --new-file gcc-8.2.0/libgcc/crtstuff.c gcc-8.2.0-psp/libgcc/crtstuff.c
---- gcc-8.2.0/libgcc/crtstuff.c	2018-01-03 11:03:58.000000000 +0100
-+++ gcc-8.2.0-psp/libgcc/crtstuff.c	2018-12-16 14:48:40.283107867 +0100
+diff --unified -rN a/libgcc/crtstuff.c b/libgcc/crtstuff.c
+--- a/libgcc/crtstuff.c	2018-01-03 11:03:58.000000000 +0100
++++ b/libgcc/crtstuff.c	2019-04-11 11:48:30.968991312 +0200
 @@ -47,7 +47,7 @@
  
  /* Target machine header files require this define. */
