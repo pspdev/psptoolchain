@@ -1,0 +1,17 @@
+# Although psptoolchain is not using GitLab, I'm considering creating a mirror
+# on GitLab and the GitLab CI is by far the most powerful. I will be using this
+# to run tests, at least locally before committing.
+---
+image: topsekretpl/psptoolchain-ci:latest
+
+stages:
+        - build
+
+build-psptoolchain:
+        stage: build
+        script:
+                - dash ./toolchain-local.sh -j 4
+                - tar cvf pspdev.tar pspdev
+        artifacts:
+                paths:
+                        - pspdev.tar
