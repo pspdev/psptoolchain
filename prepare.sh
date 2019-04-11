@@ -23,6 +23,7 @@ _EOF_
 				bison \
 				build-essential \
 				bzip2 \
+				ca-certificates \
 				cmake \
 				doxygen \
 				flex \
@@ -39,6 +40,7 @@ _EOF_
 				subversion \
 				tcl \
 				texinfo \
+				wget \
 				xz-utils \
 				zlib1g-dev
 		elif command -v apt-get >/dev/null
@@ -100,7 +102,7 @@ _EOF_
 			exit 77
 		else
 			cat >&2 <<_EOF_
-Error: your Linux distribution uses an unknown package manager.
+Error: your Linux distribution uses an unknown package manager or doesn't have one.
 _EOF_
 			exit 77
 		fi
