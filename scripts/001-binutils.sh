@@ -3,7 +3,7 @@
 
 . ../common.sh
 
-BINUTILS_VERSION=2.22
+BINUTILS_VERSION=2.23.1
 
 # Exit on errors
 set -e
