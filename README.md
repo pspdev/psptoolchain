@@ -52,10 +52,16 @@ OSX
 2. Run `prepare-mac-os.sh`. This will auto-install all the libraries you will need before building.
         
         sudo ./prepare-mac-os.sh
+        sudo port install libtool
+        sudo port install gsed
+        sudo ln -s /opt/local/bin/gsed /usr/local/bin/sed
+        hash -r
 
 3. Build and install the toolchain and SDK.
         
         sudo ./toolchain-sudo.sh
+        sudo unlink /usr/local/bin/sed
+        hash -r
 
 Where do I go from here?
 ========================
