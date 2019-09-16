@@ -20,6 +20,7 @@
 
  ## Enter the source directory and patch the source code.
  cd gcc-$GCC_VERSION
+ cp -rf ../../patches/gcc ./
  patch -p1 < ../../patches/gcc-$GCC_VERSION-PSP.patch
 
  ## Unpack the library source code.
