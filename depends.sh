@@ -48,6 +48,7 @@ check_header ()
 	printf "Checking for header %s... " "$1"
 
 	cat >tmp.$$.c <<_EOF_
+#include <stdio.h>
 #include <$1>
 
 int
