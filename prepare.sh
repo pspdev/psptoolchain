@@ -5,7 +5,7 @@ case "$(uname -s)" in
 
 		if command -v apt >/dev/null 2>&1
 		then
-			if ! [ "$(id -u "$USER")" -eq 0 ]
+			if [ "$(id -u)" -ne "0" ]
 			then
 				cat >&2 <<_EOF_
 Warning: running without superuser privileges
@@ -45,7 +45,7 @@ _EOF_
 				zlib1g-dev
 		elif command -v apt-get >/dev/null
 		then
-			if ! [ "$(id -u "$USER")" -eq 0 ]
+			if [ "$(id -u)" -ne "0" ]
 			then
 				cat >&2 <<_EOF_
 Warning: running without superuser privileges
