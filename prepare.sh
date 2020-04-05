@@ -168,7 +168,7 @@ _EOF_
 
 		if command -v port >/dev/null 2>&1
 		then
-			if ! [ "$(id -u "$USER")" -eq 0 ]
+			if [ "$(id -u)" -ne 0 ]
 			then
 				cat >&2 <<_EOF_
 Warning: running without superuser privileges
@@ -193,7 +193,7 @@ _EOF_
 		then
 			# We are using /usr/bin/stat because otherwise a GNU stat from
 			# Homebrew may get pulled in which is incompatible.
-			if ! [ "$(id -u "$USER")" -eq "$(/usr/bin/stat -f'%u' "$(brew --cellar)")" ]
+			if [ "$(id -u)" -ne "$(/usr/bin/stat -f'%u' "$(brew --cellar)")" ]
 			then
 				cat >&2 <<_EOF_
 Warning: you are not the owner of Homebrew.
