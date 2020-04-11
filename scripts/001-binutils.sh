@@ -25,9 +25,9 @@ mkdir build-psp
 cd build-psp
 
 # Configure the build.
-../configure --prefix="$PSPDEV" --target="psp" --enable-install-libbfd --disable-werror --with-system-zlib
+../configure --prefix="$PSPDEV" --target="psp" --enable-install-libbfd --enable-plugins --disable-werror --with-system-zlib
 
 # Compile and install.
-run_make 
+run_make
 run_make install
 run_make clean

@@ -36,7 +36,7 @@ mkdir build-psp
 cd build-psp
 
 ## Configure the build.
-../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c,lto$EXTRA_LANGUAGES" --enable-lto --with-newlib --with-system-zlib $EXTRA_CONFIGURE_FLAGS
+../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c,lto$EXTRA_LANGUAGES" --enable-lto --enable-plugins --with-newlib --with-system-zlib $EXTRA_CONFIGURE_FLAGS
 
 ## Compile and install.
 run_make
