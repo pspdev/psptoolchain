@@ -119,7 +119,7 @@ clone_git_repo ()
 		rm -rf "$LOCAL_DIR"
 	fi
 
-	git_noninteractive clone --recursive -b "$BRANCH" "$URL" "$LOCAL_DIR" || return 1
+	git_noninteractive clone --recursive --depth 1 -b "$BRANCH" "$URL" "$LOCAL_DIR" || return 1
 }
 
 # Runs make with our options.
