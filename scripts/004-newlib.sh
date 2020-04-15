@@ -7,13 +7,13 @@
 set -e
 
 NEWLIB_VERSION=1.20.0
+NEWLIB_VERSION_BRANCH=${NEWLIB_VERSION//./_}
 
 # Download the source code if it does not already exist.
-download_and_extract "https://sourceware.org/pub/newlib/newlib-$NEWLIB_VERSION.tar.gz" newlib-"$NEWLIB_VERSION"
+clone_git_repo 'https://github.com/pspdev/newlib' newlib-"$NEWLIB_VERSION" newlib-"$NEWLIB_VERSION_BRANCH"-PSP
 
 # Enter the source directory and patch the source code.
 cd newlib-"$NEWLIB_VERSION"
-patch -p1 < ../../patches/newlib-"$NEWLIB_VERSION"-PSP.patch
 
 # Create and enter the build directory.
 mkdir build-psp
