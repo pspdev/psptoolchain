@@ -3,7 +3,7 @@
 # Based on gcc-stage1.sh and gcc-stage2.sh by Naomi Peori (naomi@peori.ca) customized by yreeen(yreeen@gmail.com)
 
 ## set gcc version
-GCC_VERSION=8.3.0
+GCC_VERSION=9.3.0
 GMP_VERSION=6.1.2
 MPC_VERSION=1.1.0
 MPFR_VERSION=4.0.2

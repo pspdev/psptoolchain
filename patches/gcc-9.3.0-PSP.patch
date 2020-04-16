@@ -1,33 +1,36 @@
 diff --unified -rN a/config.sub b/config.sub
 --- a/config.sub	2018-01-03 05:25:18.000000000 +0100
 +++ b/config.sub	2019-04-11 11:48:30.936991476 +0200
-@@ -288,6 +288,7 @@
- 	| mipsisa64sr71k | mipsisa64sr71kel \
- 	| mipsr5900 | mipsr5900el \
- 	| mipstx39 | mipstx39el \
-+	| mipsallegrex | mipsallegrexel \
- 	| mn10200 | mn10300 \
- 	| moxie \
- 	| mt \
-@@ -415,6 +416,7 @@
- 	| mipsisa64sr71k-* | mipsisa64sr71kel-* \
- 	| mipsr5900-* | mipsr5900el-* \
- 	| mipstx39-* | mipstx39el-* \
-+	| mipsallegrex-* | mipsallegrexel-* \
- 	| mmix-* \
- 	| mt-* \
- 	| msp430-* \
-@@ -836,6 +838,10 @@
- 		basic_machine=m68k-atari
- 		os=-mint
- 		;;
-+	psp)
-+		basic_machine=mipsallegrexel-psp
-+		os=-elf
+@@ -632,6 +632,10 @@
+ 				basic_machine=ymp-cray
+ 				os=unicos
+ 				;;
++			psp)
++				basic_machine=mipsallegrexel-psp
++				os=elf
++				;;
+ 			*)
+ 				basic_machine=$1
+ 				os=
+@@ -644,6 +648,10 @@
+ case $basic_machine in
+ 	# Here we handle the default manufacturer of certain CPU types.  It is in
+ 	# some cases the only manufacturer, in others, it is the most popular.
++	mipsallegrexel-*)
++		cpu=mipsallegrexel
++       vendor=psp
 +		;;
- 	mips3*-*)
- 		basic_machine=`echo $basic_machine | sed -e 's/mips3/mips64/'`
- 		;;
+ 	w89k)
+ 		cpu=hppa1.1
+ 		vendor=winbond
+@@ -1210,6 +1218,7 @@
+ 			| mipsisa64sr71k | mipsisa64sr71kel \
+ 			| mipsr5900 | mipsr5900el \
+ 			| mipstx39 | mipstx39el \
++			| mipsallegrex | mipsallegrexel \
+ 			| mmix \
+ 			| mn10200 | mn10300 \
+ 			| moxie \
 diff --unified -rN a/gcc/config/mips/allegrex.md b/gcc/config/mips/allegrex.md
 --- a/gcc/config/mips/allegrex.md	1970-01-01 01:00:00.000000000 +0100
 +++ b/gcc/config/mips/allegrex.md	2019-04-11 11:48:30.936991476 +0200
@@ -129,18 +132,18 @@ diff --unified -rN a/gcc/config/mips/allegrex.md b/gcc/config/mips/allegrex.md
 +  [(set_attr "type"    "clz")
 +   (set_attr "mode"    "SI")])
 +
-+(define_expand "ctzsi2"
-+  [(set (match_operand:SI 0 "register_operand")
-+       (ctz:SI (match_operand:SI 1 "register_operand")))]
-+  "TARGET_ALLEGREX"
-+{
-+  rtx r1;
-+
-+  r1 = gen_reg_rtx (SImode);
-+  emit_insn (gen_allegrex_bitrev (r1, operands[1]));
-+  emit_insn (gen_clzsi2 (operands[0], r1));
-+  DONE;
-+})
++;;(define_expand "ctzsi2"
++;;  [(set (match_operand:SI 0 "register_operand")
++;;       (ctz:SI (match_operand:SI 1 "register_operand")))]
++;;  "TARGET_ALLEGREX"
++;;{
++;;  rtx r1;
++;;
++;;  r1 = gen_reg_rtx (SImode);
++;;  emit_insn (gen_allegrex_bitrev (r1, operands[1]));
++;;  emit_insn (gen_clzsi2 (operands[0], r1));
++;;  DONE;
++;;})
 +
 +(define_expand "allegrex_cto"
 +  [(set (match_operand:SI 0 "register_operand")
@@ -298,7 +301,7 @@ diff --unified -rN a/gcc/config/mips/mips.c b/gcc/config/mips/mips.c
 +  DIRECT_ALLEGREX_BUILTIN(bitrev, MIPS_SI_FTYPE_SI, 0),
 +  DIRECT_ALLEGREX_NAMED_BUILTIN(clz, clzsi2, MIPS_SI_FTYPE_SI, 0),
 +  DIRECT_ALLEGREX_BUILTIN(clo, MIPS_SI_FTYPE_SI, 0),
-+  DIRECT_ALLEGREX_NAMED_BUILTIN(ctz, ctzsi2, MIPS_SI_FTYPE_SI, 0),
++  //DIRECT_ALLEGREX_NAMED_BUILTIN(ctz, ctzsi2, MIPS_SI_FTYPE_SI, 0),
 +  DIRECT_ALLEGREX_BUILTIN(cto, MIPS_SI_FTYPE_SI, 0),
 +  DIRECT_ALLEGREX_NAMED_BUILTIN(rotr, rotrsi3, MIPS_SI_FTYPE_SI_SI, 0),
 +  DIRECT_ALLEGREX_NAMED_BUILTIN(rotl, rotlsi3, MIPS_SI_FTYPE_SI_SI, 0),
@@ -766,12 +769,12 @@ diff --unified -rN a/gcc/config.gcc b/gcc/config.gcc
  	;;
 +mipsallegrex-*-elf* | mipsallegrexel-*-elf*)
 +   tm_file="elfos.h ${tm_file} mips/elf.h"
-+   tmake_file=mips/t-allegrex
++   tmake_file=mips/t-allegrex;
 +   target_cpu_default="MASK_SINGLE_FLOAT|MASK_DIVIDE_BREAKS"
 +   tm_defines="MIPS_ISA_DEFAULT=2 MIPS_CPU_STRING_DEFAULT=\\\"allegrex\\\" MIPS_ABI_DEFAULT=ABI_EABI"
 +   case ${target} in
 +   mipsallegrex*-psp-elf*) 
-+       tm_file="${tm_file} mips/psp.h"
++       tm_file="${tm_file} mips/psp.h";
 +       ;;
 +   esac
 +   use_fixproto=yes
