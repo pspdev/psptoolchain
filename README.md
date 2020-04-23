@@ -8,7 +8,7 @@ How do I use it?
 
 1. Set up your environment by installing the following software:
 
-        autoconf, automake, bison, flex, gcc, g++/gcc-c++, libusb-dev, make, ncurses, patch, readline, subversion, texinfo, wget, mpc, gmp, libelf, mpfr, git
+        autoconf, automake, bison, cmake, doxygen, flex, g++/gcc-c++, gcc, git, gmp, libelf libusb-dev, make, mpfr, mpc, ncurses, patch, readline, subversion, texinfo, unzip, wget
 
 2. Set the PSPDEV and PATH environmental variables:
 
@@ -37,7 +37,7 @@ Ubuntu
 
 1. Install the required packages by running.
 
-        sudo apt-get install g++ build-essential autoconf automake cmake doxygen bison flex libncurses5-dev libsdl1.2-dev libreadline-dev libusb-dev texinfo libgmp3-dev libmpfr-dev libelf-dev libmpc-dev libfreetype6-dev zlib1g-dev libtool libtool-bin subversion git tcl unzip wget
+        sudo apt-get install autoconf automake bison cmake doxygen flex g++ gcc git libelf-dev libgmp-dev libmpfr-dev libncurses5-dev libreadline-dev libtool-bin libusb-dev make mpc patch subversion tcl texinfo unzip wget
 
 2. Build and install the toolchain and SDK.
 
