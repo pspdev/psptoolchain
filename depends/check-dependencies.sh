@@ -86,7 +86,6 @@ check_program   make
 check_program   gcc
 check_program   g++
 
-check_program   sdl-config
 # check_program   freetype-config
 
 check_program   bison

@@ -5,11 +5,10 @@
  set -e
 
  ## Download the source code if it does not already exist.
- download_and_extract https://sourceware.org/pub/newlib/newlib-1.20.0.tar.gz newlib-1.20.0
+clone_git_repo github.com pspdev newlib newlib-1_20_0-PSP
 
- ## Enter the source directory and patch the source code.
- cd newlib-1.20.0
- patch -p1 < ../../patches/newlib-1.20.0-PSP.patch
+ ## Enter the source directory
+ cd newlib
 
  ## Create and enter the build directory.
  mkdir build-psp
