@@ -1,6 +1,6 @@
-diff -NrU3 binutils-2.23.1/bfd/archures.c binutils-2.23.1-patched/bfd/archures.c
---- binutils-2.23.1/bfd/archures.c	2012-09-04 14:53:41.000000000 +0200
-+++ binutils-2.23.1-patched/bfd/archures.c	2019-04-11 22:51:02.981512599 +0200
+diff -NrU3 binutils-2.23.2/bfd/archures.c binutils-2.23.2-patched/bfd/archures.c
+--- binutils-2.23.2/bfd/archures.c	2012-09-04 14:53:41.000000000 +0200
++++ binutils-2.23.2-patched/bfd/archures.c	2020-04-23 17:57:30.297522944 +0200
 @@ -175,6 +175,7 @@
  .#define bfd_mach_mips_loongson_2f      3002
  .#define bfd_mach_mips_loongson_3a      3003
@@ -9,9 +9,9 @@ diff -NrU3 binutils-2.23.1/bfd/archures.c binutils-2.23.1-patched/bfd/archures.c
  .#define bfd_mach_mips_octeon		6501
  .#define bfd_mach_mips_octeonp		6601
  .#define bfd_mach_mips_octeon2		6502
-diff -NrU3 binutils-2.23.1/bfd/bfd-in2.h binutils-2.23.1-patched/bfd/bfd-in2.h
---- binutils-2.23.1/bfd/bfd-in2.h	2012-09-04 14:53:41.000000000 +0200
-+++ binutils-2.23.1-patched/bfd/bfd-in2.h	2019-04-11 22:51:02.985512583 +0200
+diff -NrU3 binutils-2.23.2/bfd/bfd-in2.h binutils-2.23.2-patched/bfd/bfd-in2.h
+--- binutils-2.23.2/bfd/bfd-in2.h	2012-09-04 14:53:41.000000000 +0200
++++ binutils-2.23.2-patched/bfd/bfd-in2.h	2020-04-23 17:57:30.297522944 +0200
 @@ -1904,6 +1904,7 @@
  #define bfd_mach_mips_loongson_2f      3002
  #define bfd_mach_mips_loongson_3a      3003
@@ -20,9 +20,9 @@ diff -NrU3 binutils-2.23.1/bfd/bfd-in2.h binutils-2.23.1-patched/bfd/bfd-in2.h
  #define bfd_mach_mips_octeon           6501
  #define bfd_mach_mips_octeonp          6601
  #define bfd_mach_mips_octeon2          6502
-diff -NrU3 binutils-2.23.1/bfd/cpu-mips.c binutils-2.23.1-patched/bfd/cpu-mips.c
---- binutils-2.23.1/bfd/cpu-mips.c	2012-01-31 18:54:35.000000000 +0100
-+++ binutils-2.23.1-patched/bfd/cpu-mips.c	2019-04-11 22:51:02.985512583 +0200
+diff -NrU3 binutils-2.23.2/bfd/cpu-mips.c binutils-2.23.2-patched/bfd/cpu-mips.c
+--- binutils-2.23.2/bfd/cpu-mips.c	2012-01-31 18:54:35.000000000 +0100
++++ binutils-2.23.2-patched/bfd/cpu-mips.c	2020-04-23 17:57:30.297522944 +0200
 @@ -90,6 +90,7 @@
    I_mipsisa64,
    I_mipsisa64r2,
@@ -39,9 +39,9 @@ diff -NrU3 binutils-2.23.1/bfd/cpu-mips.c binutils-2.23.1-patched/bfd/cpu-mips.c
    N (64, 64, bfd_mach_mips_loongson_2e, "mips:loongson_2e",       FALSE, NN(I_loongson_2e)),
    N (64, 64, bfd_mach_mips_loongson_2f, "mips:loongson_2f",       FALSE, NN(I_loongson_2f)),
    N (64, 64, bfd_mach_mips_loongson_3a, "mips:loongson_3a",       FALSE, NN(I_loongson_3a)),
-diff -NrU3 binutils-2.23.1/bfd/doc/bfd.texinfo binutils-2.23.1-patched/bfd/doc/bfd.texinfo
---- binutils-2.23.1/bfd/doc/bfd.texinfo	2010-10-28 13:40:25.000000000 +0200
-+++ binutils-2.23.1-patched/bfd/doc/bfd.texinfo	2019-04-11 22:51:02.985512583 +0200
+diff -NrU3 binutils-2.23.2/bfd/doc/bfd.texinfo binutils-2.23.2-patched/bfd/doc/bfd.texinfo
+--- binutils-2.23.2/bfd/doc/bfd.texinfo	2010-10-28 13:40:25.000000000 +0200
++++ binutils-2.23.2-patched/bfd/doc/bfd.texinfo	2020-04-23 17:57:30.297522944 +0200
 @@ -321,9 +321,9 @@
  @unnumbered BFD Index
  @printindex cp
@@ -63,10 +63,10 @@ diff -NrU3 binutils-2.23.1/bfd/doc/bfd.texinfo binutils-2.23.1-patched/bfd/doc/b
 +@c Blame: doc@cygnus.com, 28mar91.
  
  @bye
-diff -NrU3 binutils-2.23.1/bfd/elfxx-mips.c binutils-2.23.1-patched/bfd/elfxx-mips.c
---- binutils-2.23.1/bfd/elfxx-mips.c	2012-09-04 16:19:46.000000000 +0200
-+++ binutils-2.23.1-patched/bfd/elfxx-mips.c	2019-04-11 22:51:02.985512583 +0200
-@@ -6275,14 +6275,19 @@
+diff -NrU3 binutils-2.23.2/bfd/elfxx-mips.c binutils-2.23.2-patched/bfd/elfxx-mips.c
+--- binutils-2.23.2/bfd/elfxx-mips.c	2013-03-25 09:06:20.000000000 +0100
++++ binutils-2.23.2-patched/bfd/elfxx-mips.c	2020-04-23 17:57:30.299522934 +0200
+@@ -6271,14 +6271,19 @@
      case E_MIPS_MACH_SB1:
        return bfd_mach_mips_sb1;
  
@@ -86,7 +86,7 @@ diff -NrU3 binutils-2.23.1/bfd/elfxx-mips.c binutils-2.23.1-patched/bfd/elfxx-mi
  
      case E_MIPS_MACH_OCTEON2:
        return bfd_mach_mips_octeon2;
-@@ -11031,6 +11036,10 @@
+@@ -11027,6 +11032,10 @@
        val = E_MIPS_ARCH_64 | E_MIPS_MACH_SB1;
        break;
  
@@ -97,7 +97,7 @@ diff -NrU3 binutils-2.23.1/bfd/elfxx-mips.c binutils-2.23.1-patched/bfd/elfxx-mi
      case bfd_mach_mips_loongson_3a:
        val = E_MIPS_ARCH_64 | E_MIPS_MACH_LS3A;
        break;
-@@ -13690,6 +13699,7 @@
+@@ -13686,6 +13695,7 @@
    /* MIPS II extensions.  */
    { bfd_mach_mips4000, bfd_mach_mips6000 },
    { bfd_mach_mipsisa32, bfd_mach_mips6000 },
@@ -105,9 +105,9 @@ diff -NrU3 binutils-2.23.1/bfd/elfxx-mips.c binutils-2.23.1-patched/bfd/elfxx-mi
  
    /* MIPS I extensions.  */
    { bfd_mach_mips6000, bfd_mach_mips3000 },
-diff -NrU3 binutils-2.23.1/binutils/readelf.c binutils-2.23.1-patched/binutils/readelf.c
---- binutils-2.23.1/binutils/readelf.c	2012-11-05 17:27:35.000000000 +0100
-+++ binutils-2.23.1-patched/binutils/readelf.c	2019-04-11 22:51:02.985512583 +0200
+diff -NrU3 binutils-2.23.2/binutils/readelf.c binutils-2.23.2-patched/binutils/readelf.c
+--- binutils-2.23.2/binutils/readelf.c	2013-03-25 09:06:21.000000000 +0100
++++ binutils-2.23.2-patched/binutils/readelf.c	2020-04-23 17:57:30.299522934 +0200
 @@ -2431,10 +2431,11 @@
  	    case E_MIPS_MACH_9000: strcat (buf, ", 9000"); break;
    	    case E_MIPS_MACH_LS2E: strcat (buf, ", loongson-2e"); break;
@@ -121,9 +121,9 @@ diff -NrU3 binutils-2.23.1/binutils/readelf.c binutils-2.23.1-patched/binutils/r
  	    case 0:
  	    /* We simply ignore the field in this case to avoid confusion:
  	       MIPS ELF does not specify EF_MIPS_MACH, it is a GNU
-diff -NrU3 binutils-2.23.1/config.sub binutils-2.23.1-patched/config.sub
---- binutils-2.23.1/config.sub	2012-04-25 17:53:25.000000000 +0200
-+++ binutils-2.23.1-patched/config.sub	2019-04-11 22:51:02.985512583 +0200
+diff -NrU3 binutils-2.23.2/config.sub binutils-2.23.2-patched/config.sub
+--- binutils-2.23.2/config.sub	2012-04-25 17:53:25.000000000 +0200
++++ binutils-2.23.2-patched/config.sub	2020-04-23 17:57:30.301522924 +0200
 @@ -292,6 +292,7 @@
  	| mipsisa64sb1 | mipsisa64sb1el \
  	| mipsisa64sr71k | mipsisa64sr71kel \
@@ -151,9 +151,9 @@ diff -NrU3 binutils-2.23.1/config.sub binutils-2.23.1-patched/config.sub
  	mips3*-*)
  		basic_machine=`echo $basic_machine | sed -e 's/mips3/mips64/'`
  		;;
-diff -NrU3 binutils-2.23.1/configure binutils-2.23.1-patched/configure
---- binutils-2.23.1/configure	2012-06-28 13:50:52.000000000 +0200
-+++ binutils-2.23.1-patched/configure	2019-04-11 22:51:02.989512565 +0200
+diff -NrU3 binutils-2.23.2/configure binutils-2.23.2-patched/configure
+--- binutils-2.23.2/configure	2012-06-28 13:50:52.000000000 +0200
++++ binutils-2.23.2-patched/configure	2020-04-23 17:57:30.323522816 +0200
 @@ -2674,7 +2674,7 @@
  # binutils, gas and ld appear in that order because it makes sense to run
  # "make check" in that particular order.
@@ -171,9 +171,9 @@ diff -NrU3 binutils-2.23.1/configure binutils-2.23.1-patched/configure
      ;;
    sh-*-* | sh64-*-*)
      case "${target}" in
-diff -NrU3 binutils-2.23.1/gas/config/tc-mips.c binutils-2.23.1-patched/gas/config/tc-mips.c
---- binutils-2.23.1/gas/config/tc-mips.c	2012-09-04 16:21:03.000000000 +0200
-+++ binutils-2.23.1-patched/gas/config/tc-mips.c	2019-04-11 22:51:02.989512565 +0200
+diff -NrU3 binutils-2.23.2/gas/config/tc-mips.c binutils-2.23.2-patched/gas/config/tc-mips.c
+--- binutils-2.23.2/gas/config/tc-mips.c	2012-09-04 16:21:03.000000000 +0200
++++ binutils-2.23.2-patched/gas/config/tc-mips.c	2020-04-23 17:57:30.325522805 +0200
 @@ -91,8 +91,32 @@
  
  #define ZERO 0
@@ -2021,9 +2021,9 @@ diff -NrU3 binutils-2.23.1/gas/config/tc-mips.c binutils-2.23.1-patched/gas/conf
  
    /* MIPS III */
    { "r4000",          0,			ISA_MIPS3,      CPU_R4000 },
-diff -NrU3 binutils-2.23.1/gas/configure binutils-2.23.1-patched/gas/configure
---- binutils-2.23.1/gas/configure	2012-06-18 06:43:06.000000000 +0200
-+++ binutils-2.23.1-patched/gas/configure	2019-04-11 22:51:02.989512565 +0200
+diff -NrU3 binutils-2.23.2/gas/configure binutils-2.23.2-patched/gas/configure
+--- binutils-2.23.2/gas/configure	2012-06-18 06:43:06.000000000 +0200
++++ binutils-2.23.2-patched/gas/configure	2020-04-23 17:57:30.327522796 +0200
 @@ -12046,6 +12046,9 @@
  	  mips64vr | mips64vrel)
  	    mips_cpu=vr4100
@@ -2034,9 +2034,9 @@ diff -NrU3 binutils-2.23.1/gas/configure binutils-2.23.1-patched/gas/configure
  	  mipsisa32r2* | mipsisa64r2*)
  	    mips_cpu=`echo $target_cpu | sed -e 's/[a-z]*..r2//' -e 's/el$//'`
  	    ;;
-diff -NrU3 binutils-2.23.1/gas/configure.in binutils-2.23.1-patched/gas/configure.in
---- binutils-2.23.1/gas/configure.in	2012-11-05 17:27:44.000000000 +0100
-+++ binutils-2.23.1-patched/gas/configure.in	2019-04-11 22:51:02.993512548 +0200
+diff -NrU3 binutils-2.23.2/gas/configure.in binutils-2.23.2-patched/gas/configure.in
+--- binutils-2.23.2/gas/configure.in	2012-11-05 17:27:44.000000000 +0100
++++ binutils-2.23.2-patched/gas/configure.in	2020-04-23 17:57:30.327522796 +0200
 @@ -222,6 +222,9 @@
  	  mips64vr | mips64vrel)
  	    mips_cpu=vr4100
@@ -2047,9 +2047,9 @@ diff -NrU3 binutils-2.23.1/gas/configure.in binutils-2.23.1-patched/gas/configur
  	  mipsisa32r2* | mipsisa64r2*)
  changequote(,)dnl
  	    mips_cpu=`echo $target_cpu | sed -e 's/[a-z]*..r2//' -e 's/el$//'`
-diff -NrU3 binutils-2.23.1/gas/testsuite/gas/mips/mips.exp binutils-2.23.1-patched/gas/testsuite/gas/mips/mips.exp
---- binutils-2.23.1/gas/testsuite/gas/mips/mips.exp	2012-09-04 16:17:13.000000000 +0200
-+++ binutils-2.23.1-patched/gas/testsuite/gas/mips/mips.exp	2019-04-11 22:51:02.993512548 +0200
+diff -NrU3 binutils-2.23.2/gas/testsuite/gas/mips/mips.exp binutils-2.23.2-patched/gas/testsuite/gas/mips/mips.exp
+--- binutils-2.23.2/gas/testsuite/gas/mips/mips.exp	2012-09-04 16:17:13.000000000 +0200
++++ binutils-2.23.2-patched/gas/testsuite/gas/mips/mips.exp	2020-04-23 17:57:30.327522796 +0200
 @@ -432,6 +432,9 @@
  mips_arch_create sb1 	64	mips64	{ mips3d } \
  			{ -march=sb1 -mtune=sb1 } { -mmips:sb1 } \
@@ -2060,9 +2060,9 @@ diff -NrU3 binutils-2.23.1/gas/testsuite/gas/mips/mips.exp binutils-2.23.1-patch
  mips_arch_create octeon 64	mips64r2 {} \
  			{ -march=octeon -mtune=octeon } { -mmips:octeon } \
  			{ mips64octeon*-*-* }
-diff -NrU3 binutils-2.23.1/include/elf/common.h binutils-2.23.1-patched/include/elf/common.h
---- binutils-2.23.1/include/elf/common.h	2012-09-04 14:53:47.000000000 +0200
-+++ binutils-2.23.1-patched/include/elf/common.h	2019-04-11 22:51:02.993512548 +0200
+diff -NrU3 binutils-2.23.2/include/elf/common.h binutils-2.23.2-patched/include/elf/common.h
+--- binutils-2.23.2/include/elf/common.h	2012-09-04 14:53:47.000000000 +0200
++++ binutils-2.23.2-patched/include/elf/common.h	2020-04-23 17:57:30.327522796 +0200
 @@ -96,6 +96,7 @@
  #define ET_HIOS		0xFEFF	/* Operating system-specific */
  #define ET_LOPROC	0xFF00	/* Processor-specific */
@@ -2071,9 +2071,9 @@ diff -NrU3 binutils-2.23.1/include/elf/common.h binutils-2.23.1-patched/include/
  
  /* Values for e_machine, which identifies the architecture.  These numbers
     are officially assigned by registry@sco.com.  See below for a list of
-diff -NrU3 binutils-2.23.1/include/elf/mips.h binutils-2.23.1-patched/include/elf/mips.h
---- binutils-2.23.1/include/elf/mips.h	2011-12-19 08:58:02.000000000 +0100
-+++ binutils-2.23.1-patched/include/elf/mips.h	2019-04-11 22:51:02.993512548 +0200
+diff -NrU3 binutils-2.23.2/include/elf/mips.h binutils-2.23.2-patched/include/elf/mips.h
+--- binutils-2.23.2/include/elf/mips.h	2011-12-19 08:58:02.000000000 +0100
++++ binutils-2.23.2-patched/include/elf/mips.h	2020-04-23 17:57:30.327522796 +0200
 @@ -272,6 +272,7 @@
  #define E_MIPS_MACH_5400	0x00910000
  #define E_MIPS_MACH_5500	0x00980000
@@ -2082,9 +2082,9 @@ diff -NrU3 binutils-2.23.1/include/elf/mips.h binutils-2.23.1-patched/include/el
  #define E_MIPS_MACH_LS2E        0x00A00000
  #define E_MIPS_MACH_LS2F        0x00A10000
  #define E_MIPS_MACH_LS3A        0x00A20000
-diff -NrU3 binutils-2.23.1/include/opcode/mips.h binutils-2.23.1-patched/include/opcode/mips.h
---- binutils-2.23.1/include/opcode/mips.h	2012-09-04 16:21:05.000000000 +0200
-+++ binutils-2.23.1-patched/include/opcode/mips.h	2019-04-11 22:51:02.993512548 +0200
+diff -NrU3 binutils-2.23.2/include/opcode/mips.h binutils-2.23.2-patched/include/opcode/mips.h
+--- binutils-2.23.2/include/opcode/mips.h	2012-09-04 16:21:05.000000000 +0200
++++ binutils-2.23.2-patched/include/opcode/mips.h	2020-04-23 17:57:30.327522796 +0200
 @@ -218,6 +218,228 @@
  #define MDMX_FMTSEL_VEC_QH	0x15
  #define MDMX_FMTSEL_VEC_OB	0x16
@@ -2451,9 +2451,9 @@ diff -NrU3 binutils-2.23.1/include/opcode/mips.h binutils-2.23.1-patched/include
    M_XOR_I,
    M_COP0,
    M_COP1,
-diff -NrU3 binutils-2.23.1/include/opcode/vfpu.h binutils-2.23.1-patched/include/opcode/vfpu.h
---- binutils-2.23.1/include/opcode/vfpu.h	1970-01-01 01:00:00.000000000 +0100
-+++ binutils-2.23.1-patched/include/opcode/vfpu.h	2019-04-11 22:51:02.993512548 +0200
+diff -NrU3 binutils-2.23.2/include/opcode/vfpu.h binutils-2.23.2-patched/include/opcode/vfpu.h
+--- binutils-2.23.2/include/opcode/vfpu.h	1970-01-01 01:00:00.000000000 +0100
++++ binutils-2.23.2-patched/include/opcode/vfpu.h	2020-04-23 17:57:30.329522786 +0200
 @@ -0,0 +1,261 @@
 +#ifndef _VFPU_H_
 +#define _VFPU_H_
@@ -2716,9 +2716,9 @@ diff -NrU3 binutils-2.23.1/include/opcode/vfpu.h binutils-2.23.1-patched/include
 +#define VFPU_MASK_SYNC     0xffff0000
 +
 +#endif /* _VFPU_H_ */
-diff -NrU3 binutils-2.23.1/ld/configure.tgt binutils-2.23.1-patched/ld/configure.tgt
---- binutils-2.23.1/ld/configure.tgt	2012-09-04 14:53:47.000000000 +0200
-+++ binutils-2.23.1-patched/ld/configure.tgt	2019-04-11 22:51:02.993512548 +0200
+diff -NrU3 binutils-2.23.2/ld/configure.tgt binutils-2.23.2-patched/ld/configure.tgt
+--- binutils-2.23.2/ld/configure.tgt	2012-09-04 14:53:47.000000000 +0200
++++ binutils-2.23.2-patched/ld/configure.tgt	2020-04-23 17:57:30.329522786 +0200
 @@ -422,6 +422,8 @@
  mips*vr4100-*-elf*)	targ_emul=elf32b4300 ;;
  mips*vr5000el-*-elf*)	targ_emul=elf32l4300 ;;
@@ -2728,9 +2728,9 @@ diff -NrU3 binutils-2.23.1/ld/configure.tgt binutils-2.23.1-patched/ld/configure
  mips*el-sde-elf*)	targ_emul=elf32ltsmip
  			targ_extra_emuls="elf32btsmip elf32ltsmipn32 elf64ltsmip elf32btsmipn32 elf64btsmip" ;;
  mips*-sde-elf*)		targ_emul=elf32btsmip
-diff -NrU3 binutils-2.23.1/ld/emulparams/elf_mipsallegrexel_psp.sh binutils-2.23.1-patched/ld/emulparams/elf_mipsallegrexel_psp.sh
---- binutils-2.23.1/ld/emulparams/elf_mipsallegrexel_psp.sh	1970-01-01 01:00:00.000000000 +0100
-+++ binutils-2.23.1-patched/ld/emulparams/elf_mipsallegrexel_psp.sh	2019-04-11 22:51:02.993512548 +0200
+diff -NrU3 binutils-2.23.2/ld/emulparams/elf_mipsallegrexel_psp.sh binutils-2.23.2-patched/ld/emulparams/elf_mipsallegrexel_psp.sh
+--- binutils-2.23.2/ld/emulparams/elf_mipsallegrexel_psp.sh	1970-01-01 01:00:00.000000000 +0100
++++ binutils-2.23.2-patched/ld/emulparams/elf_mipsallegrexel_psp.sh	2020-04-23 17:57:30.329522786 +0200
 @@ -0,0 +1,22 @@
 +# Based off of the default elf32 MIPS target.  However, we use a seperate
 +# script template because the PSP architecture defines sections that normally
@@ -2754,9 +2754,9 @@ diff -NrU3 binutils-2.23.1/ld/emulparams/elf_mipsallegrexel_psp.sh binutils-2.23
 +
 +# Discard the .comment and .pdr sections.
 +OTHER_SECTIONS="/DISCARD/ : { *(.comment) *(.pdr) }"
-diff -NrU3 binutils-2.23.1/ld/Makefile.am binutils-2.23.1-patched/ld/Makefile.am
---- binutils-2.23.1/ld/Makefile.am	2012-09-04 14:53:47.000000000 +0200
-+++ binutils-2.23.1-patched/ld/Makefile.am	2019-04-11 22:51:02.993512548 +0200
+diff -NrU3 binutils-2.23.2/ld/Makefile.am binutils-2.23.2-patched/ld/Makefile.am
+--- binutils-2.23.2/ld/Makefile.am	2013-03-25 09:06:23.000000000 +0100
++++ binutils-2.23.2-patched/ld/Makefile.am	2020-04-23 17:57:30.329522786 +0200
 @@ -268,6 +268,7 @@
  	eelf_i386_nacl.c \
  	eelf_i386_sol2.c \
@@ -2765,7 +2765,7 @@ diff -NrU3 binutils-2.23.1/ld/Makefile.am binutils-2.23.1-patched/ld/Makefile.am
  	eelf_s390.c \
  	egld960.c \
  	egld960coff.c \
-@@ -1240,6 +1241,9 @@
+@@ -1242,6 +1243,9 @@
    $(srcdir)/emulparams/vxworks.sh $(srcdir)/emultempl/vxworks.em \
    $(ELF_DEPS) $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
  	${GENSCRIPTS} elf_i386_vxworks "$(tdir_elf_i386_vxworks)"
@@ -2775,9 +2775,9 @@ diff -NrU3 binutils-2.23.1/ld/Makefile.am binutils-2.23.1-patched/ld/Makefile.am
  eelf_s390.c: $(srcdir)/emulparams/elf_s390.sh \
    $(ELF_DEPS) $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
  	${GENSCRIPTS} elf_s390 "$(tdir_elf_s390)"
-diff -NrU3 binutils-2.23.1/ld/Makefile.in binutils-2.23.1-patched/ld/Makefile.in
---- binutils-2.23.1/ld/Makefile.in	2012-09-04 14:53:47.000000000 +0200
-+++ binutils-2.23.1-patched/ld/Makefile.in	2019-04-11 22:51:02.993512548 +0200
+diff -NrU3 binutils-2.23.2/ld/Makefile.in binutils-2.23.2-patched/ld/Makefile.in
+--- binutils-2.23.2/ld/Makefile.in	2013-03-25 09:06:23.000000000 +0100
++++ binutils-2.23.2-patched/ld/Makefile.in	2020-04-23 17:57:30.329522786 +0200
 @@ -575,6 +575,7 @@
  	eelf_i386_nacl.c \
  	eelf_i386_sol2.c \
@@ -2786,7 +2786,7 @@ diff -NrU3 binutils-2.23.1/ld/Makefile.in binutils-2.23.1-patched/ld/Makefile.in
  	eelf_s390.c \
  	egld960.c \
  	egld960coff.c \
-@@ -2710,6 +2711,9 @@
+@@ -2712,6 +2713,9 @@
    $(srcdir)/emulparams/vxworks.sh $(srcdir)/emultempl/vxworks.em \
    $(ELF_DEPS) $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
  	${GENSCRIPTS} elf_i386_vxworks "$(tdir_elf_i386_vxworks)"
@@ -2796,9 +2796,9 @@ diff -NrU3 binutils-2.23.1/ld/Makefile.in binutils-2.23.1-patched/ld/Makefile.in
  eelf_s390.c: $(srcdir)/emulparams/elf_s390.sh \
    $(ELF_DEPS) $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
  	${GENSCRIPTS} elf_s390 "$(tdir_elf_s390)"
-diff -NrU3 binutils-2.23.1/ld/scripttempl/elf_psp.sc binutils-2.23.1-patched/ld/scripttempl/elf_psp.sc
---- binutils-2.23.1/ld/scripttempl/elf_psp.sc	1970-01-01 01:00:00.000000000 +0100
-+++ binutils-2.23.1-patched/ld/scripttempl/elf_psp.sc	2019-04-11 22:51:02.993512548 +0200
+diff -NrU3 binutils-2.23.2/ld/scripttempl/elf_psp.sc binutils-2.23.2-patched/ld/scripttempl/elf_psp.sc
+--- binutils-2.23.2/ld/scripttempl/elf_psp.sc	1970-01-01 01:00:00.000000000 +0100
++++ binutils-2.23.2-patched/ld/scripttempl/elf_psp.sc	2020-04-23 17:57:30.329522786 +0200
 @@ -0,0 +1,496 @@
 +#
 +# Unusual variables checked by this code:
@@ -3296,9 +3296,9 @@ diff -NrU3 binutils-2.23.1/ld/scripttempl/elf_psp.sc binutils-2.23.1-patched/ld/
 +  ${RELOCATING+${STACKNOTE}}
 +}
 +EOF
-diff -NrU3 binutils-2.23.1/opcodes/mips-dis.c binutils-2.23.1-patched/opcodes/mips-dis.c
---- binutils-2.23.1/opcodes/mips-dis.c	2012-09-04 16:23:13.000000000 +0200
-+++ binutils-2.23.1-patched/opcodes/mips-dis.c	2019-04-11 22:51:41.193350688 +0200
+diff -NrU3 binutils-2.23.2/opcodes/mips-dis.c binutils-2.23.2-patched/opcodes/mips-dis.c
+--- binutils-2.23.2/opcodes/mips-dis.c	2012-09-04 16:23:13.000000000 +0200
++++ binutils-2.23.2-patched/opcodes/mips-dis.c	2020-04-23 17:57:30.329522786 +0200
 @@ -245,6 +245,139 @@
    "c0_taglo",     "c0_taghi",     "c0_errorepc",  "c0_desave",
  };
@@ -3862,9 +3862,9 @@ diff -NrU3 binutils-2.23.1/opcodes/mips-dis.c binutils-2.23.1-patched/opcodes/mi
  	default:
  	  /* xgettext:c-format */
  	  infprintf (is, _("# internal error, undefined modifier (%c)"), *d);
-diff -NrU3 binutils-2.23.1/opcodes/mips-opc.c binutils-2.23.1-patched/opcodes/mips-opc.c
---- binutils-2.23.1/opcodes/mips-opc.c	2012-09-04 16:21:10.000000000 +0200
-+++ binutils-2.23.1-patched/opcodes/mips-opc.c	2019-04-11 22:51:02.993512548 +0200
+diff -NrU3 binutils-2.23.2/opcodes/mips-opc.c binutils-2.23.2-patched/opcodes/mips-opc.c
+--- binutils-2.23.2/opcodes/mips-opc.c	2012-09-04 16:21:10.000000000 +0200
++++ binutils-2.23.2-patched/opcodes/mips-opc.c	2020-04-23 17:57:30.331522776 +0200
 @@ -122,9 +122,10 @@
  #define N5	(INSN_5400 | INSN_5500)
  #define N54	INSN_5400
