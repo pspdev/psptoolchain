@@ -1,9 +1,30 @@
-diff -burN orig.gdb-7.3.1/bfd/doc/bfd.texinfo gdb-7.3.1/bfd/doc/bfd.texinfo
+--- gdb-7.3.1.orig/sim/common/sim-arange.h	2014-04-10 14:07:37.000000000 +1000
++++ gdb-7.3.1/sim/common/sim-arange.h	2014-04-10 14:05:43.000000000 +1000
+@@ -63,3 +63,3 @@
+    If no range is specified, that is defined to mean "everything".  */
+-extern INLINE int
++static INLINE int
+ sim_addr_range_hit_p (ADDR_RANGE * /*ar*/, address_word /*addr*/);
+@@ -68,7 +68,3 @@
+ #ifdef HAVE_INLINE
+-#ifdef SIM_ARANGE_C
+-#define SIM_ARANGE_INLINE INLINE
+-#else
+-#define SIM_ARANGE_INLINE EXTERN_INLINE
+-#endif
++#define SIM_ARANGE_INLINE static INLINE
+ #include "sim-arange.c"
+--- gdb-6.8.orig/bfd/sysdep.h	2007-07-03 16:26:42.000000000 +0200
++++ gdb-6.8/bfd/sysdep.h	2011-08-21 13:33:47.000000000 +0200
+@@ -133,3 +133,3 @@
+ 
+-#if !HAVE_DECL_STPCPY
++#if !HAVE_DECL_STPCPY && !defined(stpcpy)
+ extern char *stpcpy (char *__dest, const char *__src);
+only in patch2:
 --- orig.gdb-7.3.1/bfd/doc/bfd.texinfo	2010-10-28 13:40:25.000000000 +0200
 +++ gdb-7.3.1/bfd/doc/bfd.texinfo	2013-08-29 23:05:29.319533968 +0200
-@@ -321,9 +321,9 @@
- @unnumbered BFD Index
- @printindex cp
+@@ -323,5 +323,5 @@
  
 +@c I think something like @colophon should be in texinfo.  In the
 +@c meantime:
@@ -11,53 +32,34 @@ diff -burN orig.gdb-7.3.1/bfd/doc/bfd.texinfo gdb-7.3.1/bfd/doc/bfd.texinfo
 -% I think something like @colophon should be in texinfo.  In the
 -% meantime:
  \long\def\colophon{\hbox to0pt{}\vfill
- \centerline{The body of this manual is set in}
- \centerline{\fontname\tenrm,}
-@@ -333,7 +333,7 @@
- \centerline{{\sl\fontname\tensl\/}}
- \centerline{are used for emphasis.}\vfill}
+@@ -335,4 +335,4 @@
  \page\colophon
 -% Blame: doc@cygnus.com, 28mar91.
  @end tex
 +@c Blame: doc@cygnus.com, 28mar91.
  
- @bye
-diff -burN orig.gdb-7.3.1/gdb/doc/gdbint.texinfo gdb-7.3.1/gdb/doc/gdbint.texinfo
+only in patch2:
 --- orig.gdb-7.3.1/gdb/doc/gdbint.texinfo	2011-02-04 20:10:12.000000000 +0100
 +++ gdb-7.3.1/gdb/doc/gdbint.texinfo	2013-08-29 23:09:03.514998167 +0200
-@@ -35,7 +35,7 @@
- 
- @titlepage
+@@ -37,3 +37,3 @@
  @title @value{GDBN} Internals
 -@subtitle{A guide to the internals of the GNU debugger}
 +@subtitle A guide to the internals of the GNU debugger
  @author John Gilmore
- @author Cygnus Solutions
- @author Second Edition:
-diff -burN orig.gdb-7.3.1/gdb/doc/gdb.texinfo gdb-7.3.1/gdb/doc/gdb.texinfo
+only in patch2:
 --- orig.gdb-7.3.1/gdb/doc/gdb.texinfo	2011-09-04 19:10:37.000000000 +0200
 +++ gdb-7.3.1/gdb/doc/gdb.texinfo	2013-08-29 23:07:59.951032483 +0200
-@@ -4792,7 +4792,7 @@
- 
- 
+@@ -4794,3 +4794,3 @@
  @kindex advance @var{location}
 -@itemx advance @var{location}
 +@item advance @var{location}
  Continue running the program up to the given @var{location}.  An argument is
- required, which should be of one of the forms described in
- @ref{Specify Location}.
-@@ -5582,7 +5582,7 @@
- @kindex set exec-direction
- @item set exec-direction
+@@ -5584,3 +5584,3 @@
  Set the direction of target execution.
 -@itemx set exec-direction reverse
 +@item set exec-direction reverse
  @cindex execute forward or backward in time
- @value{GDBN} will perform all execution commands in reverse, until the
- exec-direction mode is changed to ``forward''.  Affected commands include
-@@ -36953,9 +36953,9 @@
- 
- @printindex cp
+@@ -36955,5 +36955,5 @@
  
 +@c I think something like @colophon should be in texinfo.  In the
 +@c meantime:
@@ -65,14 +67,9 @@ diff -burN orig.gdb-7.3.1/gdb/doc/gdb.texinfo gdb-7.3.1/gdb/doc/gdb.texinfo
 -% I think something like @colophon should be in texinfo.  In the
 -% meantime:
  \long\def\colophon{\hbox to0pt{}\vfill
- \centerline{The body of this manual is set in}
- \centerline{\fontname\tenrm,}
-@@ -36966,7 +36966,7 @@
- \centerline{{\sl\fontname\tensl\/}}
- \centerline{are used for emphasis.}\vfill}
+@@ -36968,4 +36968,4 @@
  \page\colophon
 -% Blame: doc@cygnus.com, 1991.
  @end tex
 +@c Blame: doc@cygnus.com, 1991.
  
- @bye
