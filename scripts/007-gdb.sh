@@ -4,7 +4,7 @@
 # Exit on errors
 set -e
 
-GDB_VERSION=7.4
+GDB_VERSION=7.5
 
 # Download the source code if it does not already exist.
 download_and_extract https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.bz2 gdb-$GDB_VERSION
