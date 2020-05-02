@@ -62,7 +62,9 @@ Where do I go from here?
 
 Visit the following sites to learn more:
 
-http://darkhaven3.com/psp-dev/wiki/
+[PSP-DEV Wiki](http://darkhaven3.com/psp-dev/wiki/)
+
+[PSP Homebrew Community Discord](https://discord.gg/bePrj9W)
 
 [MacPorts]: http://www.macports.org/
 [HomeBrew]: http://brew.sh/
