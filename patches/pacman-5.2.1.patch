@@ -1,0 +1,22 @@
+diff --git a/scripts/makepkg.sh.in b/scripts/makepkg.sh.in
+index c49ac57..41dcce5 100644
+--- a/scripts/makepkg.sh.in
++++ b/scripts/makepkg.sh.in
+@@ -234,7 +234,7 @@ run_pacman() {
+                else
+                        cmd=(su root -c "$(printf '%q ' "${cmd[@]}")")
+                fi
+-               local lockfile="$(pacman-conf DBPath)/db.lck"
++               local lockfile="$(psp-pacman-conf DBPath)/db.lck"
+                while [[ -f $lockfile ]]; do
+                        local timer=0
+                        msg "$(gettext "Pacman is currently in use, please wait...")"
+@@ -1123,7 +1123,7 @@ unset var
+ PACKAGER=${PACKAGER:-"Unknown Packager"}
+ 
+ # set pacman command if not already defined
+-PACMAN=${PACMAN:-pacman}
++PACMAN=${PACMAN:-psp-pacman}
+ # save full path to command as PATH may change when sourcing /etc/profile
+ PACMAN_PATH=$(type -P $PACMAN)
+ 
