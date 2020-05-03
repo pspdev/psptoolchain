@@ -22,7 +22,8 @@ cd build-psp
 CFLAGS="$CFLAGS -I/opt/local/include" \
   CPPFLAGS="$CPPFLAGS -I/opt/local/include" \
   LDFLAGS="$LDFLAGS -L/opt/local/lib" \
-  ../configure --prefix="$PSPDEV" --target="psp" --enable-install-libbfd --enable-plugins --disable-werror --with-system-zlib
+  ../configure --prefix="$PSPDEV" --target="psp" --enable-install-libbfd \
+  --enable-plugins --disable-werror --with-system-zlib
 
 # Compile and install. ( -r is required for building under osx )
 make -j $(num_cpus) clean

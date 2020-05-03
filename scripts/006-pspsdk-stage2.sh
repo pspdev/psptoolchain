@@ -14,7 +14,10 @@
  ./bootstrap
 
  ## Configure the build.
- CFLAGS="$CFLAGS -I/opt/local/include" CPPFLAGS="$CPPFLAGS -I/opt/local/include" LDFLAGS="$LDFLAGS -L/opt/local/lib" ./configure --with-pspdev="$PSPDEV"
+ CFLAGS="$CFLAGS -I/opt/local/include" \
+   CPPFLAGS="$CPPFLAGS -I/opt/local/include" \
+   LDFLAGS="$LDFLAGS -L/opt/local/lib" \
+   ./configure --with-pspdev="$PSPDEV"
 
  ## Build and install.
  make -j $(num_cpus) clean
