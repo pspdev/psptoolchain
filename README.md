@@ -32,16 +32,16 @@ How do I use it?
 > After you are done use `swapoff -a` disable the swapfile. Finally you can
 > remove it with `rm`.
 
-Ubuntu
-------
+Ubuntu/Debian
+-------------
 
-1. Install the required packages by running.
+1. Install the required packages by running:
 
-        sudo apt-get install autoconf automake bison cmake doxygen flex g++ gcc git libelf-dev libgmp-dev libmpfr-dev libncurses5-dev libreadline-dev libtool-bin libusb-dev make mpc patch subversion tcl texinfo unzip wget
+    sudo ./prepare-debian-ubuntu.sh
 
 2. Build and install the toolchain and SDK.
 
-        sudo ./toolchain-sudo.sh
+    sudo ./toolchain-sudo.sh
  
 > NOTE: If you do not wish for the toolchain to be installed in /usr/local/pspdev then edit toolchain-sudo.sh and change the INSTALLDIR variable.
 
@@ -49,21 +49,22 @@ OSX
 ---
 
 1. Install [`port`][MacPorts] or [`brew`][HomeBrew].
-2. Run `prepare-mac-os.sh`. This will auto-install all the libraries you will need before building.
+2. Install all the libraries you will need before building by running:
         
-        sudo ./prepare-mac-os.sh
+    sudo ./prepare-mac-os.sh
 
 3. Build and install the toolchain and SDK.
         
-        sudo ./toolchain-sudo.sh
+    sudo ./toolchain-sudo.sh
 
 Where do I go from here?
 ========================
 
 Visit the following sites to learn more:
 
-http://www.ps2dev.org
-http://forums.ps2dev.org
+[PSP-DEV Wiki](http://darkhaven3.com/psp-dev/wiki/)
+
+[PSP Homebrew Community Discord](https://discord.gg/bePrj9W)
 
 [MacPorts]: http://www.macports.org/
 [HomeBrew]: http://brew.sh/
