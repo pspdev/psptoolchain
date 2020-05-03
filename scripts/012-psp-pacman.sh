@@ -9,7 +9,7 @@
  set -e
 
  ## Download the source code.
- clone_git_repo github.com sharkwouter psp-pacman
+ git clone https://github.com/sharkwouter/psp-pacman.git
 
  ## Enter the source directory.
  cd psp-pacman
