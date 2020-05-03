@@ -10,13 +10,12 @@ install_libusb() {
 }
 
 if [ -e "/opt/local/bin/port" ]; then
-	sudo port install automake cmake doxygen libelf libmpc libusb wget
+	sudo port install automake cmake doxygen libelf libusb wget xz
 	
 	install_libusb
 elif [ -e "/usr/local/bin/brew" ]; then
 	CURRENT_USER=$(stat -f '%Su' /dev/console)
-	sudo -u $CURRENT_USER brew install automake cmake doxygen libelf libmpc libusb libusb-compat wget
+	sudo -u $CURRENT_USER brew install automake cmake doxygen libelf libusb libusb-compat wget xz
 else
 	echo "Go install MacPorts from http://www.macports.org/ or Homebrew from http://brew.sh/ first, then we can talk"
 fi
-

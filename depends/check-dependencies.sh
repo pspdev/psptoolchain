@@ -62,11 +62,6 @@ function check_aclocal
     missing_depends+=($1); return 1
 }
 
-
-
-# check_header    gmp             gmp.h
-# check_header    mpc             mpc.h
-# check_header    mpfr            mpfr.h
 check_header    libelf          elf.h libelf.h libelf/libelf.h gelf.h libelf/gelf.h
 check_header    libusb          usb.h
 check_header    ncurses         ncurses.h ncurses/ncurses.h
@@ -105,10 +100,10 @@ if [ "$(uname)" == "Darwin" ]; then
 
     # GNU libtool will be prepended with letter 'g' to prevent conflicts with
     # the one comes along with OS X.
-    check_program      glibtool
+    check_program      glibtoolize
 else
     check_header       readline     readline.h readline/readline.h
-    check_program      libtool
+    check_program      libtoolize
 fi
 
 if [ ${#missing_depends[@]} -ne 0 ]; then
