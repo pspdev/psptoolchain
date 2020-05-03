@@ -8,7 +8,7 @@ How do I use it?
 
 1. Set up your environment by installing the following software:
 
-        autoconf, automake, bison, cmake, doxygen, flex, g++/gcc-c++, gcc, git, gmp, libelf libusb-dev, make, mpfr, mpc, ncurses, patch, readline, subversion, texinfo, unzip, wget
+        autoconf, automake, bison, bzip2, cmake, doxygen, flex, g++/gcc-c++, gcc, git, gzip, libelf libusb-dev, make, ncurses, patch, readline, subversion, tar, texinfo, unzip, wget, xz-utils
 
 2. Set the PSPDEV and PATH environmental variables:
 
