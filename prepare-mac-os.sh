@@ -10,20 +10,12 @@ install_libusb() {
 }
 
 if [ -e "/opt/local/bin/port" ]; then
-	sudo port install wget
-	sudo port install libelf
-	sudo port install libmpc
-	sudo port install libusb
+	sudo port install automake cmake doxygen libelf libmpc libusb wget
 	
 	install_libusb
 elif [ -e "/usr/local/bin/brew" ]; then
 	CURRENT_USER=$(stat -f '%Su' /dev/console)
-	sudo -u $CURRENT_USER brew install wget
-	sudo -u $CURRENT_USER brew install libelf
-	sudo -u $CURRENT_USER brew install libmpc
-	sudo -u $CURRENT_USER brew install libusb
-
-	sudo -u $CURRENT_USER brew install libusb-compat
+	sudo -u $CURRENT_USER brew install automake cmake doxygen libelf libmpc libusb libusb-compat wget
 else
 	echo "Go install MacPorts from http://www.macports.org/ or Homebrew from http://brew.sh/ first, then we can talk"
 fi
