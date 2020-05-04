@@ -1,0 +1,11 @@
+# 
+# Make sure Type-B PSPs are mounted with Mode 0666 (world-writable).
+# This removes the need to run `usbhostfs_pc` as root.
+# 
+# To install, copy this file to:
+#     /etc/udev/rules.d/99-psplink.rules
+# 
+# Note: The filename is important; it must start with a number higher
+# than 50, otherwise MODE changes will not take effect!
+# 
+ATTR{idVendor}=="054c", ATTR{idProduct}=="01c9", MODE="0666"
