@@ -17,7 +17,7 @@
  cd pacman-${PACMAN_VERSION}
 
  ## Apply patch
- patch -p1 < ../../pacman-${PACMAN_VERSION}.patch
+ patch -p1 < ../../patches/pacman-${PACMAN_VERSION}.patch
 
  ## Build
  ./configure --prefix=${PSPDEV} --with-buildscript=PSPBUILD --with-root-dir=${PSPDEV}/psp --program-prefix="psp-" --disable-doc
@@ -25,5 +25,5 @@
  make install
  
  ## Overwrite config files
- cp -f ../../makepkg.conf ${PSPDEV}/etc/makepkg.conf
- cp -f ../../pacman.conf ${PSPDEV}/etc/pacman.conf
+ cp -f ../../patches/makepkg.conf ${PSPDEV}/etc/makepkg.conf
+ cp -f ../../patches/pacman.conf ${PSPDEV}/etc/pacman.conf
