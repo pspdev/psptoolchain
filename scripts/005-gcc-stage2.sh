@@ -35,6 +35,11 @@
  mkdir build-psp
  cd build-psp
 
+ ## Under macOS we need the gnu variant of sed
+ if [ "$(uname)" == "Darwin" ]; then
+   export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:/opt/local/libexec/gnubin:$PATH"
+ fi
+
  ## Configure the build.
  ## If you want to build gdc add "d" to --enable-languages option.
  CFLAGS="$CFLAGS -I/opt/local/include" \
