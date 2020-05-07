@@ -1,22 +1,92 @@
+From e5d36f25f7c8171739a809ff4f7ac23dbe2d5848 Mon Sep 17 00:00:00 2001
+From: Wouter Wijsman <wwijsman@live.nl>
+Date: Thu, 7 May 2020 20:09:39 +0200
+Subject: [PATCH 2/2] Use absolute path for pacman and pacman-conf in makepkg
+
+Currently makepkg requires pacman and pacman-conf to be in the path of
+the user. Since these executables should never move, it should be safe
+to add the full paths to the scripts at compile time, assuming the user
+uses the install command as well.
+
+This change works for both autotools and meson.
+
+Signed-off-by: Wouter Wijsman <wwijsman@live.nl>
+---
+ build-aux/edit-script.sh.in | 1 +
+ meson.build                 | 1 +
+ scripts/Makefile.am         | 3 ++-
+ scripts/makepkg.sh.in       | 6 ++++--
+ 4 files changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/build-aux/edit-script.sh.in b/build-aux/edit-script.sh.in
+index 640d32f8..02d6778f 100644
+--- a/build-aux/edit-script.sh.in
++++ b/build-aux/edit-script.sh.in
+@@ -23,6 +23,7 @@ mode=$3
+   -e "s|@SEDINPLACEFLAGS[@]|@SEDINPLACEFLAGS@|g" \
+   -e "s|@SEDPATH[@]|@SEDPATH@|g" \
+   -e "s|@configure_input[@]|Generated from ${input##*/}; do not edit by hand.|g" \
++  -e "s|@fullbindir[@]|@FULLBINDIR@|g" \
+   "$input" >"$output"
+ 
+ if [[ $mode ]]; then
+diff --git a/meson.build b/meson.build
+index 8c296cb8..a90d8879 100644
+--- a/meson.build
++++ b/meson.build
+@@ -268,6 +268,7 @@ substs.set('LOCALEDIR', LOCALEDIR)
+ substs.set('sysconfdir', SYSCONFDIR)
+ substs.set('localstatedir', LOCALSTATEDIR)
+ substs.set('PKGDATADIR', PKGDATADIR)
++substs.set('FULLBINDIR', '@0@/@1@'.format(PREFIX, get_option('bindir')))
+ substs.set('PREFIX', PREFIX)
+ substs.set('BASH', BASH.path())
+ substs.set('PACKAGE_VERSION', PACKAGE_VERSION)
+diff --git a/scripts/Makefile.am b/scripts/Makefile.am
+index 63d09767..ce2e47c4 100644
+--- a/scripts/Makefile.am
++++ b/scripts/Makefile.am
+@@ -189,7 +189,8 @@ edit = sed \
+ 	-e 's|@SEDINPLACEFLAGS[@]|$(SEDINPLACEFLAGS)|g' \
+ 	-e 's|@SEDPATH[@]|$(SEDPATH)|g' \
+ 	-e 's|@SCRIPTNAME[@]|$@|g' \
+-	-e 's|@configure_input[@]|Generated from $<; do not edit by hand.|g'
++	-e 's|@configure_input[@]|Generated from $<; do not edit by hand.|g' \
++	-e 's|@fullbindir[@]|$(FULLBINDIR)|g'
+ 
+ ## All the scripts depend on Makefile so that they are rebuilt when the
+ ## prefix etc. changes. Use chmod -w to prevent people from editing the
 diff --git a/scripts/makepkg.sh.in b/scripts/makepkg.sh.in
-index c49ac57..41dcce5 100644
+index c49ac57a..1dc48f25 100644
 --- a/scripts/makepkg.sh.in
 +++ b/scripts/makepkg.sh.in
-@@ -234,7 +234,7 @@ run_pacman() {
+@@ -45,6 +45,8 @@ declare -r makepkg_version='@PACKAGE_VERSION@'
+ declare -r confdir='@sysconfdir@'
+ declare -r BUILDSCRIPT='@BUILDSCRIPT@'
+ declare -r startdir="$(pwd -P)"
++declare -r PACMAN_EXECUTABLE='@fullbindir@/pacman'
++declare -r PACMAN_CONF_EXECUTABLE='@fullbindir@/pacman-conf'
+ 
+ LIBRARY=${LIBRARY:-'@libmakepkgdir@'}
+ 
+@@ -234,7 +236,7 @@ run_pacman() {
  		else
  			cmd=(su root -c "$(printf '%q ' "${cmd[@]}")")
  		fi
 -		local lockfile="$(pacman-conf DBPath)/db.lck"
-+		local lockfile="$(psp-pacman-conf DBPath)/db.lck"
++		local lockfile="$(${PACMAN_CONF_EXECUTABLE} DBPath)/db.lck"
  		while [[ -f $lockfile ]]; do
  			local timer=0
  			msg "$(gettext "Pacman is currently in use, please wait...")"
-@@ -1123,7 +1123,7 @@ unset var
+@@ -1123,7 +1125,7 @@ unset var
  PACKAGER=${PACKAGER:-"Unknown Packager"}
  
  # set pacman command if not already defined
 -PACMAN=${PACMAN:-pacman}
-+PACMAN=${PACMAN:-psp-pacman}
++PACMAN=${PACMAN:-${PACMAN_EXECUTABLE}}
  # save full path to command as PATH may change when sourcing /etc/profile
  PACMAN_PATH=$(type -P $PACMAN)
  
+-- 
+2.20.1
+
