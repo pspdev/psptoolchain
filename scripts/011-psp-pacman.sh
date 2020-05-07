@@ -9,12 +9,13 @@
  set -e
 
  PACMAN_VERSION="5.2.1"
+ INSTALL_DIR="${PSPDEV}/share/pacman"
 
  ## Download the source code
- git clone git://git.archlinux.org/pacman.git
+download_and_extract https://sources.archlinux.org/other/pacman/pacman-${PACMAN_VERSION}.tar.gz pacman-${PACMAN_VERSION}
  
  ## Enter the source directory
- cd pacman
+ cd pacman-${PACMAN_VERSION}
 
  ## Apply patch
  patch -p1 < ../../patches/pacman-${PACMAN_VERSION}.patch
@@ -28,15 +29,15 @@ python3 -m venv venv
 
  ## Build
  meson build
- meson configure build -Dprefix=${PSPDEV}/share/pacman -Dbuildscript=PSPBUILD -Droot-dir=${PSPDEV}/psp -Ddoc=disabled
+ meson configure build -Dprefix=${INSTALL_DIR} -Dbuildscript=PSPBUILD -Droot-dir=${PSPDEV}/psp -Ddoc=disabled -Dbash-completion=false
  cd build
  ninja install
  cd ..
  
  ## Overwrite config files
- cp -f ../../patches/makepkg.conf ${PSPDEV}/etc/makepkg.conf
- cp -f ../../patches/pacman.conf ${PSPDEV}/etc/pacman.conf
+ cp -f ../../patches/makepkg.conf ${INSTALL_DIR}/etc/makepkg.conf
+ cp -f ../../patches/pacman.conf ${INSTALL_DIR}/etc/pacman.conf
 
  ## Make symlinks
- ln -sf ${PSPDEV}/share/pacman/bin/pacman ${PSPDEV}/bin/psp-pacman
- ln -sf ${PSPDEV}/share/pacman/bin/makepkg ${PSPDEV}/bin/psp-makepkg
+ ln -sf ${INSTALL_DIR}/bin/pacman ${PSPDEV}/bin/psp-pacman
+ ln -sf ${INSTALL_DIR}/bin/makepkg ${PSPDEV}/bin/psp-makepkg
