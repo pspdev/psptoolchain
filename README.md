@@ -8,7 +8,7 @@ How do I use it?
 
 1. Set up your environment by installing the following software:
 
-        autoconf, automake, bison, bzip2, flex, gcc, g++/gcc-c++, gzip, libusb-dev, make, ncurses, patch, readline, subversion, texinfo, xz-utils, wget, libelf, git
+        autoconf, automake, bison, bzip2, cmake, doxygen, flex, g++/gcc-c++, gcc, git, gzip, libarchive, libcurl, libelf, libssl, libusb-dev, make, ncurses, patch, pkg-config, python3, readline, subversion, tar, texinfo, unzip, wget, xz-utils
 
 2. Set the PSPDEV and PATH environmental variables:
 
