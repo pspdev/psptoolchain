@@ -48,10 +48,11 @@ Ubuntu/Debian
 OSX
 ---
 
-1. Install [`port`][MacPorts] or [`brew`][HomeBrew].
+1. Install [`port`][MacPorts] or [`brew`][Homebrew].
 2. Install all the libraries you will need before building by running:
         
     sudo ./prepare-mac-os.sh
+- You can also use `-b` or `--brew` for Homebrew, and `-p` or `--port` for MacPorts.
 
 3. Build and install the toolchain and SDK.
         
