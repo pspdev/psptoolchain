@@ -1,14 +1,8 @@
 #!/bin/bash
 
 # Install build dependencies
-sudo apt-get install $@ g++ build-essential autoconf automake cmake doxygen \
-  bison flex libncurses5-dev libsdl1.2-dev libreadline-dev libusb-dev texinfo \
-  libelf-dev libfreetype6-dev zlib1g-dev libtool libtool-bin subversion git \
-  tcl wget unzip bzip2 gzip xz-utils
-
-# Make `/bin/sh` an alias for `/bin/bash` instead of `/bin/dash` - which is
-# faster, but doesn't play nice with some autotools scripts in psp-ports.
-# The `sudo true` is to make sure we don't pipe into a `sudo` password prompt
-# instead of the intended program.
-sudo true; echo "dash dash/sh boolean false" | sudo debconf-set-selections
-sudo dpkg-reconfigure --frontend=noninteractive dash
+sudo apt-get install $@ \
+  autoconf automake bison bzip2 cmake doxygen flex g++ gcc git gzip \
+  libarchive-dev libcurl4-openssl-dev libelf-dev libncurses5-dev \
+  libreadline-dev libssl-dev libtool-bin libusb-dev make patch pkg-config \
+  python3 python3-venv subversion tar tcl texinfo unzip wget xz-utils
