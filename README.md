@@ -11,9 +11,9 @@ How do I use it?
 1. Set up your environment by installing the following software:
 
         autoconf, automake, bison, bzip2, cmake, doxygen, flex, g++/gcc-c++,
-        gcc, git, gzip, libarchive, libcurl, libelf, libssl, libusb-dev, make,
-        ncurses, patch, pkg-config, python3, readline, subversion, tar, tcl,
-        texinfo, unzip, wget, xz-utils
+        gcc, git, gzip, libarchive, libcurl, libelf, libgpgme, libssl,
+        libusb-dev, m4, make, ncurses, patch, pkg-config, python3, readline,
+        subversion, tar, tcl, texinfo, unzip, wget, xz-utils
 
 2. Set the PSPDEV and PATH environmental variables:
 
