@@ -66,6 +66,9 @@ check_header    libelf          elf.h libelf.h libelf/libelf.h gelf.h libelf/gel
 check_header    libusb          usb.h
 check_header    ncurses         ncurses.h ncurses/ncurses.h
 check_header    zlib            zlib.h
+check_header    libarchive      archive.h
+check_header    libcurl         curl/curl.h
+check_header    libssl          openssl/ssl.h
 
 check_program   git
 check_program   svn
@@ -80,8 +83,7 @@ check_program   cmake
 check_program   make
 check_program   gcc
 check_program   g++
-
-# check_program   freetype-config
+check_program	m4
 
 check_program   bison
 check_program   flex
@@ -89,6 +91,11 @@ check_program   tclsh
 
 check_program   makeinfo
 check_program   doxygen
+
+check_program   gpgme-config
+check_program   pkg-config
+
+check_program   python3
 
 # Sometimes things will be a little different on Mac OS X...
 if [ "$(uname)" == "Darwin" ]; then
