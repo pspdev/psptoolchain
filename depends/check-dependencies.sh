@@ -81,6 +81,7 @@ check_program   bison
 check_program   flex
 check_program   tclsh
 check_program   cmp
+check_program   which
 
 check_program   makeinfo
 check_program   doxygen
