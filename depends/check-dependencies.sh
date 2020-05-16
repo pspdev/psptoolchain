@@ -12,11 +12,6 @@ header_paths=(
     # -- Add more locations here --
 )
 
-aclocal_paths=(
-    "/usr/share/aclocal"
-    "/usr/local/share/aclocal"
-)
-
 missing_depends=()
 
 function check_header
@@ -53,14 +48,10 @@ function check_program
     missing_depends+=($1); return 1
 }
 
-function check_aclocal
-{
-    for place in ${aclocal_paths[@]}; do
-        [ -f "$place/$2" ] && return 0
-    done
-    
-    missing_depends+=($1); return 1
-}
+# macOS catalina does not ship headers in default directory anymore
+if [ "$(uname)" == "Darwin" ]; then
+  header_paths+=("`xcrun --show-sdk-path`/usr/include")
+fi
 
 check_header    libelf          elf.h libelf.h libelf/libelf.h gelf.h libelf/gelf.h
 check_header    libusb          usb.h
