@@ -75,7 +75,7 @@ check_program   cmake
 check_program   make
 check_program   gcc
 check_program   g++
-check_program	m4
+check_program   m4
 
 check_program   bison
 check_program   flex
