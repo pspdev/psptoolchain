@@ -79,6 +79,7 @@ check_program   m4
 
 check_program   bison
 check_program   flex
+check_program   tclsh
 check_program   cmp
 check_program   which
 
