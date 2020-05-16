@@ -67,6 +67,7 @@ check_program   wget
 check_program   patch
 check_program   tar
 check_program   unzip
+check_program   bzip2
 
 check_program   autoconf
 check_program   automake
