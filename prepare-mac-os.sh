@@ -57,7 +57,7 @@ fi
 # actual installation
 if [ $try_brew -eq 1 ]; then
 	CURRENT_USER=$(stat -f '%Su' /dev/console)
-	sudo -u $CURRENT_USER brew install autoconf automake cmake doxygen gnu-sed libelf libool libusb libusb-compat pkg-config wget xz
+	sudo -u $CURRENT_USER brew install autoconf automake cmake doxygen gnu-sed libelf libtool libusb libusb-compat pkg-config wget xz
 	exit
 fi
 if [ $try_port -eq 1 ]; then
