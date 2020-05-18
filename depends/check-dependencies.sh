@@ -60,6 +60,7 @@ check_header    zlib            zlib.h
 check_header    libarchive      archive.h
 check_header    libcurl         curl/curl.h
 check_header    libssl          openssl/ssl.h
+check_header    gpgme           gpgme.h
 
 check_program   git
 check_program   svn
@@ -68,6 +69,7 @@ check_program   patch
 check_program   tar
 check_program   unzip
 check_program   bzip2
+check_program   xz
 
 check_program   autoconf
 check_program   automake
@@ -86,7 +88,6 @@ check_program   which
 check_program   makeinfo
 check_program   doxygen
 
-check_program   gpgme-config
 check_program   pkg-config
 
 check_program   python3
