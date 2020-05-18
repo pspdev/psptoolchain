@@ -82,7 +82,7 @@ check_program   m4
 check_program   bison
 check_program   flex
 check_program   tclsh
-check_program   cmp
+check_program   diff
 check_program   which
 
 check_program   makeinfo
