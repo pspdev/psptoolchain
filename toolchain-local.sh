@@ -7,5 +7,5 @@ if [ $1 ]; then
   ./toolchain.sh $@
 else
   ## Run the all build scripts.
-  ./toolchain.sh $(seq 1 11)
+  ./toolchain.sh $(seq 1 12)
 fi
