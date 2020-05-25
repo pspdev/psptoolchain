@@ -110,7 +110,7 @@ fi
 
 if [ ${#missing_depends[@]} -ne 0 ]; then
     echo "Couldn't find dependencies:"
-    for dep in $missing_depends; do
+    for dep in "${missing_depends[@]}"; do
         echo "  - $dep"
     done
 	exit 1
