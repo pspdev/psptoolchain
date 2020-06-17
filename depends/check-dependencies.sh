@@ -54,14 +54,10 @@ if [ "$(uname)" == "Darwin" ]; then
 fi
 
 check_header    libelf          elf.h libelf.h libelf/libelf.h gelf.h libelf/gelf.h
-check_header    libusb          usb.h
 check_header    ncurses         ncurses.h ncurses/ncurses.h
 check_header    zlib            zlib.h
-check_header    libcurl         curl/curl.h
-check_header    gpgme           gpgme.h
 
 check_program   git
-check_program   svn
 check_program   wget
 check_program   patch
 check_program   tar
@@ -71,35 +67,24 @@ check_program   xz
 
 check_program   autoconf
 check_program   automake
-check_program   cmake
 check_program   make
 check_program   gcc
 check_program   g++
-check_program   m4
 
 check_program   bison
 check_program   flex
-check_program   tclsh
 check_program   diff
 check_program   which
 
 check_program   makeinfo
-check_program   doxygen
-
-check_program   python3
 
 # Sometimes things will be a little different on Mac OS X...
 if [ "$(uname)" == "Darwin" ]; then
     # readline should be checked carefully on OS X to save us from being
     # fooled by BSD libedit.
-    # libarchive and openssl are keg-only
     if brew --version 1>/dev/null 2>&1; then
         header_paths+=("`brew --prefix`/opt/readline/include")
-        header_paths+=("`brew --prefix`/opt/libarchive/include")
-        header_paths+=("`brew --prefix`/opt/openssl/include")
     fi
-    check_header_nosys libarchive   archive.h
-    check_header_nosys libssl       openssl/ssl.h
 
     check_header_nosys readline     readline.h readline/readline.h
 
@@ -107,8 +92,6 @@ if [ "$(uname)" == "Darwin" ]; then
     # the one comes along with OS X.
     check_program      glibtoolize
 else
-    check_header       libarchive   archive.h
-    check_header       libssl       openssl/ssl.h
     check_header       readline     readline.h readline/readline.h
     check_program      libtoolize
 fi
