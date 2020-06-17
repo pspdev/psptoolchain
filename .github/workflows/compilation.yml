@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  repository_dispatch:
+    types: [run_build, run_release, run_build_pspsdk, run_release_pspsdk]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install on Ubuntu
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install autoconf automake bison bzip2 flex gettext g++ \
+                                gcc git gzip libelf-dev libncurses5-dev \
+                                libreadline-dev libtool-bin make patch \
+                                subversion tar texinfo unzip wget xz-utils
+
+    - name: Install on Mac
+      if: matrix.os == 'macOS-latest'
+      run: |
+        brew update
+        brew install autoconf automake bash bzip2 coreutils gnu-sed libelf \
+                     libtool wget xz
+
+    - name: Runs all stages
+      run: |
+        export PSPDEV=$PWD/pspdev
+        export PATH=$PATH:$PSPDEV/bin
+        ./toolchain.sh
