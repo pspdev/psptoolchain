@@ -93,7 +93,7 @@ if [ "$(uname)" == "Darwin" ]; then
     # readline should be checked carefully on OS X to save us from being
     # fooled by BSD libedit.
     # libarchive and openssl are keg-only
-    if brew --version 1>/dev/null 2>&1; then
+    if command -v brew 1>/dev/null 2>&1; then
         header_paths+=("`brew --prefix`/opt/readline/include")
         header_paths+=("`brew --prefix`/opt/libarchive/include")
         header_paths+=("`brew --prefix`/opt/openssl/include")

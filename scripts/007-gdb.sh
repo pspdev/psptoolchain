@@ -26,7 +26,7 @@ if [ "$(uname)" == "Darwin" ]; then
     export LDFLAGS="$LDFLAGS -L/opt/local/lib"
   fi
   # homebrew
-  if brew --version 1>/dev/null 2>&1; then
+  if command -v brew 1>/dev/null 2>&1; then
     export CFLAGS="$CFLAGS -I`brew --prefix`/opt/readline/include"
     export CPPFLAGS="$CPPFLAGS -I`brew --prefix`/opt/readline/include"
     export LDFLAGS="$LDFLAGS -L`brew --prefix`/opt/readline/lib"

@@ -16,7 +16,7 @@
      export C_INCLUDE_PATH="/opt/local/include"
      export CPLUS_INCLUDE_PATH="/opt/local/include"
      export LIBRARY_PATH="/opt/local/lib"
-   elif brew --version 1>/dev/null 2>&1; then # Homebrew
+   elif command -v brew 1>/dev/null 2>&1; then # Homebrew
      HOMEBREW_PREFIX=$(brew --prefix)
      export C_INCLUDE_PATH="$HOMEBREW_PREFIX/include:$HOMEBREW_PREFIX/opt/readline/include"
      export CPLUS_INCLUDE_PATH="$C_INCLUDE_PATH"
