@@ -26,15 +26,27 @@
  ## Fetch the build scripts.
  BUILD_SCRIPTS=(`ls ../scripts/*.sh | sort`)
 
- ## If specific steps were requested...
- if [ $1 ]; then
+if [ $1 ]; then
+  # Sort and run the requested build scripts.
+  ARGS=(`printf "%.2d\n" $* | sort -n`)
 
-  ## Run the requested build scripts.
-  for STEP in $@; do "${BUILD_SCRIPTS[$STEP-1]}" || { echo "${BUILD_SCRIPTS[$STEP-1]}: Failed."; exit 1; } done
-
- else
-
-  ## Run the all build scripts.
-  for SCRIPT in ${BUILD_SCRIPTS[@]}; do "$SCRIPT" || { echo "$SCRIPT: Failed."; exit 1; } done
-
- fi
+  for (( i = 0; i < ${#ARGS[*]}; i++)); do
+    found=false
+    for (( j = 0; j < ${#BUILD_SCRIPTS[*]}; j++ )) ; do
+	if [ `echo ${BUILD_SCRIPTS[j]} | grep -c ${ARGS[i]}` != 0  ]; then
+		found=true
+   		"${BUILD_SCRIPTS[j]}" || { echo "${BUILD_SCRIPTS[j]}: Failed."; exit 1; }
+	else
+		found=false
+	fi
+    done
+    if [ !found ]; then
+    	{ echo "ERROR: Script not found: ${ARGS[i]}";exit 1; }
+    fi
+  done
+else
+  # Run all the existing build scripts.
+  for SCRIPT in ${BUILD_SCRIPTS[@]}; do
+    "$SCRIPT" || { echo "$SCRIPT: Failed."; exit 1; }
+  done
+fi

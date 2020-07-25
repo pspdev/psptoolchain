@@ -2,10 +2,4 @@ export PSPDEV=$(pwd)/pspdev
 export PATH=$PATH:$PSPDEV/bin
 
 ## If specific steps were requested...
-if [ $1 ]; then
-  ## Run the requested build scripts.
-  ./toolchain.sh $@
-else
-  ## Run the all build scripts.
-  ./toolchain.sh $(seq 1 12)
-fi
+./toolchain.sh $@ || { echo "ERROR: Could not run the toolchain script."; exit 1; }
