@@ -29,12 +29,12 @@
 # If specific steps were requested...
 if [ $1 ]; then
   # Sort and run the requested build scripts.
-  ARGS=(`printf "%.2d\n" $((10#$*)) | sort -n`)
+  ARGS=(`printf "%.3d\n" $((10#$*)) | sort -n`)
 
   for ARG in ${ARGS[@]}; do
     found=0
     for SCRIPT in ${BUILD_SCRIPTS[@]}; do
-      if [ `basename $SCRIPT | cut -c -2` -eq $ARG ]; then
+      if [ `basename $SCRIPT | cut -c -3` -eq $ARG ]; then
         found=1
         "$SCRIPT" || { echo "$SCRIPT: Failed."; exit 1; }
       fi

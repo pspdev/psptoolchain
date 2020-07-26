@@ -1,6 +1,5 @@
 #!/bin/bash
 # insight-6.8.sh by Naomi Peori (naomi@peori.ca)
-exit;
 
  ## Exit on errors
  set -e
