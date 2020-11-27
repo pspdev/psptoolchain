@@ -6,7 +6,7 @@
  set -e
 
  ## Download the source code if it does not already exist.
- clone_git_repo github.com int-0 ebootsigner
+ clone_git_repo github.com pspdev ebootsigner
 
  ## Enter the source directory.
  cd ebootsigner
