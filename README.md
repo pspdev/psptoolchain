@@ -79,7 +79,7 @@ Where do I go from here?
 
 Visit the following sites to learn more:
 
-[PSP-DEV Wiki](http://darkhaven3.com/psp-dev/wiki/)
+[PSP-DEV Wiki](https://psp-dev.org/)
 
 [PSP Homebrew Community Discord](https://discord.gg/bePrj9W)
 

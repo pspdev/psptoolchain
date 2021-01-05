@@ -18,11 +18,23 @@ patch -p1 < ../../patches/gdb-"$GDB_VERSION"-fixes.patch
 mkdir build-psp
 cd build-psp
 
+if [ "$(uname)" == "Darwin" ]; then
+  # macports
+  if [ -d "/opt/local/include" -a -d "/opt/local/lib" ]; then
+    export CFLAGS="$CFLAGS -I/opt/local/include"
+    export CPPFLAGS="$CPPFLAGS -I/opt/local/include"
+    export LDFLAGS="$LDFLAGS -L/opt/local/lib"
+  fi
+  # homebrew
+  if command -v brew 1>/dev/null 2>&1; then
+    export CFLAGS="$CFLAGS -I`brew --prefix`/opt/readline/include"
+    export CPPFLAGS="$CPPFLAGS -I`brew --prefix`/opt/readline/include"
+    export LDFLAGS="$LDFLAGS -L`brew --prefix`/opt/readline/lib"
+  fi
+fi
+
 # Configure the build.
- CFLAGS="$CFLAGS -I/opt/local/include" \
-   CPPFLAGS="$CPPFLAGS -I/opt/local/include" \
-   LDFLAGS="$LDFLAGS -L/opt/local/lib" \
-  ../configure --prefix="$PSPDEV" --target="psp" --disable-werror --disable-nls \
+../configure --prefix="$PSPDEV" --target="psp" --disable-werror --disable-nls \
   --with-system-zlib --with-system-readline
 
 # Compile and install.
