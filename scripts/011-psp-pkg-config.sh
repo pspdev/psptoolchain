@@ -5,7 +5,7 @@
 set -e
 
 # Download the source code.
-clone_git_repo github.com pspdev psp-pkgconf
+git clone https://github.com/pspdev/psp-pkgconf --depth=1
 
 # Enter the source directory.
 cd psp-pkgconf

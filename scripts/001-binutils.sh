@@ -7,12 +7,12 @@ set -e
 BINUTILS_VERSION=2.23.2
 
 # Download the source code if it does not already exist.
-download_and_extract https://ftp.gnu.org/pub/gnu/binutils/binutils-"$BINUTILS_VERSION".tar.bz2 binutils-"$BINUTILS_VERSION"
-
+git clone https://github.com/pspdev/binutils --depth=1
+#  clone_git_repo github.com pspdev binutils
 # Enter the source directory and patch the source code.
-cd binutils-"$BINUTILS_VERSION"
-patch -p1 < ../../patches/binutils-"$BINUTILS_VERSION"-PSP.patch
-
+cd binutils
+#-"$BINUTILS_VERSION"
+# patch -p1 < ../../patches/binutils-"$BINUTILS_VERSION"-PSP.patch
 
 # Create and enter the build directory.
 mkdir build-psp

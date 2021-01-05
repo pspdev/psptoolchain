@@ -7,12 +7,13 @@ set -e
 GDB_VERSION=7.5.1
 
 # Download the source code if it does not already exist.
-download_and_extract https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.bz2 gdb-$GDB_VERSION
+git clone https://github.com/pspdev/gdb --depth=1
 
 # Enter the source directory and patch the source code.
-cd gdb-"$GDB_VERSION"
-patch -p1 < ../../patches/gdb-"$GDB_VERSION"-PSP.patch
-patch -p1 < ../../patches/gdb-"$GDB_VERSION"-fixes.patch
+cd gdb
+# -"$GDB_VERSION"
+# patch -p1 < ../../patches/gdb-"$GDB_VERSION"-PSP.patch
+# patch -p1 < ../../patches/gdb-"$GDB_VERSION"-fixes.patch
 
 # Create and enter the build directory.
 mkdir build-psp

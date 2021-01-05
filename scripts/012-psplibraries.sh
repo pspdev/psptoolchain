@@ -9,8 +9,7 @@
  set -e
 
  ## Download the source code.
- clone_git_repo github.com pspdev psplibraries
-
+    git clone https://github.com/pspdev/psplibraries --depth=1
  ## Enter the source directory.
  cd psplibraries
 

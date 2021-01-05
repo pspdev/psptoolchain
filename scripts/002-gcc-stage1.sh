@@ -12,7 +12,8 @@
  set -e
 
  ## Download the source code if it does not already exist.
- download_and_extract https://ftp.gnu.org/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz gcc-$GCC_VERSION
+ git clone https://github.com/pspdev/gcc -b gcc-9.3.0-psp --depth=1
+clone_git_repo github.com pspdev gcc gcc-9.3.0-psp 
 
  ## Download the library source code if it does not already exist.
  download_and_extract https://ftp.gnu.org/gnu/gmp/gmp-$GMP_VERSION.tar.bz2 gmp-$GMP_VERSION
@@ -21,8 +22,8 @@
  download_and_extract http://isl.gforge.inria.fr/isl-$ISL_VERSION.tar.gz isl-$ISL_VERSION
 
  ## Enter the source directory and patch the source code.
- cd gcc-$GCC_VERSION
- patch -p1 < ../../patches/gcc-$GCC_VERSION-PSP.patch
+ cd gcc
+#  patch -p1 < ../../patches/gcc-$GCC_VERSION-PSP.patch
 
  ## Unpack the library source code.
  ln -fs ../gmp-$GMP_VERSION gmp

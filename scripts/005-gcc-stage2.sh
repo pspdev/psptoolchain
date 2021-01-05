@@ -13,26 +13,26 @@
  set -e
 
  ## Download the source code if it does not already exist.
- download_and_extract https://ftp.gnu.org/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz gcc-$GCC_VERSION
+# clone_git_repo github.com pspdev gcc gcc-9.3.0-psp 
+# git clone https://github.com/pspdev/gcc -b gcc-9.3.0-psp --depth=1
+#  ## Download the library source code if it does not already exist.
+#  download_and_extract https://ftp.gnu.org/gnu/gmp/gmp-$GMP_VERSION.tar.bz2 gmp-$GMP_VERSION
+#  download_and_extract https://ftp.gnu.org/gnu/mpc/mpc-$MPC_VERSION.tar.gz mpc-$MPC_VERSION
+#  download_and_extract https://ftp.gnu.org/gnu/mpfr/mpfr-$MPFR_VERSION.tar.bz2 mpfr-$MPFR_VERSION
+#  download_and_extract http://isl.gforge.inria.fr/isl-$ISL_VERSION.tar.gz isl-$ISL_VERSION
 
- ## Download the library source code if it does not already exist.
- download_and_extract https://ftp.gnu.org/gnu/gmp/gmp-$GMP_VERSION.tar.bz2 gmp-$GMP_VERSION
- download_and_extract https://ftp.gnu.org/gnu/mpc/mpc-$MPC_VERSION.tar.gz mpc-$MPC_VERSION
- download_and_extract https://ftp.gnu.org/gnu/mpfr/mpfr-$MPFR_VERSION.tar.bz2 mpfr-$MPFR_VERSION
- download_and_extract http://isl.gforge.inria.fr/isl-$ISL_VERSION.tar.gz isl-$ISL_VERSION
+#  ## Enter the source directory and patch the source code.
+  cd gcc
+# #  patch -p1 -i ../../patches/gcc-$GCC_VERSION-PSP.patch
 
- ## Enter the source directory and patch the source code.
- cd gcc-$GCC_VERSION
- patch -p1 -i ../../patches/gcc-$GCC_VERSION-PSP.patch
-
- ## Unpack the library source code.
- ln -fs ../gmp-$GMP_VERSION gmp
- ln -fs ../mpc-$MPC_VERSION mpc
- ln -fs ../mpfr-$MPFR_VERSION mpfr
- ln -fs ../isl-$ISL_VERSION isl
+#  ## Unpack the library source code.
+#  ln -fs ../gmp-$GMP_VERSION gmp
+#  ln -fs ../mpc-$MPC_VERSION mpc
+#  ln -fs ../mpfr-$MPFR_VERSION mpfr
+#  ln -fs ../isl-$ISL_VERSION isl
 
  ## Create and enter the build directory.
- mkdir build-psp
+#  mkdir build-psp
  cd build-psp
 
  ## Under macOS we need the gnu variant of sed
