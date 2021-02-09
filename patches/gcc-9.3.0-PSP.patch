@@ -730,24 +730,9 @@ diff --unified -rN a/gcc/config/mips/psp.h b/gcc/config/mips/psp.h
 diff --unified -rN a/gcc/config/mips/t-allegrex b/gcc/config/mips/t-allegrex
 --- a/gcc/config/mips/t-allegrex	1970-01-01 01:00:00.000000000 +0100
 +++ b/gcc/config/mips/t-allegrex	2019-04-11 11:48:30.940991455 +0200
-@@ -0,0 +1,29 @@
-+# Suppress building libgcc1.a, since the MIPS compiler port is complete
-+# and does not need anything from libgcc1.a.
-+LIBGCC1 =
-+CROSS_LIBGCC1 =
-+
-+EXTRA_MULTILIB_PARTS = crtbegin.o crtend.o crti.o crtn.o
+@@ -0,0 +1,14 @@
 +# Don't let CTOR_LIST end up in sdata section.
 +CRTSTUFF_T_CFLAGS = -G 0
-+
-+# Assemble startup files.
-+$(T)crti.o: $(srcdir)/config/mips/crti.asm $(GCC_PASSES)
-+	$(GCC_FOR_TARGET) $(GCC_CFLAGS) $(MULTILIB_CFLAGS) $(INCLUDES) \
-+	-c -o $(T)crti.o -x assembler-with-cpp $(srcdir)/config/mips/crti.asm
-+
-+$(T)crtn.o: $(srcdir)/config/mips/crtn.asm $(GCC_PASSES)
-+	$(GCC_FOR_TARGET) $(GCC_CFLAGS) $(MULTILIB_CFLAGS) $(INCLUDES) \
-+	-c -o $(T)crtn.o -x assembler-with-cpp $(srcdir)/config/mips/crtn.asm
 +
 +# We must build libgcc2.a with -G 0, in case the user wants to link
 +# without the $gp register.
@@ -834,27 +819,10 @@ diff --unified -rN a/libgcc/config/mips/psp.h b/libgcc/config/mips/psp.h
 diff --unified -rN a/libgcc/config/mips/t-allegrex b/libgcc/config/mips/t-allegrex
 --- a/libgcc/config/mips/t-allegrex	1970-01-01 01:00:00.000000000 +0100
 +++ b/libgcc/config/mips/t-allegrex	2019-04-11 11:48:30.940991455 +0200
-@@ -0,0 +1,20 @@
-+# Suppress building libgcc1.a, since the MIPS compiler port is complete
-+# and does not need anything from libgcc1.a.
-+LIBGCC1 =
-+CROSS_LIBGCC1 =
-+
-+EXTRA_MULTILIB_PARTS = crtbegin.o crtend.o crti.o crtn.o
-+# Don't let CTOR_LIST end up in sdata section.
-+CRTSTUFF_T_CFLAGS = -G 0
-+
+@@ -0,0 +1,3 @@
 +# We must build libgcc2.a with -G 0, in case the user wants to link
 +# without the $gp register.
-+TARGET_LIBGCC2_CFLAGS = -G 0
-+
-+# Build the libraries for both hard and soft floating point
-+
-+MULTILIB_OPTIONS = 
-+MULTILIB_DIRNAMES = 
-+
-+LIBGCC = stmp-multilib
-+INSTALL_LIBGCC = install-multilib
++HOST_LIBGCC2_CFLAGS += -G 0
 diff --unified -rN a/libgcc/config/t-hardfp-sf b/libgcc/config/t-hardfp-sf
 --- a/libgcc/config/t-hardfp-sf	1970-01-01 01:00:00.000000000 +0100
 +++ b/libgcc/config/t-hardfp-sf	2019-04-11 11:48:30.968991312 +0200
