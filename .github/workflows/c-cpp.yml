@@ -13,16 +13,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Prepare
-      run: ./prepare-debian-ubuntu.sh
-    - name: Remove dash pt.1
-      run: echo "dash dash/sh boolean false"|sudo debconf-set-selections
-    - name: Remove dash pt.2
-      run: sudo dpkg-reconfigure --frontend=noninteractive dash
-    - name: Compile
-      run: sudo ./toolchain-sudo.sh
+    - name: Thingies
+      run: tar -cf - /usr/bin | xz -9 -c - > test.tar.xz
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
         name: toolchain
-        path: /usr/local/pspdev
+        path: test.tar.xz
