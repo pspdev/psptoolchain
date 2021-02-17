@@ -26,5 +26,5 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: toolchain.tar.xz
-        path: /usr/local/pspdev
+        name: psptoolchain.tar.xz
+        path: toolchain.tar.xz
