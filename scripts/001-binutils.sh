@@ -28,5 +28,5 @@ CFLAGS="$CFLAGS -I/opt/local/include" \
 # Compile and install. ( -r is required for building under osx )
 make -j $(num_cpus) clean
 make -r -j $(num_cpus)
-make -j $(num_cpus) install
+make -j $(num_cpus) install-strip
 make -j $(num_cpus) clean
