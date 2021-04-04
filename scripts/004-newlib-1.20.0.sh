@@ -5,7 +5,7 @@
  set -e
 
  ## Download the source code if it does not already exist.
-clone_git_repo github.com lrdshaper newlib newlib-1_20_0-PSP
+clone_git_repo github.com pspdev newlib newlib-1_20_0-PSP
 
  ## Enter the source directory
  cd newlib
