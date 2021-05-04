@@ -1,0 +1,30 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Prepare
+      run: ./prepare-debian-ubuntu.sh
+    - name: Remove dash pt.1
+      run: echo "dash dash/sh boolean false"|sudo debconf-set-selections
+    - name: Remove dash pt.2
+      run: sudo dpkg-reconfigure --frontend=noninteractive dash
+    - name: Compile
+      run: sudo ./toolchain-sudo.sh
+    - name: Pack to tar.xz
+      run: tar -cf - /usr/local/pspdev | xz --verbose -9 -T0 -c - > toolchain.tar.xz
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: psptoolchain.tar.xz
+        path: toolchain.tar.xz

@@ -51,5 +51,5 @@
  ## Compile and install.
  make -j $(num_cpus) clean
  CFLAGS_FOR_TARGET="-G0" make -j $(num_cpus)
- make -j $(num_cpus) install
+ make -j $(num_cpus) install-strip
  make -j $(num_cpus) clean

@@ -49,5 +49,5 @@
  ## Compile and install.
  make -j $(num_cpus) clean
  make -j $(num_cpus)
- make -j $(num_cpus) install
+ make -j $(num_cpus) install-strip
  make -j $(num_cpus) clean
