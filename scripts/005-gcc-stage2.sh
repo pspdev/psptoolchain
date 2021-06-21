@@ -46,7 +46,7 @@
    CPPFLAGS="$CPPFLAGS -I/opt/local/include" \
    LDFLAGS="$LDFLAGS -L/opt/local/lib" \
    ../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c,c++" \
-   --enable-lto --with-newlib --enable-cxx-flags="-G0"
+   --enable-lto --with-newlib --enable-cxx-flags="-G0" -with-sysroot="$PSPDEV"
 
  ## Compile and install.
  make -j $(num_cpus) clean

@@ -44,7 +44,7 @@
    CPPFLAGS="$CPPFLAGS -I/opt/local/include" \
    LDFLAGS="$LDFLAGS -L/opt/local/lib" \
    ../configure --prefix="$PSPDEV" --target="psp" --enable-languages="c" \
-   --enable-lto --with-newlib --without-headers --disable-libssp
+   --enable-lto --with-newlib --without-headers --disable-libssp -with-sysroot="$PSPDEV"
 
  ## Compile and install.
  make -j $(num_cpus) clean
