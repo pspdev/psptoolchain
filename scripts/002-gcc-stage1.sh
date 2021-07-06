@@ -3,10 +3,10 @@
 
  ## set gcc version
  GCC_VERSION=9.3.0
- GMP_VERSION=6.1.2
- MPC_VERSION=1.1.0
- MPFR_VERSION=4.0.2
- ISL_VERSION=0.21
+ GMP_VERSION=6.2.1
+ MPC_VERSION=1.2.0
+ MPFR_VERSION=4.1.0
+ ISL_VERSION=0.24
 
  ## Exit on errors
  set -e
