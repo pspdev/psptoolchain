@@ -110,7 +110,9 @@ check_program   diff
 check_program   which
 
 check_program   makeinfo
-#check_program   doxygen
+check_program   doxygen
+
+check_program   sdl-config
 
 check_program   python3
 
