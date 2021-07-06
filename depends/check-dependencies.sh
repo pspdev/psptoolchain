@@ -27,13 +27,13 @@ function check_header_path
 
 function check_header_pkg_config
 {
-    [ -x pkg-config ] && return $(true)
+    [ -x pkg-config ] && return $(false)
     pkg_str=(`pkg-config --list-all | grep $1`)
     pkg_dir=(`pkg-config ${pkg_str} --cflags-only-I`)
     pkg_inc=(`pkg-config ${pkg_str} --variable=includedir`)
     check_header_path ${pkg_inc}
     check_header_path ${pkg_dir#-I}
-    return $(false)
+    return $(true)
 }
 
 function check_header
@@ -111,8 +111,6 @@ check_program   which
 
 check_program   makeinfo
 check_program   doxygen
-
-check_program   sdl-config
 
 check_program   python3
 
