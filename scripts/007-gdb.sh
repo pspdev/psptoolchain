@@ -13,6 +13,7 @@ download_and_extract https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.bz2 gdb-$G
 cd gdb-"$GDB_VERSION"
 patch -p1 < ../../patches/gdb-"$GDB_VERSION"-PSP.patch
 patch -p1 < ../../patches/gdb-"$GDB_VERSION"-fixes.patch
+patch -p1 < ../../patches/gdb-"$GDB_VERSION"-windows.patch
 
 # Create and enter the build directory.
 mkdir build-psp

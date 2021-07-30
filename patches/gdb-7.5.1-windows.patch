@@ -1,0 +1,19 @@
+diff --git gdb-7.5/gdb/windows-termcap.c gdb-7.5/gdb/windows-termcap-good.c
+--- gdb-7.5/gdb/windows-termcap.c
++++ gdb-7.5/gdb/windows-termcap-good.c
+@@ -33,6 +33,8 @@ extern char *tgoto (const char *cap, int col, int row);
+    termcap function with the same name, suitable for use in a Windows
+    console window.  */
+ 
++#ifndef _WIN32
++
+ int
+ tgetent (char *buffer, char *termtype)
+ {
+@@ -71,3 +73,6 @@ tgoto (const char *cap, int col, int row)
+ {
+   return NULL;
+ }
++
++#endif
++
