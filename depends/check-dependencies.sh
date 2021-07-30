@@ -8,7 +8,9 @@ header_paths=(
     "/usr/include/$(uname -m)-linux-gnu" \
     "/usr/local/include/$(uname -m)-linux-gnu" \
     "/usr/include/i386-linux-gnu" \
-    "/usr/local/include/i386-linux-gnu"
+    "/usr/local/include/i386-linux-gnu" \
+    "/mingw64/include"
+
     # -- Add more locations here --
 )
 
@@ -54,14 +56,18 @@ if [ "$(uname)" == "Darwin" ]; then
 fi
 
 check_header    libelf          elf.h libelf.h libelf/libelf.h gelf.h libelf/gelf.h
-check_header    libusb          usb.h
+
+if [ "$(uname -o)" != "Msys" ]; then
+	check_header    libusb          usb.h
+fi
+
+
 check_header    ncurses         ncurses.h ncurses/ncurses.h
 check_header    zlib            zlib.h
 check_header    libcurl         curl/curl.h
 check_header    gpgme           gpgme.h
 
 check_program   git
-check_program   svn
 check_program   wget
 check_program   patch
 check_program   tar
