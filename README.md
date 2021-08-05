@@ -48,7 +48,6 @@ rm /swapfile
 Ubuntu/Debian
 -------------
 
-<<<<<<< HEAD
 1. Install the required packages by running:
 
         sudo ./prepare-debian-ubuntu.sh
