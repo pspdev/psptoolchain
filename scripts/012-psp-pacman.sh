@@ -18,4 +18,5 @@
  ./pacman.sh
  
  ## Install all available libraries
- psp-pacman -Sy $(psp-pacman -Qq)
+ psp-pacman -Sy
+ psp-pacman -S $(psp-pacman -Slq)
