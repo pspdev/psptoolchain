@@ -4,10 +4,10 @@
 # Exit on errors
 set -e
 
-BINUTILS_VERSION=2.23.2
+BINUTILS_VERSION=2.37
 
 # Download the source code if it does not already exist.
-download_and_extract https://ftp.gnu.org/pub/gnu/binutils/binutils-"$BINUTILS_VERSION".tar.bz2 binutils-"$BINUTILS_VERSION"
+download_and_extract https://ftp.gnu.org/pub/gnu/binutils/binutils-"$BINUTILS_VERSION".tar.xz binutils-"$BINUTILS_VERSION"
 
 # Enter the source directory and patch the source code.
 cd binutils-"$BINUTILS_VERSION"
