@@ -19,7 +19,7 @@
  download_and_extract https://ftp.gnu.org/gnu/gmp/gmp-$GMP_VERSION.tar.bz2 gmp-$GMP_VERSION
  download_and_extract https://ftp.gnu.org/gnu/mpc/mpc-$MPC_VERSION.tar.gz mpc-$MPC_VERSION
  download_and_extract https://ftp.gnu.org/gnu/mpfr/mpfr-$MPFR_VERSION.tar.bz2 mpfr-$MPFR_VERSION
- download_and_extract http://isl.gforge.inria.fr/isl-$ISL_VERSION.tar.gz isl-$ISL_VERSION
+#  download_and_extract http://isl.gforge.inria.fr/isl-$ISL_VERSION.tar.gz isl-$ISL_VERSION
 
  ## Enter the source directory and patch the source code.
  cd gcc-$GCC_VERSION
@@ -29,7 +29,7 @@
  ln -fs ../gmp-$GMP_VERSION gmp
  ln -fs ../mpc-$MPC_VERSION mpc
  ln -fs ../mpfr-$MPFR_VERSION mpfr
- ln -fs ../isl-$ISL_VERSION isl
+#  ln -fs ../isl-$ISL_VERSION isl
 
  ## Create and enter the build directory.
  mkdir build-psp
