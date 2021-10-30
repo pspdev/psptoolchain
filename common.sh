@@ -6,6 +6,15 @@ function num_cpus
     getconf _NPROCESSORS_ONLN
 }
 
+# Trim leading zeroes of each numerical list element 
+# Usage: trlz <numbers>
+function trlz
+{
+	for number in $@; do
+		echo $(expr $number + 0)
+	done
+}
+
 # Extracts a file based on its extension
 # Usage: extract <archive>
 function auto_extract

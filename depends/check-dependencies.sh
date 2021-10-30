@@ -14,38 +14,64 @@ header_paths=(
 
 missing_depends=()
 
+function check_header_path
+{
+	for header_path in ${header_paths[@]}; do
+    		if [ "$1" == "${header_path}" ] ; then
+			return $(false)
+		fi
+	done
+	header_paths+=( "$1" )
+	return $(true)
+}
+
+function check_header_pkg_config
+{
+    [ -x pkg-config ] && return $(false)
+    pkg_str=(`pkg-config --list-all | grep $1`)
+    pkg_dir=(`pkg-config ${pkg_str} --cflags-only-I`)
+    pkg_inc=(`pkg-config ${pkg_str} --variable=includedir`)
+    check_header_path ${pkg_inc}
+    check_header_path ${pkg_dir#-I}
+    return $(true)
+}
+
 function check_header
 {
+    check_header_pkg_config $1
+
     for place in ${header_paths[@]}; do
         for name in ${@:2}; do
-            [ -f "$place/$name" ] && return 0
+            [ -f "$place/$name" ] && return $(true)
         done
     done
     
-    missing_depends+=($1); return 1
+    missing_depends+=($1); return $(false)
 }
 
 function check_header_nosys
 {
+    check_header_pkg_config $1
+
     for place in ${header_paths[@]}; do
         if [ "${place:0:12}" != "/usr/include" ]; then
             for name in ${@:2}; do
-                [ -f "$place/$name" ] && return 0
+                [ -f "$place/$name" ] && return $(true)
             done
         fi
     done
 
-    missing_depends+=($1); return 1
+    missing_depends+=($1); return $(false)
 }
 
 function check_program
 {
     binary=${2:-$1}
     for place in ${PATH//:/ }; do
-        [ -x "$place/$binary" ] || [ -x "$place/$binary.exe" ] && return 0
+        [ -x "$place/$binary" ] || [ -x "$place/$binary.exe" ] && return $(true)
     done
     
-    missing_depends+=($1); return 1
+    missing_depends+=($1); return $(false)
 }
 
 # macOS catalina does not ship headers in default directory anymore
@@ -54,7 +80,7 @@ if [ "$(uname)" == "Darwin" ]; then
 fi
 
 check_header    libelf          elf.h libelf.h libelf/libelf.h gelf.h libelf/gelf.h
-check_header    libusb          usb.h
+check_header    libusb          usb.h libusb.h
 check_header    ncurses         ncurses.h ncurses/ncurses.h
 check_header    zlib            zlib.h
 check_header    libcurl         curl/curl.h
@@ -118,5 +144,5 @@ if [ ${#missing_depends[@]} -ne 0 ]; then
     for dep in "${missing_depends[@]}"; do
         echo "  - $dep"
     done
-	exit 1
+	exit $(false)
 fi
