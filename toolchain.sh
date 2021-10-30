@@ -20,6 +20,8 @@
  ## Fetch the depend scripts.
  DEPEND_SCRIPTS=(`ls ../depends/*.sh | sort`)
 
+ SCRIPT_PREFIX_LENGTH=3
+
  ## Run all the depend scripts.
  for SCRIPT in ${DEPEND_SCRIPTS[@]}; do "$SCRIPT" || { echo "$SCRIPT: Failed."; exit $(false); } done
 
@@ -29,11 +31,11 @@
  ## If specific steps were requested...
   if [ $1 ]; then
     # Sort and run the requested build scripts.
-    ARGS=(`printf "%.03d\n" $(trlz $@) | sort -n`)
+    ARGS=(`printf "%.0${SCRIPT_PREFIX_LENGTH}d\n" $(trlz $@) | sort -n`)
     for ARG in ${ARGS[@]}; do
       found=$(false)
       for SCRIPT in ${BUILD_SCRIPTS[@]}; do
-        if [ `basename $SCRIPT | cut -c -3` -eq $ARG ]; then
+        if [ `basename $SCRIPT | cut -c -${SCRIPT_PREFIX_LENGTH}` -eq $ARG ]; then
           found=$(true)
           "$SCRIPT" || { echo "$SCRIPT: Failed."; exit $(false); }
         fi
