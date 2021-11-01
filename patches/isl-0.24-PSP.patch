@@ -1,0 +1,77 @@
+diff -burN isl-0.24/Makefile.am isl-0.24-PSP/Makefile.am
+--- isl-0.24/Makefile.am	2021-04-25 16:10:45.000000000 +0200
++++ isl-0.24-PSP/Makefile.am	2021-11-01 06:55:48.039378251 +0100
+@@ -639,10 +639,10 @@
+ 	case $$libisl in \
+ 	'') echo Cannot find isl library name. GDB bindings not installed.;; \
+ 	*) echo $(INSTALL_DATA) $(srcdir)/libisl-gdb.py \
+-		$(DESTDIR)$(libdir)/$$libisl-gdb.py; \
+-	test -z "$(libdir)" || $(MKDIR_P) "$(DESTDIR)$(libdir)"; \
++		$(DESTDIR)$(prefix)/share/gdb/auto-load$(libdir)/$$libisl-gdb.py; \
++	test -z "$(libdir)" || $(MKDIR_P) "$(DESTDIR)$(prefix)/share/gdb/auto-load$(libdir)"; \
+ 	$(INSTALL_DATA) $(srcdir)/libisl-gdb.py \
+-	    $(DESTDIR)$(libdir)/$$libisl-gdb.py; \
++		$(DESTDIR)$(prefix)/share/gdb/auto-load$(libdir)/$$libisl-gdb.py; \
+ 	esac
+ 
+ uninstall-local:
+diff -burN isl-0.24/Makefile.in isl-0.24-PSP/Makefile.in
+--- isl-0.24/Makefile.in	2021-04-26 11:13:19.000000000 +0200
++++ isl-0.24-PSP/Makefile.in	2021-11-01 06:55:48.021378250 +0100
+@@ -2968,10 +2968,10 @@
+ 	case $$libisl in \
+ 	'') echo Cannot find isl library name. GDB bindings not installed.;; \
+ 	*) echo $(INSTALL_DATA) $(srcdir)/libisl-gdb.py \
+-		$(DESTDIR)$(libdir)/$$libisl-gdb.py; \
+-	test -z "$(libdir)" || $(MKDIR_P) "$(DESTDIR)$(libdir)"; \
++		$(DESTDIR)$(prefix)/share/gdb/auto-load$(libdir)/$$libisl-gdb.py; \
++	test -z "$(libdir)" || $(MKDIR_P) "$(DESTDIR)$(prefix)/share/gdb/auto-load$(libdir)"; \
+ 	$(INSTALL_DATA) $(srcdir)/libisl-gdb.py \
+-	    $(DESTDIR)$(libdir)/$$libisl-gdb.py; \
++	    $(DESTDIR)$(prefix)/share/gdb/auto-load$(libdir)/$$libisl-gdb.py; \
+ 	esac
+ 
+ uninstall-local:
+diff -burN isl-0.24/configure isl-0.24-PSP/configure
+--- isl-0.24/configure	2021-04-26 11:13:19.000000000 +0200
++++ isl-0.24-PSP/configure	2021-11-01 06:56:04.931378689 +0100
+@@ -20657,7 +20657,7 @@
+   HAVE_CXX11_FALSE=
+ fi
+ 
+- if test "x$with_int" == "ximath-32"; then
++ if test "x$with_int" = "ximath-32"; then
+   SMALL_INT_OPT_TRUE=
+   SMALL_INT_OPT_FALSE='#'
+ else
+@@ -20665,7 +20665,7 @@
+   SMALL_INT_OPT_FALSE=
+ fi
+ 
+-if test "x$with_int" == "ximath-32"; then :
++if test "x$with_int" = "ximath-32"; then :
+ 
+ 
+ $as_echo "#define USE_SMALL_INT_OPT /**/" >>confdefs.h
+diff -burN isl-0.24/configure.ac isl-0.24-PSP/configure.ac
+--- isl-0.24/configure.ac	2021-04-26 11:13:17.000000000 +0200
++++ isl-0.24-PSP/configure.ac	2021-11-01 06:56:04.866378687 +0100
+@@ -22,7 +22,6 @@
+ AC_PROG_CXX
+ AX_PROG_CC_FOR_BUILD
+ 
+-AX_CC_MAXOPT
+ AX_GCC_WARN_UNUSED_RESULT
+ AX_C___ATTRIBUTE__
+ 
+@@ -83,8 +82,8 @@
+ AM_CONDITIONAL(GMP_FOR_MP, test x$with_int = xgmp)
+ 
+ AM_CONDITIONAL(HAVE_CXX11, test "x$HAVE_CXX11" = "x1")
+-AM_CONDITIONAL(SMALL_INT_OPT, test "x$with_int" == "ximath-32")
+-AS_IF([test "x$with_int" == "ximath-32"], [
++AM_CONDITIONAL(SMALL_INT_OPT, test "x$with_int" = "ximath-32")
++AS_IF([test "x$with_int" = "ximath-32"], [
+ 	AC_DEFINE([USE_SMALL_INT_OPT], [], [Use small integer optimization])
+ ])
+ 
