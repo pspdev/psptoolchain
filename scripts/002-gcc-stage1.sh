@@ -21,6 +21,9 @@
  download_and_extract https://libisl.sourceforge.io/isl-$ISL_VERSION.tar.gz isl-$ISL_VERSION
 
  ## Enter the source directory and patch the source code.
+ cd gmp-$GMP_VERSION
+ patch -p1 < ../../patches/gmp-$GMP_VERSION-PSP.patch
+ cd ..
  cd isl-$ISL_VERSION
  patch -p1 < ../../patches/isl-$ISL_VERSION-PSP.patch
  cd ..
