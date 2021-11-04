@@ -1,7 +1,7 @@
 #!/bin/bash
 # toolchain-sudo.sh by Naomi Peori (naomi@peori.ca)
  
- INSTALLDIR=/opt/toolchains/psp/jopadan
+ INSTALLDIR=/usr/local/pspdev
 
  ## Enter the psptoolchain directory.
  cd "`dirname $0`" || { echo "ERROR: Could not enter the psptoolchain directory."; exit $(false)  ; }
