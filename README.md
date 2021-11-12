@@ -12,8 +12,8 @@ How do I use it?
 
         autoconf, automake, bison, bzip2, cmake, doxygen, diffutils, flex,
         g++/gcc-c++, gcc, git, gzip, libarchive, libcurl, libelf, libgpgme,
-        libssl, libtool, libusb-dev, m4, make, ncurses, patch, pkg-config,
-        python3, readline, subversion, tar, tcl, texinfo, unzip, wget, xz-utils
+        libssl, libtool, m4, make, ncurses, patch, pkg-config,
+        python3, pip, readline
 
 2. Set the PSPDEV and PATH environmental variables:
 

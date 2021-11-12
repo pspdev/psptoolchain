@@ -2,7 +2,7 @@
 
 # Install build dependencies
 sudo apt-get install $@ \
-  autoconf automake bison bzip2 cmake doxygen flex gettext g++ gcc git gzip \
-  libarchive-dev libcurl4-openssl-dev libelf-dev libgpgme-dev libncurses5-dev \
-  libreadline-dev libssl-dev libtool-bin libusb-dev m4 make patch pkg-config \
-  python3 python3-venv subversion tar tcl texinfo unzip wget xz-utils
+  bash autoconf automake make patch cmake g++ gcc git \
+  texinfo bison flex gettext pkg-config libncurses5-dev \
+  libgmp3-dev libmpfr-dev libmpc-dev libarchive openssl libtool  \
+  python3 python3-venv

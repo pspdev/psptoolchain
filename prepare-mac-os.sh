@@ -1,15 +1,5 @@
 #!/bin/sh
 
-# only needed for macports
-install_libusb() {
-	wget --continue https://downloads.sourceforge.net/project/libusb/libusb-0.1%20%28LEGACY%29/0.1.12/libusb-0.1.12.tar.gz -O libusb-legacy.tar.gz
-	rm -Rf libusb-legacy && mkdir libusb-legacy && tar --strip-components=1 --directory=libusb-legacy -xzf libusb-legacy.tar.gz
-	cd libusb-legacy
-	./configure && make CFLAGS="-Wno-error" CPPFLAGS="-Wno-error" && make install
-	cd ../
-	rm -Rf libusb-legacy && rm libusb-legacy.tar.gz
-}
-
 show_help() {
 	echo "Use '-b' or '--brew' to install packages with Homebrew, or use '-p' or '--port' to install with MacPorts."
 	echo "If left unspecified, tries Homebrew first, then MacPorts."
@@ -57,12 +47,10 @@ fi
 # actual installation
 if [ $try_brew -eq 1 ]; then
 	CURRENT_USER=$(stat -f '%Su' /dev/console)
-	sudo -u $CURRENT_USER brew install autoconf automake cmake doxygen gnu-sed libelf libtool libusb libusb-compat pkg-config wget xz
+	sudo -u $CURRENT_USER brew install autoconf automake cmake gnu-sed bash openssl libtool libarchive gettext texinfo bison flex gsl gmp mpfr
 	exit
 fi
 if [ $try_port -eq 1 ]; then
-	sudo port install autoconf automake cmake doxygen gsed libelf libtool libusb pkgconfig wget xz
-
-	install_libusb
+	sudo port install autoconf automake cmake doxygen gsed libelf libtool pkgconfig
 	exit
 fi
