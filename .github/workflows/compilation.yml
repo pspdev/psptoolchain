@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  repository_dispatch:
+    types: [run_build]
+
+jobs:
+  build-docker:
+    runs-on: ubuntu-latest
+    container: ${{ matrix.os[0] }}:latest
+    strategy:
+      matrix:
+        os: [[alpine, bash], [fedora, bash]]
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install dependencies Alpine
+      if: matrix.os[0] == 'alpine'
+      run: |
+        apk add build-base bash gcc git make autoconf automake python3 py3-pip cmake pkgconfig libarchive-dev openssl-dev gpgme-dev libtool \
+          flex bison texinfo gmp-dev mpfr-dev mpc1-dev readline-dev ncurses-dev
+    
+    - name: Install dependencies Fedora
+      if: matrix.os[0] == 'fedora'
+      run: |
+        dnf -y install @development-tools gcc gcc-c++ g++ wget git autoconf automake python3 python3-pip make cmake pkgconf \
+          libarchive-devel openssl-devel gpgme-devel libtool gettext texinfo bison flex gmp-devel mpfr-devel libmpc-devel ncurses-devel diffutils
+
+    - name: Compile Tools
+      run: |
+        export PSPDEV=$PWD/pspdev
+        export PATH=$PATH:$PSPDEV/bin
+        ./toolchain.sh
+
+    - name: Get short SHA
+      id: slug
+      run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
+    
+    - name: Compress pspdev folder
+      run: |
+        tar -zcvf pspdev.tar.gz pspdev
+    
+    - uses: actions/upload-artifact@v2
+      with:
+        name: pspdev-${{ steps.slug.outputs.sha8 }}-${{ matrix.os[0] }}
+        path: pspdev.tar.gz
+
+
+  build-VM:
+    runs-on: ${{ matrix.os[0] }}
+    strategy:
+      matrix:
+        os: [[macos-latest, bash], [macos-11, bash], [ubuntu-latest, bash], [windows-latest, msys2]]
+    defaults:
+     run:
+      shell: ${{ matrix.os[1] }} {0}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Dependencies Ubuntu 
+      if: matrix.os[0] == 'ubuntu-latest'
+      run: |
+        sudo apt-get -y install libarchive-dev libcurl4 libcurl4-openssl-dev libssl-dev libarchive-dev libgpgme-dev \
+          gettext texinfo bison flex libncurses5-dev libgmp3-dev libmpfr-dev libmpc-dev
+        echo "MSYSTEM=x64" >> $GITHUB_ENV
+
+    - name: Install Dependencies Mac
+      if: startsWith( matrix.os[0], 'macos' )
+      run: |
+        brew install automake libarchive bash openssl gpgme libtool gettext texinfo bison flex gnu-sed gsl gmp mpfr
+        echo "MSYSTEM=x64" >> $GITHUB_ENV
+
+    - name: Install in MSYS2
+      if: matrix.os[0] == 'windows-latest'
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: MINGW32
+        install: |
+          base-devel git make texinfo flex bison patch binutils mingw-w64-i686-gcc mingw-w64-i686-dlfcn mingw-w64-i686-mpc 
+          mingw-w64-i686-cmake
+        update: true
+        shell: msys2 {0}
+
+    - name: Compile Tools
+      run: |
+        export PATH="/usr/local/opt/libtool/libexec/gnubin:$PATH"
+        export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+        export PKG_CONFIG_PATH="/usr/local/opt/libarchive/lib/pkgconfig:/usr/local/opt/openssl@3/lib/pkgconfig"
+        export PSPDEV=$PWD/pspdev
+        export PATH=$PATH:$PSPDEV/bin
+        ./toolchain.sh
+    
+    - name: Get short SHA
+      id: slug
+      run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
+    
+    - name: Compress pspdev folder
+      run: |
+        tar -zcvf pspdev.tar.gz pspdev
+    
+    - uses: actions/upload-artifact@v2
+      with:
+        name: pspdev-${{ steps.slug.outputs.sha8 }}-${{ matrix.os[0] }}
+        path: pspdev.tar.gz

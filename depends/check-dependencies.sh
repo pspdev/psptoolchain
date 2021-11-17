@@ -3,12 +3,14 @@
 header_paths=(
     "/usr/include" \
     "/usr/local/include" \
+    "/usr/local/opt/" \
     "/opt/include" \
     "/opt/local/include" \
     "/usr/include/$(uname -m)-linux-gnu" \
     "/usr/local/include/$(uname -m)-linux-gnu" \
     "/usr/include/i386-linux-gnu" \
-    "/usr/local/include/i386-linux-gnu"
+    "/usr/local/include/i386-linux-gnu" \
+    "/mingw32/include/"
     # -- Add more locations here --
 )
 
@@ -48,70 +50,35 @@ function check_program
     missing_depends+=($1); return 1
 }
 
+OSVER=$(uname)
+
 # macOS catalina does not ship headers in default directory anymore
 if [ "$(uname)" == "Darwin" ]; then
   header_paths+=("`xcrun --show-sdk-path`/usr/include")
 fi
 
-check_header    libelf          elf.h libelf.h libelf/libelf.h gelf.h libelf/gelf.h
-check_header    libusb          usb.h
-check_header    ncurses         ncurses.h ncurses/ncurses.h
-check_header    zlib            zlib.h
-check_header    libcurl         curl/curl.h
-check_header    gpgme           gpgme.h
-
 check_program   git
-check_program   svn
-check_program   wget
 check_program   patch
-check_program   tar
-check_program   unzip
-check_program   bzip2
-check_program   xz
-
 check_program   autoconf
 check_program   automake
-check_program   cmake
+
+# Disabled pacman for windows
+if [ "${OSVER:0:5}" != MINGW ]; then
+check_program   python3
+check_program   pip3
+check_program   gpgme-config
+check_header    openssl             openssl/crypto.h openssl/include/openssl/crypto.h
+check_header    libarchive          archive.h libarchive/include/archive.h
+fi
+
 check_program   make
+check_program   cmake
 check_program   gcc
 check_program   g++
-check_program   m4
 
 check_program   bison
 check_program   flex
-check_program   tclsh
-check_program   diff
-check_program   which
-
-check_program   makeinfo
-check_program   doxygen
-
-check_program   python3
-
-# Sometimes things will be a little different on Mac OS X...
-if [ "$(uname)" == "Darwin" ]; then
-    # readline should be checked carefully on OS X to save us from being
-    # fooled by BSD libedit.
-    # libarchive and openssl are keg-only
-    if command -v brew 1>/dev/null 2>&1; then
-        header_paths+=("`brew --prefix`/opt/readline/include")
-        header_paths+=("`brew --prefix`/opt/libarchive/include")
-        header_paths+=("`brew --prefix`/opt/openssl/include")
-    fi
-    check_header_nosys libarchive   archive.h
-    check_header_nosys libssl       openssl/ssl.h
-
-    check_header_nosys readline     readline.h readline/readline.h
-
-    # GNU libtool will be prepended with letter 'g' to prevent conflicts with
-    # the one comes along with OS X.
-    check_program      glibtoolize
-else
-    check_header       libarchive   archive.h
-    check_header       libssl       openssl/ssl.h
-    check_header       readline     readline.h readline/readline.h
-    check_program      libtoolize
-fi
+check_program   libtoolize
 
 if [ ${#missing_depends[@]} -ne 0 ]; then
     echo "Couldn't find dependencies:"
