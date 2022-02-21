@@ -79,7 +79,7 @@ check_program   g++
 
 check_program   bison
 check_program   flex
-check_program   libtoolize glibtoolize
+check_program   libtoolize
 
 if [ ${#missing_depends[@]} -ne 0 ]; then
     echo "Couldn't find dependencies:"
