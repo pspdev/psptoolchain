@@ -25,13 +25,14 @@ if [ $# -eq 1 ]; then
 	esac
 fi
 
-if ! [ -e "/usr/local/bin/brew" -o -e "/opt/local/bin/port" ]; then
+if ! [ -e "/usr/local/bin/brew" -o -e "/opt/homebrew/bin/brew" -o -e "/opt/local/bin/port" ]; then
 	echo "Go install Homebrew from http://brew.sh/ or MacPorts from http://www.macports.org/ first, then we can talk!"
 	exit 1
 fi
 
 # sanity checks
-if [ $try_brew -eq 1 -a ! -e "/usr/local/bin/brew" ]; then
+
+if [ $try_brew -eq 1 -a ! -e "/usr/local/bin/brew" -a ! -e "/opt/homebrew/bin/brew" ]; then
 	echo "Not trying Homebrew, because it is not installed."
 	try_brew=0
 fi
@@ -47,7 +48,7 @@ fi
 # actual installation
 if [ $try_brew -eq 1 ]; then
 	CURRENT_USER=$(stat -f '%Su' /dev/console)
-	sudo -u $CURRENT_USER brew install autoconf automake cmake gnu-sed bash openssl libtool libarchive gettext texinfo bison flex gsl gmp mpfr
+	sudo -u $CURRENT_USER brew install autoconf automake cmake gnu-sed bash openssl libtool libarchive gettext texinfo bison flex gsl gmp mpfr gpgme
 	exit
 fi
 if [ $try_port -eq 1 ]; then

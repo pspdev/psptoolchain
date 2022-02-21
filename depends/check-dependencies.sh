@@ -6,6 +6,7 @@ header_paths=(
     "/usr/local/opt/" \
     "/opt/include" \
     "/opt/local/include" \
+    "/opt/homebrew/opt/" \
     "/usr/include/$(uname -m)-linux-gnu" \
     "/usr/local/include/$(uname -m)-linux-gnu" \
     "/usr/include/i386-linux-gnu" \
