@@ -52,7 +52,7 @@ jobs:
     runs-on: ${{ matrix.os[0] }}
     strategy:
       matrix:
-        os: [[macos-latest, bash], [macos-11, bash], [ubuntu-latest, bash], [windows-latest, msys2]]
+        os: [[macos-latest, bash], [ubuntu-latest, bash], [windows-latest, msys2]]
     defaults:
      run:
       shell: ${{ matrix.os[1] }} {0}
@@ -79,8 +79,8 @@ jobs:
       with:
         msystem: MINGW32
         install: |
-          base-devel git make texinfo flex bison patch binutils mingw-w64-i686-gcc mingw-w64-i686-dlfcn mingw-w64-i686-mpc 
-          mingw-w64-i686-cmake
+          base-devel git make autoconf automake libtool texinfo flex bison patch binutils 
+          mingw-w64-i686-gcc mingw-w64-i686-dlfcn mingw-w64-i686-mpc mingw-w64-i686-cmake
         update: true
         shell: msys2 {0}
 
