@@ -1,7 +1,7 @@
 # psptoolchain
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/pspdev/psptoolchain/CI?label=CI&logo=github&style=for-the-badge)](https://github.com/pspdev/psptoolchain/actions?query=workflow%3ACI)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/pspdev/psptoolchain/CI-Docker?label=CI-Docker&logo=github&style=for-the-badge)](https://github.com/pspdev/psptoolchain/actions?query=workflow%3ACI-Docker)
+[![CI](https://img.shields.io/github/actions/workflow/status/pspdev/pspdev/.github/workflows/compilation.yml?branch=master&style=for-the-badge&logo=github&label=CI)](https://github.com/pspdev/pspdev/actions?query=workflow:CI)
+[![CI-Docker](https://img.shields.io/github/actions/workflow/status/pspdev/pspdev/.github/workflows/docker.yml?branch=master&style=for-the-badge&logo=github&label=CI-Docker)](https://github.com/pspdev/pspdev/actions?query=workflow:CI-Docker)
 
 This program will automatically build and install the whole compiler and other tools used in the creation of homebrew software for the Sony PlayStation Portable® videogame system.
 
