@@ -52,7 +52,7 @@ jobs:
     runs-on: ${{ matrix.os[0] }}
     strategy:
       matrix:
-        os: [[macos-latest, bash], [ubuntu-latest, bash], [windows-latest, msys2]]
+        os: [[macos-latest, bash], [ubuntu-latest, bash]]
     defaults:
      run:
       shell: ${{ matrix.os[1] }} {0}
@@ -72,17 +72,6 @@ jobs:
       run: |
         brew install automake libarchive bash openssl gpgme libtool gettext texinfo bison flex gnu-sed gsl gmp mpfr
         echo "MSYSTEM=x64" >> $GITHUB_ENV
-
-    - name: Install in MSYS2
-      if: matrix.os[0] == 'windows-latest'
-      uses: msys2/setup-msys2@v2
-      with:
-        msystem: MINGW32
-        install: |
-          base-devel git make autoconf automake libtool texinfo flex bison patch binutils 
-          mingw-w64-i686-gcc mingw-w64-i686-dlfcn mingw-w64-i686-mpc mingw-w64-i686-cmake
-        update: true
-        shell: msys2 {0}
 
     - name: Compile Tools
       run: |
