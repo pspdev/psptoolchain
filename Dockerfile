@@ -9,7 +9,7 @@ FROM $BASE_DOCKER_ALLEGREX_IMAGE
 FROM $BASE_DOCKER_EXTRA_IMAGE
 
 # Second stage of Dockerfile
-FROM alpine:latest  
+FROM alpine:3.16  
 
 ENV PSPDEV /usr/local/pspdev
 ENV PATH $PATH:${PSPDEV}/bin
