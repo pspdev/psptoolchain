@@ -14,7 +14,7 @@ jobs:
       matrix:
         os: [[alpine, 3.16], [fedora, latest]]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Install dependencies Alpine
       if: matrix.os[0] == 'alpine'
@@ -36,13 +36,13 @@ jobs:
 
     - name: Get short SHA
       id: slug
-      run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
+      run: echo "sha8=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_OUTPUT
     
     - name: Compress pspdev folder
       run: |
         tar -zcvf pspdev.tar.gz pspdev
     
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: pspdev-${{ steps.slug.outputs.sha8 }}-${{ matrix.os[0] }}
         path: pspdev.tar.gz
@@ -58,7 +58,7 @@ jobs:
       shell: ${{ matrix.os[1] }} {0}
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Install Dependencies Ubuntu 
       if: matrix.os[0] == 'ubuntu-latest'
@@ -84,13 +84,13 @@ jobs:
     
     - name: Get short SHA
       id: slug
-      run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
+      run: echo "sha8=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_OUTPUT
     
     - name: Compress pspdev folder
       run: |
         tar -zcvf pspdev.tar.gz pspdev
     
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: pspdev-${{ steps.slug.outputs.sha8 }}-${{ matrix.os[0] }}
         path: pspdev.tar.gz
