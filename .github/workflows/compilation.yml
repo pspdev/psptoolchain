@@ -12,7 +12,7 @@ jobs:
     container: ${{ matrix.os[0] }}:${{ matrix.os[1] }}
     strategy:
       matrix:
-        os: [[alpine, 3.16], [fedora, latest]]
+        os: [[alpine, latest], [fedora, latest]]
     steps:
     - uses: actions/checkout@v3
 
