@@ -41,17 +41,3 @@ jobs:
         build-args: |
           BASE_DOCKER_ALLEGREX_IMAGE=ghcr.io/${{ github.repository_owner }}/psptoolchain-allegrex:${{ env.DOCKER_TAG }}
           BASE_DOCKER_EXTRA_IMAGE=ghcr.io/${{ github.repository_owner }}/psptoolchain-extra:${{ env.DOCKER_TAG }}
-
-    - name: Login to DockerHub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-
-    - uses: docker/build-push-action@v5
-      with:
-        push: true
-        tags: ${{ github.repository }}:${{ env.DOCKER_TAG }}
-        build-args: |
-          BASE_DOCKER_ALLEGREX_IMAGE=ghcr.io/${{ github.repository_owner }}/psptoolchain-allegrex:${{ env.DOCKER_TAG }}
-          BASE_DOCKER_EXTRA_IMAGE=ghcr.io/${{ github.repository_owner }}/psptoolchain-extra:${{ env.DOCKER_TAG }}
