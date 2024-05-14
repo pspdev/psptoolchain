@@ -12,22 +12,26 @@ jobs:
     container: ${{ matrix.os[0] }}:${{ matrix.os[1] }}
     strategy:
       matrix:
-        os: [[alpine, latest], [fedora, latest]]
+        os: [
+          [alpine, latest], 
+          [fedora, latest],
+        ]
+      fail-fast: false
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Install dependencies Alpine
       if: matrix.os[0] == 'alpine'
       run: |
-        apk add build-base bash gcc git make autoconf automake python3 py3-pip cmake pkgconfig libarchive-dev openssl-dev gpgme-dev libtool \
-          flex bison texinfo gmp-dev mpfr-dev mpc1-dev readline-dev ncurses-dev
+        apk add --no-cache build-base bash gcc git make autoconf automake python3 py3-pip cmake pkgconfig libarchive-dev openssl-dev gpgme-dev \
+          libtool flex bison texinfo gmp-dev mpfr-dev mpc1-dev readline-dev ncurses-dev
     
     - name: Install dependencies Fedora
       if: matrix.os[0] == 'fedora'
       run: |
         dnf -y install @development-tools gcc gcc-c++ g++ wget git autoconf automake python3 python3-pip make cmake pkgconf \
           libarchive-devel openssl-devel gpgme-devel libtool gettext texinfo bison flex gmp-devel mpfr-devel libmpc-devel ncurses-devel \
-          diffutils glibc-gconv-extra
+          diffutils glibc-gconv-extra xz
 
     - name: Compile Tools
       run: |
@@ -43,7 +47,7 @@ jobs:
       run: |
         tar -zcvf pspdev.tar.gz pspdev
     
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: pspdev-${{ steps.slug.outputs.sha8 }}-${{ matrix.os[0] }}
         path: pspdev.tar.gz
@@ -53,32 +57,28 @@ jobs:
     runs-on: ${{ matrix.os[0] }}
     strategy:
       matrix:
-        os: [[macos-latest, bash], [ubuntu-latest, bash]]
+        os: [
+          [macos-latest, arm64, bash],
+          [macos-13, x86_64, bash],
+          [ubuntu-latest, x86_64, bash],
+        ]
+      fail-fast: false
     defaults:
      run:
-      shell: ${{ matrix.os[1] }} {0}
+      shell: ${{ matrix.os[2] }} {0}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
-    - name: Install Dependencies Ubuntu 
-      if: matrix.os[0] == 'ubuntu-latest'
-      run: |
-        sudo apt-get -y install libarchive-dev libcurl4 libcurl4-openssl-dev libssl-dev libarchive-dev libgpgme-dev \
-          gettext texinfo bison flex libncurses5-dev libgmp3-dev libmpfr-dev libmpc-dev
-        echo "MSYSTEM=x64" >> $GITHUB_ENV
-
-    - name: Install Dependencies Mac
-      if: startsWith( matrix.os[0], 'macos' )
-      run: |
-        brew install automake libarchive bash openssl gpgme libtool gettext texinfo bison flex gnu-sed gsl gmp mpfr
-        echo "MSYSTEM=x64" >> $GITHUB_ENV
+    - name : Install dependencies on required OS
+      run: | 
+        ./prepare.sh
 
     - name: Compile Tools
       run: |
-        export PATH="/usr/local/opt/libtool/libexec/gnubin:$PATH"
-        export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-        export PKG_CONFIG_PATH="/usr/local/opt/libarchive/lib/pkgconfig:/usr/local/opt/openssl@3/lib/pkgconfig"
+        export PATH="$(brew --prefix gnu-sed)/libexec/gnubin:$PATH" # This really is only needed for macOS
+        export PATH="$(brew --prefix libtool)/libexec/gnubin:$PATH" # This really is only needed for macOS
+        export PKG_CONFIG_PATH="$(brew --prefix libarchive)/lib/pkgconfig:$(brew --prefix openssl)/lib/pkgconfig" #This really is only needed for macOS
         export PSPDEV=$PWD/pspdev
         export PATH=$PATH:$PSPDEV/bin
         ./toolchain.sh
@@ -93,5 +93,5 @@ jobs:
     
     - uses: actions/upload-artifact@v3
       with:
-        name: pspdev-${{ steps.slug.outputs.sha8 }}-${{ matrix.os[0] }}
+        name: pspdev-${{ steps.slug.outputs.sha8 }}-${{ matrix.os[0] }}-${{ matrix.os[1] }}
         path: pspdev.tar.gz
