@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [
-          [alpine, 3.16], 
+          [alpine, latest], 
           [fedora, latest],
         ]
       fail-fast: false
