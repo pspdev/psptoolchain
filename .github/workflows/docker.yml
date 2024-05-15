@@ -41,3 +41,15 @@ jobs:
         build-args: |
           BASE_DOCKER_ALLEGREX_IMAGE=ghcr.io/${{ github.repository_owner }}/psptoolchain-allegrex:${{ env.DOCKER_TAG }}
           BASE_DOCKER_EXTRA_IMAGE=ghcr.io/${{ github.repository_owner }}/psptoolchain-extra:${{ env.DOCKER_TAG }}
+
+    - name: Send Compile action
+      run: |
+        export DISPATCH_ACTION="$(echo run_build)"
+        echo "NEW_DISPATCH_ACTION=$DISPATCH_ACTION" >> $GITHUB_ENV
+    - name: Repository Dispatch to pspsdk
+      uses: peter-evans/repository-dispatch@v3
+      with:
+        repository: ${{ github.repository_owner }}/pspsdk
+        token: ${{ secrets.DISPATCH_TOKEN }}
+        event-type: ${{ env.NEW_DISPATCH_ACTION }}
+        client-payload: '{"ref": "${{ github.ref }}"}'
