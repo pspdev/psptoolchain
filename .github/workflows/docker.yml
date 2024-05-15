@@ -46,10 +46,10 @@ jobs:
       run: |
         export DISPATCH_ACTION="$(echo run_build)"
         echo "NEW_DISPATCH_ACTION=$DISPATCH_ACTION" >> $GITHUB_ENV
-    - name: Repository Dispatch to pspsdk
+
+    - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v3
       with:
         repository: ${{ github.repository_owner }}/pspsdk
         token: ${{ secrets.DISPATCH_TOKEN }}
         event-type: ${{ env.NEW_DISPATCH_ACTION }}
-        client-payload: '{"ref": "${{ github.ref }}"}'
