@@ -9,6 +9,7 @@ ls -ld $PSPDEV > /dev/null 2>&1 || mkdir -p $PSPDEV > /dev/null 2>&1 || { echo "
 
 ## Check for write permission.
 touch $PSPDEV/test.tmp > /dev/null 2>&1 || { echo "ERROR: Grant write permissions for $PSPDEV before continuing."; exit 1; }
+rm $PSPDEV/test.tmp
 
 ## Check for $PSPDEV/bin in the path.
 echo $PATH | grep $PSPDEV/bin > /dev/null 2>&1 || { echo "ERROR: Add $PSPDEV/bin to your path before continuing."; exit 1; }
