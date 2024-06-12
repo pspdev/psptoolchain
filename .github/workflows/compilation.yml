@@ -18,8 +18,6 @@ jobs:
         ]
       fail-fast: false
     steps:
-    - uses: actions/checkout@v4
-
     - name: Install dependencies Alpine
       if: matrix.os[0] == 'alpine'
       run: |
@@ -33,8 +31,11 @@ jobs:
           libarchive-devel openssl-devel gpgme-devel libtool gettext texinfo bison flex gmp-devel mpfr-devel libmpc-devel ncurses-devel \
           diffutils glibc-gconv-extra xz
 
+    - uses: actions/checkout@v4
+
     - name: Compile Tools
       run: |
+        chown -R $(id -nu):$(id -ng) .
         export PSPDEV=$PWD/pspdev
         export PATH=$PATH:$PSPDEV/bin
         ./toolchain.sh
