@@ -91,7 +91,7 @@ jobs:
       run: |
         tar -zcvf pspdev.tar.gz pspdev
     
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: pspdev-${{ steps.slug.outputs.sha8 }}-${{ matrix.os[0] }}-${{ matrix.os[1] }}
         path: pspdev.tar.gz
