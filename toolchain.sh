@@ -52,4 +52,4 @@ BUILD_FILE="${PSPDEV}/build.txt"
 if [[ -f "${BUILD_FILE}" ]]; then
   sed -i='' '/^psptoolchain /d' "${BUILD_FILE}"
 fi
-git log -1 --format="psptoolchain %H %cs" >> "${BUILD_FILE}"
+git log -1 --format="psptoolchain %H %cs %s" >> "${BUILD_FILE}"
