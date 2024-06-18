@@ -16,12 +16,20 @@ RUN mv ${PSPDEV}/build.txt ${PSPDEV}/build1.txt
 FROM alpine:latest  
 
 ENV PSPDEV /usr/local/pspdev
-ENV PATH $PATH:${PSPDEV}/bin
 
 COPY --from=0 ${PSPDEV} ${PSPDEV}
 COPY --from=1 ${PSPDEV} ${PSPDEV}
+COPY . .
 
 RUN cat ${PSPDEV}/build0.txt ${PSPDEV}/build1.txt > ${PSPDEV}/build.txt && \
     rm ${PSPDEV}/build0.txt ${PSPDEV}/build1.txt && \
     apk add --no-cache git && \
-    git log -1 --format="psptoolchain %H %cs" >> ${PSPDEV}/build.txt
+    git log -1 --format="psptoolchain %H %cs %s" >> ${PSPDEV}/build.txt
+
+# Last stage with everything combined
+FROM alpine:latest
+
+ENV PSPDEV /usr/local/pspdev
+ENV PATH $PATH:${PSPDEV}/bin
+
+COPY --from=2 ${PSPDEV} ${PSPDEV}
