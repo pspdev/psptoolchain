@@ -21,19 +21,9 @@ These scripts download (`git clone`) and install:
 1.  Install gcc/clang, make, cmake, patch, git, texinfo, flex, bison, gettext, wget, gsl, gmp, mpfr, mpc, readline, libarchive, gpgme, bash, openssl and libtool if you don't have those.
 We offer a script to help you for installing dependencies:
 
-### Ubuntu/Debian
+### Ubuntu/Debian, Fedora, OSX
 ```bash
-sudo ./prepare-debian-ubuntu.sh
-```
-
-### Fedora
-```bash
-sudo ./prepare-fedora.sh
-```
-
-### OSX
-```bash
-sudo ./prepare-mac-os.sh
+sudo ./prepare.sh
 ```
 [MacPorts]: http://www.macports.org/
 [HomeBrew]: http://brew.sh/
@@ -61,6 +51,6 @@ export PATH=$PATH:$PSPDEV/bin
 
 Visit the following sites to learn more:
 
-[PSP-DEV Wiki](https://psp-dev.org/)
+[PSP-DEV Wiki](https://pspdev.github.io/)
 
 [PSP Homebrew Community Discord](https://discord.gg/bePrj9W)
