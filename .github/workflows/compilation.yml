@@ -22,7 +22,7 @@ jobs:
       if: matrix.os[0] == 'alpine'
       run: |
         apk add --no-cache build-base bash gcc git make autoconf automake python3 py3-pip cmake pkgconfig libarchive-dev openssl-dev gpgme-dev \
-          libtool flex bison texinfo gmp-dev mpfr-dev mpc1-dev readline-dev ncurses-dev
+          libtool flex bison texinfo gmp-dev mpfr-dev mpc1-dev readline-dev ncurses-dev gawk
     
     - name: Install dependencies Fedora
       if: matrix.os[0] == 'fedora'
